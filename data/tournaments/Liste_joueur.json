@@ -1,0 +1,20 @@
+[
+    { 
+        "nom": "Cage",
+        "prenom": "Nicolas",
+        "date_naissance": "7 janvier 1964",
+        "club": "Ghost Rider"
+    },
+    { 
+        "nom": "Willis",
+        "prenom": "Bruce",
+        "date_naissance":  "19 mars 1955",
+        "club": "Sixième Sens"
+    },
+    { 
+        "nom": "Van Damme",
+        "prenom": "Jean-Claude",
+        "date_naissance": "18 octobre 1960",
+        "club": "Full Contact"
+    }
+]

@@ -1,3 +1,7 @@
+from Models.Models import Joueur
+# from Views.Views import
+# from Controllers.Controllers import
+
 # Chaque tournoi doit contenir au moins les informations suivantes :
 # ● nom ;
 # ● lieu ;
@@ -8,33 +12,8 @@
 # ● une liste des joueurs enregistrés ;
 # ● description pour les remarques générales du directeur du tournoi.
 
-# Match = ([joueur 1, score], [joueur 2, score])
 
-# class Tournoi():
-#     nom = ""
-#     lieu = ""
-#     date_debut =""
-#     date_fin = ""
-#     nb_tour = 4
-#     numero_tour = 0
-#     tour = [Tour1, Tour2]
-#     joueur = [Joueur1, joueur2]
-#     remarque = ""
-
-# class Tour():
-#   nom = "round 1"
-#   match = [match1, match2, match3]
-#   date_debut = ""
-#   date_fin = ""
-
-# club ?
-
-# class Joueur():
-#     nom = ""
-#     prenom = ""
-#     date_naissance = ""
-
-
+print(Joueur("jean", "jean", 45, [12, 25]))
 # RAPPORT
 
 #  liste de tous les joueurs par ordre alphabétique ;
