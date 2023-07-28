@@ -12,8 +12,8 @@ from Models.Models import Joueur
 # ● une liste des joueurs enregistrés ;
 # ● description pour les remarques générales du directeur du tournoi.
 
-
-print(Joueur("jean", "jean", 45, [12, 25]))
+joueur = Joueur("jean", "jean", 45, [12, 25])
+print(vars(joueur))
 # RAPPORT
 
 #  liste de tous les joueurs par ordre alphabétique ;
