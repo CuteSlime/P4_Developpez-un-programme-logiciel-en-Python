@@ -1,0 +1,14 @@
+[
+    { 
+        "nom": "Ghost Rider",
+        "identifiant national": "AB12345"
+    },
+    { 
+        "nom": "Sixième Sens",
+        "identifiant national": "CD23456"
+    },
+    { 
+        "nom": "Full Contact",
+        "identifiant national": "EF34567"
+    }
+]
