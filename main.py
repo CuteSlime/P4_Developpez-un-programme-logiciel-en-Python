@@ -1,4 +1,4 @@
-from Models.Models import Joueur
+from Models.Models import Joueur, Tour
 # from Views.Views import
 # from Controllers.Controllers import
 
@@ -13,7 +13,10 @@ from Models.Models import Joueur
 # ● description pour les remarques générales du directeur du tournoi.
 
 joueur = Joueur("jean", "jean", 45, [12, 25])
-print(vars(joueur))
+round1 = Tour("round01", "match")
+print(vars(joueur), round1.date_debut, round1.date_fin)
+round1.tour_fini()
+print(round1.date_debut, round1.date_fin)
 # RAPPORT
 
 #  liste de tous les joueurs par ordre alphabétique ;
