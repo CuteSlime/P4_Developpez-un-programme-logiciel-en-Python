@@ -22,12 +22,12 @@ class Tournoi():
 class Tour:
     def __init__(self, nom):
         self.nom = nom
-        self.match = []
+        self.list_matchs = []
         self.date_debut = datetime.now().strftime('%d/%m/%Y %H:%M')
         self.date_fin = "en cours"
 
     def add_match(self, match):
-        self.match.append(match.match)
+        self.list_matchs.append(match.match_print())
 
     def tour_fini(self):
         self.date_fin = datetime.now().strftime('%d/%m/%Y %H:%M')
@@ -38,6 +38,9 @@ class Club:
     def __init__(self, nom, identifiant_national):
         self.nom = nom
         self.identifiant_national = identifiant_national
+
+    def __repr__(self) -> str:
+        self.nom
 
 
 class Joueur:
@@ -52,12 +55,19 @@ class Joueur:
     def full_name(self):
         return f"{self.prenom} {self.nom}"
 
+    def __repr__(self) -> str:
+        self.full_name()
+
 
 class Match:
     def __init__(self, joueur1, joueur2):
-        self.joueur1 = [joueur1.full_name(), joueur1.score]
-        self.joueur2 = [joueur2.full_name(), joueur2.score]
-        self.match = (self.joueur1, self.joueur2)
+        self.joueur1 = joueur1
+        self.joueur2 = joueur2
+
+    def match_print(self):
+        x = [self.joueur1.full_name(), self.joueur1.score]
+        y = [self.joueur2.full_name(), self.joueur2.score]
+        return (x, y)
 
     def __repr__(self) -> str:
-        f"{self.match}"
+        self.match

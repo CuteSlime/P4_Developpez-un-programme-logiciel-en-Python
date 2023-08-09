@@ -1,6 +1,6 @@
 
 from Models.Models import Joueur, Tour, Match, Club
-
+from Controllers.Controllers import start_match
 # from Views.Views import
 # from Controllers.Controllers import
 
@@ -21,9 +21,15 @@ round1 = Tour("round01")
 
 match1 = Match(joueur1, joueur2)
 round1.add_match(match1)
-print(joueur2.full_name(), round1.date_debut, round1.date_fin)
-print(round1.match[0])
-print(round1.date_debut, round1.date_fin)
+# print(joueur2.full_name(), round1.date_debut, round1.date_fin)
+print(round1.list_matchs[0])
+print(start_match(match1))
+print(start_match(match1))
+print(start_match(match1))
+print(start_match(match1))
+print(start_match(match1))
+print(round1.list_matchs[0])
+# print(round1.date_debut, round1.date_fin)
 # RAPPORT
 
 #  liste de tous les joueurs par ordre alphabétique ;
