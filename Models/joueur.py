@@ -35,31 +35,37 @@ class Joueur:
             if self.__dict__ == joueur:
                 exist = True
                 break
-            continue
         if exist:
             return print("Ce joueur existe déjà")
-
         joueurs_data.append(self.__dict__)
         joueur_json = json.dumps(joueurs_data, indent=4)
-
         with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(joueur_json)
 
     def remove_from(self):
-        
-
-    # This solution skips the index number altogether, which is usually simpler; however, if the index number is needed for some purpose, the enumerate built-in function can provide it: for i, member in enumerate(data['members']): ... – 
-    # Jiří Baum
-    # Jul 29, 2020 at 5:35
-
-
+        if not isinstance(self, Joueur):
+            return ValueError("Ceci n'est pas un Joueur valide")
+        if self.__dict__ in joueurs_data:
+            joueurs_data.remove(self.__dict__)
+        joueur_json = json.dumps(joueurs_data, indent=4)
+        with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
+            jsonfile.write(joueur_json)
 
     def __str__(self):
         return f"{self.full_name()} {self.date_naissance} {self.score} {self.club}"
 
 
+# teste
 joueur = Joueur(**joueurs_data[0])
 
 
 joueur2 = Joueur("Toucuit", "Phillipe", "14 Mars 2001", club="not an actor")
-joueur2.add_to()
+joueur3 = Joueur("Toucuit", "Phillip", "14 Mars 2001", club="not an actor")
+
+joueur2.remove_from()
+
+
+# for i, joueur in enumerate(joueurs_data):
+#     if self.__dict__ == joueur:
+#         print("trouvé !")
+#         break
