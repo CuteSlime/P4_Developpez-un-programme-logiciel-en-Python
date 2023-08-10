@@ -23,14 +23,21 @@ class Joueur:
         self.date_naissance = date_naissance
         self.score = kwargs.get('score', 0)
         self.club = kwargs.get('club')
-# import JSON pour Joueur, plus pour le club du joueur
 
     def full_name(self):
         return f"{self.prenom} {self.nom}"
 
     def add_to(self):
+        exist = False
         if not isinstance(self, Joueur):
-            return ValueError("Ceci n'est pas un Joueur valide")
+            return print("Ceci n'est pas un Joueur valide")
+        for joueur in joueurs_data:
+            if self.__dict__ == joueur:
+                exist = True
+                break
+            continue
+        if exist:
+            return print("Ce joueur existe déjà")
 
         joueurs_data.append(self.__dict__)
         joueur_json = json.dumps(joueurs_data, indent=4)
