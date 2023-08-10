@@ -1,20 +1,30 @@
 [
-    { 
+    {
         "nom": "Cage",
         "prenom": "Nicolas",
         "date_naissance": "7 janvier 1964",
+        "score": 0,
         "club": "Ghost Rider"
     },
-    { 
+    {
         "nom": "Willis",
         "prenom": "Bruce",
-        "date_naissance":  "19 mars 1955",
-        "club": "Sixième Sens"
+        "date_naissance": "19 mars 1955",
+        "score": 0,
+        "club": "Sixi\u00e8me Sens"
     },
-    { 
+    {
         "nom": "Van Damme",
         "prenom": "Jean-Claude",
         "date_naissance": "18 octobre 1960",
+        "score": 0,
         "club": "Full Contact"
+    },
+    {
+        "nom": "Toucuit",
+        "prenom": "Phillipe",
+        "date_naissance": "14 Mars 2001",
+        "score": 0,
+        "club": "not an actor"
     }
 ]
