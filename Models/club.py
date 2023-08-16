@@ -2,11 +2,14 @@
 import json
 
 
-list_club = []
+def list_clubs():
+
+    with open('./data/clubs.json', 'r', encoding='utf8') as clubs_data:
+        clubs_data = json.load(clubs_data)
+    return clubs_data
 
 
-with open('./data/clubs.json', 'r', encoding='utf8') as clubs_data:
-    clubs_data = json.load(clubs_data)
+clubs_data = list_clubs()
 
 
 class Club:
@@ -14,8 +17,32 @@ class Club:
         self.nom = nom
         self.identifiant_national = identifiant_national
 
+    def add_to(self):
+        exist = False
+        if not isinstance(self, Club):
+            return print("Ceci n'est pas un Club valide")
+        for club in clubs_data:
+            if self.__dict__ == club:
+                exist = True
+                break
+        if exist:
+            return print("Ce joueur existe déjà")
+        clubs_data.append(self.__dict__)
+        club_json = json.dumps(clubs_data, indent=4)
+        with open('../data/clubs.json', 'w', encoding='utf8') as jsonfile:
+            jsonfile.write(club_json)
+
+    def remove_from(self):
+        if not isinstance(self, Club):
+            return ValueError("Ceci n'est pas un Club valide")
+        if self.__dict__ in clubs_data:
+            clubs_data.remove(self.__dict__)
+        club_json = json.dumps(clubs_data, indent=4)
+        with open('../data/clubs.json', 'w', encoding='utf8') as jsonfile:
+            jsonfile.write(club_json)
+
     def __str__(self) -> str:
         self.nom
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         self.nom, self.identifiant_national
