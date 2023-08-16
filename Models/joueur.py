@@ -2,18 +2,13 @@ import json
 # from .club import Club
 
 
-with open('../data/joueurs.json', 'r', encoding='utf8') as joueurs_data:
-    joueurs_data = json.load(joueurs_data)
-# print(joueurs_data)
+def list_joueurs():
+    with open('../data/joueurs.json', 'r', encoding='utf8') as joueurs_data:
+        joueurs_data = json.load(joueurs_data)
+    return joueurs_data
 
-list_joueurs = []
 
-
-def lister_joueurs(joueurs_data):
-    for joueur in joueurs_data:
-        print(joueur)
-        list_joueurs.append(Joueur(**joueur))
-    return list_joueurs
+joueurs_data = list_joueurs()
 
 
 class Joueur:
@@ -52,7 +47,7 @@ class Joueur:
             jsonfile.write(joueur_json)
 
     def __str__(self):
-        return f"{self.full_name()} {self.date_naissance} {self.score} {self.club}"
+        return f"{self.full_name()} Née le :{self.date_naissance} {self.score} {self.club}"
 
 
 # teste
@@ -62,7 +57,7 @@ joueur = Joueur(**joueurs_data[0])
 joueur2 = Joueur("Toucuit", "Phillipe", "14 Mars 2001", club="not an actor")
 joueur3 = Joueur("Toucuit", "Phillip", "14 Mars 2001", club="not an actor")
 
-joueur2.remove_from()
+joueur2.add_to()
 
 
 # for i, joueur in enumerate(joueurs_data):
