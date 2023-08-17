@@ -29,7 +29,7 @@ class Club:
             return print("Ce joueur existe déjà")
         clubs_data.append(self.__dict__)
         club_json = json.dumps(clubs_data, indent=4)
-        with open('../data/clubs.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/clubs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(club_json)
 
     def remove_from(self):
@@ -38,7 +38,7 @@ class Club:
         if self.__dict__ in clubs_data:
             clubs_data.remove(self.__dict__)
         club_json = json.dumps(clubs_data, indent=4)
-        with open('../data/clubs.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/clubs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(club_json)
 
     def update_from(self, original):
@@ -48,7 +48,7 @@ class Club:
             clubs_data.remove(original.__dict__)
             clubs_data.append(self.__dict__)
             club_json = json.dumps(clubs_data, indent=4)
-        with open('../data/clubs.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/clubs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(club_json)
             return clubs_data
 

@@ -1,5 +1,7 @@
 import json
 # from .tour import Tour
+# from .joueur import Joueur
+# from .tour import Tour
 
 
 def list_tournois():
@@ -35,7 +37,7 @@ class Tournoi():
             return print("Ce tournoi existe déjà")
         tournois_data.append(self.__dict__)
         tournoi_json = json.dumps(tournois_data, indent=4)
-        with open('../data/tournois.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/tournois.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tournoi_json)
 
     def remove_from(self):
@@ -44,7 +46,7 @@ class Tournoi():
         if self.__dict__ in tournois_data:
             tournois_data.remove(self.__dict__)
         tournoi_json = json.dumps(tournois_data, indent=4)
-        with open('../data/tournois.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/tournois.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tournoi_json)
 
     def update_from(self, original):
@@ -54,7 +56,7 @@ class Tournoi():
             tournois_data.remove(original.__dict__)
             tournois_data.append(self.__dict__)
             tournoi_json = json.dumps(tournois_data, indent=4)
-        with open('../data/tournois.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/tournois.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tournoi_json)
             return tournois_data
 

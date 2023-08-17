@@ -3,8 +3,8 @@ import json
 
 
 def list_joueurs():
-    with open('../data/joueurs.json', 'r', encoding='utf8') as joueurs_data:
-        joueurs_data = json.load(joueurs_data)
+    with open('./data/joueurs.json', 'r', encoding='utf8') as joueurs_data:
+        joueurs_data = json.load(
     return joueurs_data
 
 
@@ -34,7 +34,7 @@ class Joueur:
             return print("Ce joueur existe déjà")
         joueurs_data.append(self.__dict__)
         joueur_json = json.dumps(joueurs_data, indent=4)
-        with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/joueurs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(joueur_json)
         return joueurs_data
 
@@ -44,7 +44,7 @@ class Joueur:
         if self.__dict__ in joueurs_data:
             joueurs_data.remove(self.__dict__)
         joueur_json = json.dumps(joueurs_data, indent=4)
-        with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
+        with open('./data/joueurs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(joueur_json)
         return joueurs_data
 
@@ -55,7 +55,7 @@ class Joueur:
             joueurs_data.remove(original.__dict__)
             joueurs_data.append(self.__dict__)
             joueur_json = json.dumps(joueurs_data, indent=4)
-            with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
+            with open('./data/joueurs.json', 'w', encoding='utf8') as jsonfile:
                 jsonfile.write(joueur_json)
             return joueurs_data
 
