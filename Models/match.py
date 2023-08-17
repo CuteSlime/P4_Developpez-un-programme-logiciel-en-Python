@@ -1,12 +1,13 @@
 import random
 # from .joueur import Joueur
-from .tour import Tour
+# from .tour import Tour
 
 
 class Match:
     def __init__(self, joueur1, joueur2):
         self.joueur1 = joueur1
         self.joueur2 = joueur2
+        self.match_print()
 
     def match_print(self):
         x = [self.joueur1.full_name(), self.joueur1.score]

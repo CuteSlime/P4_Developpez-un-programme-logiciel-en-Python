@@ -1,3 +1,4 @@
+from random import shuffle
 from datetime import datetime
 from .joueur import list_joueurs
 from .match import Match
@@ -21,9 +22,12 @@ class Tour:
         self.add_match()
 
     def add_match(self):
-        joueurs = list_joueurs().shuffle()
+        joueurs = list_joueurs()
+        shuffle(joueurs)
+
         while len(joueurs) > 0:
             self.list_matchs.append(Match(joueurs[0], joueurs[1]))
+            del joueurs[0:2]
 
     def tour_fini(self):
         self.date_fin = datetime.now().strftime('%d/%m/%Y %H:%M')
