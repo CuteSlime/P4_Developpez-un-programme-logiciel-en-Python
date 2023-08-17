@@ -1,5 +1,7 @@
 from datetime import datetime
 import json
+
+from .match import Match
 # from .club import Club
 
 
@@ -49,3 +51,14 @@ class Tour:
         tour_json = json.dumps(tours_data, indent=4)
         with open('../data/tours.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tour_json)
+
+    def update_from(self, original):
+        if not isinstance(self, Tour):
+            return ValueError("Ceci n'est pas un Club valide")
+        if original.__dict__ in tours_data:
+            tours_data.remove(original.__dict__)
+            tours_data.append(self.__dict__)
+            tour_json = json.dumps(tours_data, indent=4)
+        with open('../data/tours.json', 'w', encoding='utf8') as jsonfile:
+            jsonfile.write(tour_json)
+            return tours_data

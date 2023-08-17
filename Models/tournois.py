@@ -1,5 +1,5 @@
 import json
-from .tour import Tour
+# from .tour import Tour
 
 
 def list_tournois():
@@ -46,6 +46,17 @@ class Tournoi():
         tournoi_json = json.dumps(tournois_data, indent=4)
         with open('../data/tournois.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tournoi_json)
+
+    def update_from(self, original):
+        if not isinstance(self, Tournoi):
+            return ValueError("Ceci n'est pas un Tournoi valide")
+        if original.__dict__ in tournois_data:
+            tournois_data.remove(original.__dict__)
+            tournois_data.append(self.__dict__)
+            tournoi_json = json.dumps(tournois_data, indent=4)
+        with open('../data/tournois.json', 'w', encoding='utf8') as jsonfile:
+            jsonfile.write(tournoi_json)
+            return tournois_data
 
     def add_joueur(self, joueur):
         self.list_joueurs.append(joueur)

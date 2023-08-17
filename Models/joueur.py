@@ -36,6 +36,7 @@ class Joueur:
         joueur_json = json.dumps(joueurs_data, indent=4)
         with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(joueur_json)
+        return joueurs_data
 
     def remove_from(self):
         if not isinstance(self, Joueur):
@@ -45,6 +46,18 @@ class Joueur:
         joueur_json = json.dumps(joueurs_data, indent=4)
         with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(joueur_json)
+        return joueurs_data
+
+    def update_from(self, original):
+        if not isinstance(self, Joueur):
+            return ValueError("Ceci n'est pas un Joueur valide")
+        if original.__dict__ in joueurs_data:
+            joueurs_data.remove(original.__dict__)
+            joueurs_data.append(self.__dict__)
+            joueur_json = json.dumps(joueurs_data, indent=4)
+            with open('../data/joueurs.json', 'w', encoding='utf8') as jsonfile:
+                jsonfile.write(joueur_json)
+            return joueurs_data
 
     def __str__(self):
         return f"{self.full_name()} Née le :{self.date_naissance} {self.score} {self.club}"

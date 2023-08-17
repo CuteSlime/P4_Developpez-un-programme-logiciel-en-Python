@@ -41,6 +41,17 @@ class Club:
         with open('../data/clubs.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(club_json)
 
+    def update_from(self, original):
+        if not isinstance(self, Club):
+            return ValueError("Ceci n'est pas un Club valide")
+        if original.__dict__ in clubs_data:
+            clubs_data.remove(original.__dict__)
+            clubs_data.append(self.__dict__)
+            club_json = json.dumps(clubs_data, indent=4)
+        with open('../data/clubs.json', 'w', encoding='utf8') as jsonfile:
+            jsonfile.write(club_json)
+            return clubs_data
+
     def __str__(self) -> str:
         self.nom
 
