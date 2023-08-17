@@ -1,5 +1,3 @@
-from Controllers.Controllers import run
-
 
 def menu_principal():
     print("Bonjour, /nBienvenu dans l'outils de gestion de tournois./nQue souhaiter vous faire ?")

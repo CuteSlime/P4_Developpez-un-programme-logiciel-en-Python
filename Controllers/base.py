@@ -1,11 +1,11 @@
 
 from random import random
-from Models.tournois import Tournoi
-from Models.tour import Tour
-from Models.match import Match
-from Models.club import Club
-from Models.joueur import Joueur
-from Views.Views import menu_principal, menu_tournois, menu_club, menu_joueur
+from models.tournois import Tournoi
+from models.tour import Tour
+from models.match import Match
+from models.club import Club
+from models.joueur import Joueur
+from views.base import menu_principal, menu_tournois, menu_club, menu_joueur
 
 list_tournois = []
 list_tours = []
@@ -23,6 +23,8 @@ class Controller:
         self.matchs = list_matchs()
         self.clubs = list_clubs()
         self.joueurs = list_joueurs()
+
+        self.view = view
 
     # def lister_joueurs(joueurs_data):
     #     for joueur in joueurs_data:

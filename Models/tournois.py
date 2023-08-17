@@ -1,4 +1,5 @@
 import json
+from .tour import Tour
 
 
 def list_tournois():
@@ -48,6 +49,7 @@ class Tournoi():
 
     def add_joueur(self, joueur):
         self.list_joueurs.append(joueur)
+        print(self.list_joueurs)
 
     def add_tour(self, tour_name):
         self.list_tours.append(tour_name)
