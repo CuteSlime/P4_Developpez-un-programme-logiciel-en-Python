@@ -1,10 +1,13 @@
 import json
+from types import SimpleNamespace
 # from .club import Club
 
 
 def list_joueurs():
     with open('./data/joueurs.json', 'r', encoding='utf8') as joueurs_data:
         joueurs_data = json.load(
+            joueurs_data, object_hook=lambda d: SimpleNamespace(**d))
+
     return joueurs_data
 
 
