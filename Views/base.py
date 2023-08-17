@@ -12,11 +12,32 @@ def menu_principal():
 
 def menu_tournois():
     print("Menu de gestion des tournois")
+    print("[1] créer un tournoi")
+    print("[2] modifier un tournoi")
+    print("[3] suprimer un tournoi")
+    print("[4] retour au menu principal")
 
-
-def menu_joueur():
-    print("Menu de gestion des joueurs")
+    choix = input("choix N° :")
+    return choix
 
 
 def menu_club():
     print("Menu de gestion des clubs")
+    print("[1] créer un club")
+    print("[2] modifier un club")
+    print("[3] suprimer un club")
+    print("[4] retour au menu principal")
+
+    choix = input("choix N° :")
+    return choix
+
+
+def menu_joueur():
+    print("Menu de gestion des joueurs")
+    print("[1] créer un joueur")
+    print("[2] modifier un joueur")
+    print("[3] suprimer un joueur")
+    print("[4] retour au menu principal")
+
+    choix = input("choix N° :")
+    return choix
