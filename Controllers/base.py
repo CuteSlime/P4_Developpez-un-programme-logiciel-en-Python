@@ -31,36 +31,29 @@ class Controller:
     #         print(joueur)
     #         list_joueurs.append(Joueur(**joueur))
     #     return list_joueurs
+    def test():
+        Tour.add_match
 
-    """start_match reçois un match, et retourne le gagnant toute en distribuant les point"""
     def run():
         choix = 0
+        running = True
         menu_principal()
-        if choix in ["1", "2", "3", "4"]:
-            if choix == "1":
-                return menu_tournois()
-            elif choix == "2":
-                return menu_joueur()
-            elif choix == "3":
-                return menu_club()
-            elif choix == "4":
-                exit()
+        while running:
+            match choix:
+                case "1":
+                    return menu_tournois()
+                case "2":
+                    return menu_joueur()
+                case "3":
+                    return menu_club()
+                case "4":
+                    exit()
+                case _:
+                    print("Choix incorrect !")
 
-        else:
-            print("Choix incorrect !")
+    """start_match reçois un match, et retourne le gagnant toute en distribuant les point"""
 
-    def start_match(match):
-        winner = random()
-        if winner > 0.5:
-            print(match.joueur1.full_name(), "gagne !")
-            match.joueur1.score += 1
+    def start_match(self):
 
-        elif winner < 0.5:
-            print(match.joueur2.full_name(), "gagne !")
-            match.joueur2.score += 1
-        else:
-            print('c\'est une égalité !')
-            match.joueur1.score += 0.5
-            match.joueur2.score += 0.5
-        print(match.match_print(), "teste")
-        return match.match_print()
+        for match in self.matchs:
+            Match.play_match()
