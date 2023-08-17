@@ -66,14 +66,14 @@ class Joueur:
         return f"{self.full_name()} Née le :{self.date_naissance} {self.score} {self.club}"
 
 
-# teste
-joueur = Joueur(**joueurs_data[0])
+# # teste
+# joueur = Joueur(**joueurs_data[0])
 
 
-joueur2 = Joueur("Toucuit", "Phillipe", "14 Mars 2001", club="not an actor")
-joueur3 = Joueur("Toucuit", "Phillip", "14 Mars 2001", club="not an actor")
+# joueur2 = Joueur("Toucuit", "Phillipe", "14 Mars 2001", club="not an actor")
+# joueur3 = Joueur("Toucuit", "Phillip", "14 Mars 2001", club="not an actor")
 
-joueur2.add_to()
+# joueur2.add_to()
 
 
 # for i, joueur in enumerate(joueurs_data):

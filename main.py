@@ -1,13 +1,13 @@
 
 
 from controllers.base import Controller
-from views.base import View
+from views.base import Views
 
 
 def main():
-    view = View()
+    view = Views()
     logiciel = Controller(view)
-    logiciel.run()
+    logiciel.test()
 
 
 if __name__ == "__main__":

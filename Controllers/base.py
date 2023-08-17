@@ -1,16 +1,15 @@
 
-from random import random
-from models.tournois import Tournoi
+# from models.tournois import Tournoi
 from models.tour import Tour
-from models.match import Match
-from models.club import Club
-from models.joueur import Joueur
-from views.base import menu_principal, menu_tournois, menu_club, menu_joueur
+# from models.match import Match
+# from models.club import Club
+from models.joueur import list_joueurs
+
 
 list_tournois = []
 list_tours = []
 list_matchs = []
-list_joueurs = []
+list_joueurs = list_joueurs()
 list_clubs = []
 
 
@@ -18,11 +17,10 @@ class Controller:
     '''Main controller'''
 
     def __init__(self, view):
-        self.tournois = list_tournois()
-        self.tours = list_tours()
-        self.matchs = list_matchs()
-        self.clubs = list_clubs()
-        self.joueurs = list_joueurs()
+        # self.tournois = Tournoi.list_tournois()
+        # self.matchs = Match.list_matchs()
+        # self.clubs = Club.list_clubs()
+        self.joueurs = list_joueurs
 
         self.view = view
 
@@ -31,8 +29,9 @@ class Controller:
     #         print(joueur)
     #         list_joueurs.append(Joueur(**joueur))
     #     return list_joueurs
-    def test():
-        Tour.add_match
+    def test(self):
+        tour = Tour("round01")
+        print(tour.list_matchs)
 
     def run():
         choix = 0
