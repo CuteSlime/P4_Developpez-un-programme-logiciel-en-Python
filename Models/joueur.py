@@ -1,21 +1,27 @@
 import json
-from types import SimpleNamespace
+# from types import SimpleNamespace
 # from .club import Club
 
 
-def list_joueurs():
-    with open('./data/joueurs.json', 'r', encoding='utf8') as joueurs_database:
-        joueurs_database = json.load(joueurs_database.read())
-        for joueur in joueurs_database
-        
+def database_access(database_name, cls, access_type, *arg):
+    access_type = str(access_type)
 
-    return joueurs_database
-
-
-joueurs_database = list_joueurs()
+    if access_type == "r":
+        objects_list = []
+        with open('./data/' + str(database_name) + '.json', 'r', encoding='utf8') as Json_data:
+            database = json.load(Json_data.read())
+            for obj in database:
+                objects_list.append(cls(**obj))
+    elif access_type == "w":
+        objects_list = arg
+        new_data = json.dumps(objects_list, indent=4)
+        with open('./data/' + str(database_name) + '.json', 'w', encoding='utf8') as Json_data:
+            Json_data.write(new_data)
+    return objects_list
 
 
 class Joueur:
+
     def __init__(self, nom, prenom, date_naissance, **kwargs):
         self.nom = nom
         self.prenom = prenom
