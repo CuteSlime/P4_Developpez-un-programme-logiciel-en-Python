@@ -5,13 +5,13 @@ import json
 
 
 def list_tournois():
-    tournois_data = []
-    with open('./data/tournois.json', 'r', encoding='utf8') as tournois_data:
-        tournois_data = json.load(tournois_data)
-    return tournois_data
+    tournois_database = []
+    with open('./data/tournois.json', 'r', encoding='utf8') as tournois_database:
+        tournois_database = json.load(tournois_database)
+    return tournois_database
 
 
-tournois_data = list_tournois()
+tournois_database = list_tournois()
 
 
 class Tournoi():
@@ -29,36 +29,36 @@ class Tournoi():
         exist = False
         if not isinstance(self, Tournoi):
             return print("Ceci n'est pas un Tournoi valide")
-        for tournoi in tournois_data:
+        for tournoi in tournois_database:
             if self.__dict__ == tournoi:
                 exist = True
                 break
         if exist:
             return print("Ce tournoi existe déjà")
-        tournois_data.append(self.__dict__)
-        tournoi_json = json.dumps(tournois_data, indent=4)
+        tournois_database.append(self.__dict__)
+        tournoi_json = json.dumps(tournois_database, indent=4)
         with open('./data/tournois.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tournoi_json)
 
     def remove_from(self):
         if not isinstance(self, Tournoi):
             return ValueError("Ceci n'est pas un Tournoi valide")
-        if self.__dict__ in tournois_data:
-            tournois_data.remove(self.__dict__)
-        tournoi_json = json.dumps(tournois_data, indent=4)
+        if self.__dict__ in tournois_database:
+            tournois_database.remove(self.__dict__)
+        tournoi_json = json.dumps(tournois_database, indent=4)
         with open('./data/tournois.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tournoi_json)
 
     def update_from(self, original):
         if not isinstance(self, Tournoi):
             return ValueError("Ceci n'est pas un Tournoi valide")
-        if original.__dict__ in tournois_data:
-            tournois_data.remove(original.__dict__)
-            tournois_data.append(self.__dict__)
-            tournoi_json = json.dumps(tournois_data, indent=4)
+        if original.__dict__ in tournois_database:
+            tournois_database.remove(original.__dict__)
+            tournois_database.append(self.__dict__)
+            tournoi_json = json.dumps(tournois_database, indent=4)
         with open('./data/tournois.json', 'w', encoding='utf8') as jsonfile:
             jsonfile.write(tournoi_json)
-            return tournois_data
+            return tournois_database
 
     def add_joueur(self, joueur):
         self.list_joueurs.append(joueur)
