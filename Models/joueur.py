@@ -43,7 +43,7 @@ class Joueur:
     #         database_access("joueurs", Joueur, "w", joueurs_database)
 
     def __str__(self):
-        return f"{self.full_name()} Née le :{self.date_naissance} {self.score} {self.club}"
+        return f"{self.full_name()} Née le : {self.date_naissance} {self.score} {self.club}"
 
 
 # # teste

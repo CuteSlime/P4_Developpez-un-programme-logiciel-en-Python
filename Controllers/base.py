@@ -59,3 +59,12 @@ class Controller:
 
 
 print("\33[93m", list_joueurs, "\33[00m")
+joueur2 = Joueur("Tite", "Phillipe", "14 Mars 2001", club="not an actor")
+joueur4 = Joueur("Touite", "Phillipe", "14 Mars 2001", club="not an actor")
+joueur3 = Joueur("Touuite", "Phillipe", "14 Mars 2001", club="not an actor")
+joueur1 = Joueur("Toucuite", "Phillipe", "14 Mars 2001", club="not an actor")
+add_to_database(joueur1, list_joueurs, "joueurs", Joueur)
+add_to_database(joueur2, list_joueurs, "joueurs", Joueur)
+add_to_database(joueur3, list_joueurs, "joueurs", Joueur)
+add_to_database(joueur4, list_joueurs, "joueurs", Joueur)
+print("\33[93m", list_joueurs, "\33[00m")
