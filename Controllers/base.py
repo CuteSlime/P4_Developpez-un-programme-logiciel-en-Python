@@ -1,15 +1,15 @@
 
 # from models.tournois import Tournoi
-from models.tour import Tour
+# from models.tour import Tour
 # from models.match import Match
 # from models.club import Club
-from models.joueur import list_joueurs
-
+from models.joueur import Joueur
+from models.database import database_access, add_to_database, remove_from_database, update_database
 
 list_tournois = []
 list_tours = []
 list_matchs = []
-list_joueurs = list_joueurs()
+list_joueurs = database_access("joueurs", Joueur, "r")
 list_clubs = []
 
 
@@ -33,26 +33,29 @@ class Controller:
         tour = Tour("round01")
         print(tour.list_matchs)
 
-    def run():
-        choix = 0
-        running = True
-        menu_principal()
-        while running:
-            match choix:
-                case "1":
-                    return menu_tournois()
-                case "2":
-                    return menu_joueur()
-                case "3":
-                    return menu_club()
-                case "4":
-                    exit()
-                case _:
-                    print("Choix incorrect !")
+    # def run():
+    #     choix = 0
+    #     running = True
+    #     menu_principal()
+    #     while running:
+    #         match choix:
+    #             case "1":
+    #                 return menu_tournois()
+    #             case "2":
+    #                 return menu_joueur()
+    #             case "3":
+    #                 return menu_club()
+    #             case "4":
+    #                 exit()
+    #             case _:
+    #                 print("Choix incorrect !")
 
-    """start_match reçois un match, et retourne le gagnant toute en distribuant les point"""
+    # """start_match reçois un match, et retourne le gagnant toute en distribuant les point"""
 
-    def start_match(self):
+    # def start_match(self):
 
-        for match in self.matchs:
-            Match.play_match()
+    #     for match in self.matchs:
+    #         Match.play_match()
+
+
+print("\33[93m", list_joueurs, "\33[00m")
