@@ -5,7 +5,8 @@ import json
 
 
 class Tournoi():
-    def __init__(self, lieu, date_debut, date_fin, nb_tour=4):
+    def __init__(self, nom, lieu, date_debut, date_fin, nb_tour=4):
+        self.nom = nom
         self.lieu = lieu
         self.date_debut = date_debut
         self.date_fin = date_fin
@@ -21,3 +22,6 @@ class Tournoi():
 
     def add_tour(self, tour_name):
         self.list_tours.append(tour_name)
+
+    def __str__(self):
+        return f"\33[90m Nom : {self.nom} /n à : {self.lieu} /n Début du tournoi : {self.date_debut} Fin : {self.date_fin} /nDescription : {self.remarque}\33[0m"
