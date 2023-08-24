@@ -25,7 +25,7 @@ class Tour:
         joueurs = list_joueurs()
         shuffle(joueurs)
 
-        while len(joueurs) > 0:
+        while len(joueurs) > 1:
             self.list_matchs.append(Match(joueurs[0], joueurs[1]))
             del joueurs[0:2]
 
