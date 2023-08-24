@@ -16,11 +16,11 @@ def database_access(database_name, object_class, access_type, *objects_list):
         # print("\33[93m", database, "\33[0m")
         # for obj2 in database:
         #     objects_list.append(object_class(**obj2))
+        return objects_list2
     elif access_type == "w":
         json.dump(objects_list, open('./data/' + str(database_name) +
                                      '.json', 'w', encoding='utf8'), indent=4, cls=Encoder)
         database_access(database_name, object_class, "r")
-    return objects_list2
 
 
 def add_to_database(self, objects_list, database_name, object_class):
