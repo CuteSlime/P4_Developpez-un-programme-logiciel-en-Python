@@ -4,16 +4,6 @@ import json
 # from .tour import Tour
 
 
-def list_tournois():
-    tournois_database = []
-    with open('./data/tournois.json', 'r', encoding='utf8') as tournois_database:
-        tournois_database = json.load(tournois_database)
-    return tournois_database
-
-
-tournois_database = list_tournois()
-
-
 class Tournoi():
     def __init__(self, lieu, date_debut, date_fin, nb_tour=4):
         self.lieu = lieu
