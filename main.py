@@ -4,11 +4,16 @@ from controllers.base import Controller
 from views.base import Views
 
 
-def main():
-    view = Views()
-    logiciel = Controller(view)
+# def main():
+#     view = Views()
+#     logiciel = Controller(view)
+#     logiciel.run()
+
+
+def test():
+    logiciel = Controller()
     logiciel.test()
 
 
 if __name__ == "__main__":
-    main()
+    test()
