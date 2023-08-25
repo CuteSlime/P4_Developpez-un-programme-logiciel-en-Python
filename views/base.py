@@ -1,7 +1,7 @@
 class Views:
     '''vue principal appellant les autres'''
 
-    def menu_principal():
+    def menu_principal(self):
         choix = 0
         print("Bonjour, /nBienvenu dans l'outils de gestion de tournois./nQue souhaiter vous faire ?")
         print("[1] gérer les tournois")
@@ -14,7 +14,7 @@ class Views:
         return choix
 
     # gestion des tournois
-    def gestion_tournois():
+    def gestion_tournois(self):
         choix = 0
         print("Menu de gestion des tournois")
         print("[1] lister les tournois actuel")
@@ -24,14 +24,14 @@ class Views:
             choix = input("choix N° :")
         return choix
 
-    def list_tournois(liste_tournois):
+    def list_tournois(self, liste_tournois):
         print("liste des tournois actuel")
         print(liste_tournois)
 
         choix = input("tournois N° :")
         return choix
 
-    def creer_tournoi():
+    def creer_tournoi(self):
         nom = input("Nom du tournois :")
         lieu = input("Lieu du déroulement :")
         date_debut = input("date de début au format JJ/MM/AAAA :")
@@ -40,7 +40,7 @@ class Views:
         tournoi = (nom, lieu, date_debut, date_fin, nb_tour)
         return tournoi
 
-    def modifier_tournoi():
+    def modifier_tournoi(self):
         choix = 0
         print("Menu de gestion des tournois")
         print("[2] modifier un tournoi")
@@ -51,7 +51,7 @@ class Views:
             choix = input("choix N° :")
         return choix
 
-    def menu_club():
+    def menu_club(self):
         choix = 0
         print("Menu de gestion des clubs")
         print("[1] créer un club")
@@ -63,7 +63,7 @@ class Views:
             choix = input("choix N° :")
         return choix
 
-    def menu_joueur():
+    def menu_joueur(self):
         choix = 0
         print("Menu de gestion des joueurs")
         print("[1] créer un joueur")
