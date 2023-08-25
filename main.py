@@ -4,14 +4,15 @@ from controllers.base import Controller
 from views.base import Views
 
 
-# def main():
-#     view = Views()
-#     logiciel = Controller(view)
-#     logiciel.run()
+def main():
+    view = Views()
+    logiciel = Controller(view)
+    logiciel.run()
 
 
 def test():
-    logiciel = Controller()
+    view = Views()
+    logiciel = Controller(view)
     logiciel.test()
 
 
