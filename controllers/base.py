@@ -15,48 +15,48 @@ list_clubs = []
 class Controller:
     '''Main controller'''
 
-    def __init__(self):
+    def __init__(self, view):
         # self.tournois = Tournoi.list_tournois()
         # self.matchs = Match.list_matchs()
         # self.clubs = Club.list_clubs()
         self.joueurs = list_joueurs
-
+        self.view = view
     # def test(self):
     #     tour = Tour("round01")
     #     print(tour.list_matchs)
 
 # créer un tournois
 
-    # def add_tournoi():
-    #     '''ajoute le tournoi rentrer depuis la vue'''
-    #     tournois = Tournoi(tournois_data)
-    #     add_to_database(tournois, list_tournois, "tournois", Tournoi)
+    def add_tournoi():
+        '''ajoute le tournoi rentrer depuis la vue'''
+        tournois = Tournoi(tournois_data)
+        add_to_database(tournois, list_tournois, "tournois", Tournoi)
 
-    # def add_joueur():
-    #     '''ajoute le joueur rentrer depuis la vue'''
-    #     joueur = Joueur(joueur_data)
-    #     add_to_database(joueur, list_joueurs, "joueurs", Joueur)
+    def add_joueur():
+        '''ajoute le joueur rentrer depuis la vue'''
+        joueur = Joueur(joueur_data)
+        add_to_database(joueur, list_joueurs, "joueurs", Joueur)
 
-    # def add_tour():
-    #     '''ajoute un tour au tournoi rentrer depuis la vue'''
-    #     pass
+    def add_tour():
+        '''ajoute un tour au tournoi rentrer depuis la vue'''
+        pass
 
-    # def run(view):
-    #     choix = 0
+    def run(self):
+        choix = 0
 
-    #     view.menu_principal()
-    #     match choix:
-    #         case "1":
-    #             return view.menu_tournois()
-    #         case "2":
-    #             return view.menu_joueur()
-    #         case "3":
-    #             return view.menu_club()
-    #         case "4":
-    #             exit()
-    #         case _:
-    #             print("Choix incorrect !")
-    #             return view.menu_principal()
+        self.view.menu_principal()
+        match choix:
+            case "1":
+                return view.menu_tournois()
+            case "2":
+                return view.menu_joueur()
+            case "3":
+                return view.menu_club()
+            case "4":
+                exit()
+            case _:
+                print("Choix incorrect !")
+                return view.menu_principal()
 
     # """start_match reçois un match, et retourne le gagnant toute en distribuant les point"""
 
