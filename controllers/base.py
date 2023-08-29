@@ -42,21 +42,18 @@ class Controller:
         pass
 
     def run(self):
-        choix = 0
+        choix = ""
 
         self.view.menu_principal()
         match choix:
             case "1":
-                return view.menu_tournois()
+                return self.view.menu_tournois()
             case "2":
-                return view.menu_joueur()
+                return self.view.menu_joueur()
             case "3":
-                return view.menu_club()
+                return self.view.menu_club()
             case "4":
                 exit()
-            case _:
-                print("Choix incorrect !")
-                return view.menu_principal()
 
     # """start_match reçois un match, et retourne le gagnant toute en distribuant les point"""
 
@@ -77,7 +74,6 @@ class Controller:
                          "14 Mars 2001", club="not an actor")
 
         add_to_database(joueur1, list_joueurs, "joueurs", Joueur)
-        add_to_database(joueur2, list_joueurs, "joueurs", Joueur)
-        add_to_database(joueur3, list_joueurs, "joueurs", Joueur)
-        add_to_database(joueur4, list_joueurs, "joueurs", Joueur)
+        # remove_from_database(joueur1, list_joueurs, "joueurs", Joueur)
+        update_database(joueur2, joueur1, list_joueurs, "joueurs", Joueur)
         print("\33[93m", list_joueurs, "\33[00m")
