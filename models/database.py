@@ -23,17 +23,19 @@ def add_to_database(self, objects_list, database_name, object_class):
     exist = False
     if not isinstance(self, object_class):
         return print("Ceci n'est pas un ", str(database_name), " valide")
-    for obj in objects_list:
-        if self.__dict__ == obj.__dict__:
-            exist = True
-            break
-    if exist:
-        return print("Ce ", str(database_name), " existe déjà")
+    if not objects_list:
+        for obj in objects_list:
+            if self.__dict__ == obj.__dict__:
+                exist = True
+                break
+        if exist:
+            return print("Ce ", str(database_name), " existe déjà")
 
     '''ajoute l'objet à la list puis convertie cette list d'objet en list de dictionnaire'''
     objects_list.append(self)
     dict_list = []
     for obj in objects_list:
+        print("\33[93m", obj, "\33[00m")
         dict_list.append(obj.__dict__)
     database_access(database_name, object_class, "w", *dict_list)
 
@@ -47,6 +49,7 @@ def remove_from_database(self, objects_list, database_name, object_class):
             objects_list.remove(obj)
     dict_list = []
     for obj in objects_list:
+
         obj = obj.__dict__
         dict_list.append(obj)
     database_access(database_name, object_class, "w", *dict_list)
