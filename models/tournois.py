@@ -5,16 +5,16 @@ import json
 
 
 class Tournoi():
-    def __init__(self, nom, lieu, date_debut, date_fin, nb_tour=4):
+    def __init__(self, nom, lieu, date_debut, date_fin, **kwargs):
         self.nom = nom
         self.lieu = lieu
         self.date_debut = date_debut
         self.date_fin = date_fin
-        self.nb_tour = nb_tour
-        self.numero_tour_actuel = 1
-        self.list_tours = []
-        self.list_joueurs = []
-        self.remarque = ""
+        self.nb_tour = kwargs.get('nb_tour', 4)
+        self.numero_tour_actuel = kwargs.get('numero_tour_actuel', 1)
+        self.list_tours = kwargs.get('list_tours', [])
+        self.list_joueurs = kwargs.get('list_joueurs', [])
+        self.remarque = kwargs.get('remarque', "")
 
     def add_joueur(self, joueur):
         self.list_joueurs.append(joueur)
