@@ -5,7 +5,7 @@ from models.tour import Tour
 # from models.club import Club
 from models.joueur import Joueur
 from models.database import database_access, add_to_database, remove_from_database, update_database
-list_tournois = [database_access("tournois", Tournoi, "r")]
+list_tournois = database_access("tournois", Tournoi, "r")
 list_tours = []
 list_matchs = []
 list_joueurs = database_access("joueurs", Joueur, "r")
@@ -63,7 +63,7 @@ class Controller:
     #         Match.play_match()
 
     def test(self):
-        tournoi = Tournoi("Biblo", "paris", "24/12/23", "25/12/23", 3)
+        tournoi = Tournoi("Biblo", "paris", "24/12/23", "25/12/23")
         # print("\33[93m", list_joueurs, "\33[00m")
         # joueur2 = Joueur("Tite", "Phillipe", "14 Mars 2001",
         #                  club="not an actor")
