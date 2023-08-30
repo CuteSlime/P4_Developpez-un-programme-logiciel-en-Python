@@ -11,8 +11,13 @@ class Tournoi():
         self.date_debut = date_debut
         self.date_fin = date_fin
         self.nb_tour = kwargs.get('nb_tour', 4)
+        tour_name = []
+        i = 0
+        while i < self.nb_tour:
+            tour_name.append("Round" + str(i+1))
+            i += 1
         self.numero_tour_actuel = kwargs.get('numero_tour_actuel', 1)
-        self.list_tours = kwargs.get('list_tours', [])
+        self.list_tours = kwargs.get('list_tours', tour_name)
         self.list_joueurs = kwargs.get('list_joueurs', [])
         self.remarque = kwargs.get('remarque', "")
 
