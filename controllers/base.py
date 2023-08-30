@@ -2,14 +2,14 @@
 from models.tournois import Tournoi
 from models.tour import Tour
 # from models.match import Match
-# from models.club import Club
+from models.club import Club
 from models.joueur import Joueur
 from models.database import database_access, add_to_database, remove_from_database, update_database
 list_tournois = database_access("tournois", Tournoi, "r")
 list_tours = []
 list_matchs = []
 list_joueurs = database_access("joueurs", Joueur, "r")
-list_clubs = []
+list_clubs = database_access("clubs", Club, "r")
 
 
 class Controller:
@@ -18,7 +18,7 @@ class Controller:
     def __init__(self, view):
         self.tournois = list_tournois
         # self.matchs = Match.list_matchs()
-        # self.clubs = Club.list_clubs()
+        self.clubs = list_clubs
         self.joueurs = list_joueurs
         self.view = view
     # def test(self):
@@ -36,6 +36,11 @@ class Controller:
         '''ajoute le joueur rentrer depuis la vue'''
         joueur = Joueur(joueur_data)
         add_to_database(joueur, list_joueurs, "joueurs", Joueur)
+
+    def add_club():
+        '''ajoute le tournoi rentrer depuis la vue'''
+        club = Club(clubs_data)
+        add_to_database(club, list_clubs, "clubs", Club)
 
     def add_tour():
         '''ajoute un tour au tournoi rentrer depuis la vue'''
