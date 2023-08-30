@@ -26,6 +26,7 @@ class Tournoi():
         print(self.list_joueurs)
 
     def add_tour(self, tour_name):
+        self.nb_tour += 1
         self.list_tours.append(tour_name)
 
     def __str__(self):
