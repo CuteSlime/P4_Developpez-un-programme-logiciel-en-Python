@@ -6,10 +6,10 @@ class Views:
 
         choix = ""
         print("Bonjour, /nBienvenu dans l'outils de gestion de tournois./nQue souhaiter vous faire ?")
-        print("[1] gérer les tournois")
-        print("[2] gérer les joueur")
-        print("[3] gérer les club")
-        print("[4] quitter")
+        print("[1] Gérer les tournois")
+        print("[2] Gérer les joueur")
+        print("[3] Gérer les club")
+        print("[4] Quitter")
 
         while choix != "1" and choix != "2" and choix != "3" and choix != "4":
             choix = input("choix N° :")
@@ -21,9 +21,9 @@ class Views:
 
         choix = ""
         print("Menu de gestion des tournois")
-        print("[1] lister les tournois actuel")
-        print("[2] créer un nouveau tournoi")
-        print("[3] retour au menu principal")
+        print("[1] Lister les tournois actuel")
+        print("[2] Créer un nouveau tournoi")
+        print("[3] Retour au menu principal")
         while choix != "1" and choix != "2" and choix != "3":
             choix = input("choix N° :")
         return choix
@@ -31,10 +31,13 @@ class Views:
     def list_tournois(self, liste_tournois):
         '''liste des tournois existant'''
 
-        print("liste des tournois actuel")
+        print("Liste des tournois actuel")
         print(liste_tournois)
-
-        choix = input("tournois N° :")
+        id = 0
+        for tournoi in liste_tournois:
+            id += 1
+            print(str(id) + " " + str(tournoi.nom))
+        choix = input("Tournois N° :")
         return choix
 
     def creer_tournoi(self):
@@ -42,9 +45,9 @@ class Views:
 
         nom = input("Nom du tournois :")
         lieu = input("Lieu du déroulement :")
-        date_debut = input("date de début au format JJ/MM/AAAA :")
-        date_fin = input("date de fin au format JJ/MM/AAAA :")
-        nb_tour = input("choix N° :")
+        date_debut = input("Date de début au format JJ/MM/AAAA :")
+        date_fin = input("Date de fin au format JJ/MM/AAAA :")
+        nb_tour = input("Nombre de tour :")
         tournoi = (nom, lieu, date_debut, date_fin, nb_tour)
         # vérifier si les date sont valide
         return tournoi
@@ -64,9 +67,43 @@ class Views:
             choix = input("choix N° :")
         return choix
 
+    def menu_modification_tournoi(self, tournoi):
+        print("Modification du tournoi " + tournoi.nom)
+        print("que voulez vous modifier ?")
+        print("[1] Nom : " + tournoi.nom)
+        print("[2] Lieu : " + tournoi.lieu)
+        print("[3] date de debut : " + tournoi.date_debut)
+        print("[4] date de fin : " + tournoi.date_fin)
+        print("[5] nombre de tour : " + tournoi.nb_tour)
+        choix = input("choix N° :")
+        return choix
+
+    def update_nom_tournoi(self, tournoi):
+        print("nom actuel : " + tournoi.nom)
+        nouveau_nom = input("nouveau nom : ")
+        return nouveau_nom
+
+    def update_lieu_tournoi(self, tournoi):
+        print("lieu actuel : " + tournoi.lieu)
+        nouveau_lieu = input("nouveau lieu : ")
+        return nouveau_lieu
+
+    def update_date_debut_tournoi(self, tournoi):
+        print("date de debut actuel : " + tournoi.date_debut)
+        nouvelle_date_debut = input("nouvelle date de debut : ")
+        return nouvelle_date_debut
+
+    def update_date_fin_tournoi(self, tournoi):
+        print("date de fin actuel : " + tournoi.date_fin)
+        nouvelle_date_fin = input("nouvelle date de fin : ")
+        return nouvelle_date_fin
+
+    def update_date_fin_tournoi(self, tournoi):
+        print("nombre de tour actuel : " + tournoi.date_fin)
+        nouveau_nb_tour = input("nouveau nombre de tour : ")
+        return nouveau_nb_tour
 
 # gestion des club
-
 
     def menu_clubs(self):
         '''menu de gestion des club'''
