@@ -133,6 +133,62 @@ class Views:
         nouveau_nb_tour = input("nouveau nombre de tour : ")
         return nouveau_nb_tour
 
+# gestion des joueurs
+    def menu_joueurs(self):
+        '''menu de gestion des joueurs'''
+
+        choix = ""
+        print("Menu de gestion des joueurs")
+        print("[1] lister les joueurs actuel")
+        print("[2] créer un nouveau joueur")
+        print("[3] retour au menu principal")
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
+            choix = input("choix N° :")
+        return choix
+
+    def list_joueurs(self, liste_joueurs):
+        '''liste des joueurs existant'''
+        choix = 0
+        print("liste des joueurs actuel")
+        for id_joueur, joueur in enumerate(liste_joueurs, start=1):
+            print(f"[{id_joueur}] {joueur}")
+
+        while choix not in range(1, len(liste_joueurs)):
+            if choix != 0:
+                print("Mauvais choix !")
+            choix = int(input("Joueur N° :"))
+        return choix
+
+    def creer_joueur(self):
+        '''formulaire de creation de joueur'''
+
+        nom = input("Nom du joueur :")
+        prenom = input("Prenom du joueur :")
+        date_naissance = input("date de naissance au format JJ/MM/AAAA :")
+        club = input("club :")
+        joueur = (nom, prenom, date_naissance, club)
+        # vérifier si la date et le club sont valide
+        return joueur
+
+    def gestion_joueur(self):
+        '''menu de de modification d'un joueur'''
+
+        choix = ""
+        print("Menu de gestion des joueurs")
+        print(joueurs_data)
+        print("[1] modifier le joueur")
+        print("[2] suprimer le joueur")
+        print("[3] retour a la liste des joueurs")
+        print("[4] retour au menu principal")
+
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
+            choix = input("choix N° :")
+        return choix
+
 # gestion des club
 
     def menu_clubs(self):
@@ -182,62 +238,6 @@ class Views:
         print("[1] modifier le club")
         print("[2] suprimer le club")
         print("[3] retour a la liste des clubs")
-        print("[4] retour au menu principal")
-
-        while choix not in ("1", "2", "3", "4"):
-            if choix != "":
-                print("Mauvais choix !")
-            choix = input("choix N° :")
-        return choix
-
-# gestion des joueurs
-    def menu_joueurs(self):
-        '''menu de gestion des joueurs'''
-
-        choix = ""
-        print("Menu de gestion des joueurs")
-        print("[1] lister les joueurs actuel")
-        print("[2] créer un nouveau joueur")
-        print("[3] retour au menu principal")
-        while choix not in ("1", "2", "3", "4"):
-            if choix != "":
-                print("Mauvais choix !")
-            choix = input("choix N° :")
-        return choix
-
-    def list_joueurs(self, liste_joueurs):
-        '''liste des joueurs existant'''
-        choix = 0
-        print("liste des joueurs actuel")
-        for id_joueur, joueur in enumerate(liste_joueurs, start=1):
-            print(f"[{id_joueur}] {joueur}")
-
-        while choix not in range(1, len(liste_joueurs)):
-            if choix != 0:
-                print("Mauvais choix !")
-            choix = int(input("Joueur N° :"))
-        return choix
-
-    def creer_joueur(self):
-        '''formulaire de creation de joueur'''
-
-        nom = input("Nom du joueur :")
-        prenom = input("Prenom du joueur :")
-        date_naissance = input("date de naissance au format JJ/MM/AAAA :")
-        club = input("club :")
-        joueur = (nom, prenom, date_naissance, club)
-        # vérifier si la date et le club sont valide
-        return joueur
-
-    def gestion_joueur(self):
-        '''menu de de modification d'un joueur'''
-
-        choix = ""
-        print("Menu de gestion des joueurs")
-        print(joueurs_data)
-        print("[1] modifier le joueur")
-        print("[2] suprimer le joueur")
-        print("[3] retour a la liste des joueurs")
         print("[4] retour au menu principal")
 
         while choix not in ("1", "2", "3", "4"):
