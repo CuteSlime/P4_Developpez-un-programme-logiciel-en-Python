@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Views:
     '''vue principal appellant les autres'''
 
@@ -11,7 +14,9 @@ class Views:
         print("[3] Gérer les club")
         print("[4] Quitter")
 
-        while choix != "1" and choix != "2" and choix != "3" and choix != "4":
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
             choix = input("choix N° :")
         return str(choix)
 
@@ -24,50 +29,71 @@ class Views:
         print("[1] Lister les tournois actuel")
         print("[2] Créer un nouveau tournoi")
         print("[3] Retour au menu principal")
-        while choix != "1" and choix != "2" and choix != "3":
+        while choix not in ("1", "2", "3"):
+            if choix != "":
+                print("Mauvais choix !")
             choix = input("choix N° :")
-        return choix
+        return str(choix)
 
     def list_tournois(self, liste_tournois):
         '''liste des tournois existant'''
 
-        print("Liste des tournois actuel")
-        print(liste_tournois)
-        id = 0
-        for tournoi in liste_tournois:
-            id += 1
-            print(str(id) + " " + str(tournoi.nom))
-        choix = input("Tournois N° :")
-        return choix
+        choix = 0
+        print("liste des tournois actuel")
+        for id_tournoi, tournoi in enumerate(liste_tournois, start=1):
+            print(f"[{id_tournoi}] {tournoi}")
+
+        while choix not in range(1, len(liste_tournois)):
+            if choix != 0:
+                print("Mauvais choix !")
+            choix = int(input("tournoi N° :"))
+        return str(choix)
 
     def creer_tournoi(self):
         '''formulaire de creation de tournoi'''
 
         nom = input("Nom du tournois :")
         lieu = input("Lieu du déroulement :")
-        date_debut = input("Date de début au format JJ/MM/AAAA :")
-        date_fin = input("Date de fin au format JJ/MM/AAAA :")
-        nb_tour = input("Nombre de tour :")
+        while True:
+            try:
+                date_debut = datetime.strptime(
+                    input("Date de début au format JJ/MM/AAAA :"), "%d/%m/%Y").strftime("%d/%m/%Y")
+                break
+            except ValueError:
+                print("Format invalide, exemple de format valide : 31/08/2023")
+        while True:
+            try:
+                date_fin = datetime.strptime(
+                    input("Date de fin au format JJ/MM/AAAA :"), "%d/%m/%Y").strftime("%d/%m/%Y")
+                break
+            except ValueError:
+                print("Format invalide, exemple de format valide : 31/08/2023")
+
+        nb_tour = int(input("Nombre de tour :") or 4)
         tournoi = (nom, lieu, date_debut, date_fin, nb_tour)
-        # vérifier si les date sont valide
+
         return tournoi
 
     def gestion_tournoi(self):
-        '''menu de de modification d'un tournoi'''
+        '''menu de gestion d'un tournoi'''
 
         choix = ""
-        print("Menu de gestion des tournois")
+        print("Menu de gestion du tournoi")
         print(tournois_data)
         print("[1] modifier le tournoi")
         print("[2] suprimer le tournoi")
         print("[3] retour a la liste des tournois")
         print("[4] retour au menu principal")
 
-        while choix != "1" and choix != "2" and choix != "3" and choix != "4":
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
             choix = input("choix N° :")
-        return choix
+        return str(choix)
 
     def menu_modification_tournoi(self, tournoi):
+        '''formulaire d'édition d'un tournois'''
+        choix = ""
         print("Modification du tournoi " + tournoi.nom)
         print("que voulez vous modifier ?")
         print("[1] Nom : " + tournoi.nom)
@@ -75,8 +101,12 @@ class Views:
         print("[3] date de debut : " + tournoi.date_debut)
         print("[4] date de fin : " + tournoi.date_fin)
         print("[5] nombre de tour : " + tournoi.nb_tour)
-        choix = input("choix N° :")
-        return choix
+        print("[6] retour")
+        while choix not in ("1", "2", "3", "4", "5", "6"):
+            if choix != "":
+                print("Mauvais choix !")
+            choix = input("choix N° :")
+        return str(choix)
 
     def update_nom_tournoi(self, tournoi):
         print("nom actuel : " + tournoi.nom)
@@ -98,7 +128,7 @@ class Views:
         nouvelle_date_fin = input("nouvelle date de fin : ")
         return nouvelle_date_fin
 
-    def update_date_fin_tournoi(self, tournoi):
+    def update_nb_tour_tournoi(self, tournoi):
         print("nombre de tour actuel : " + tournoi.date_fin)
         nouveau_nb_tour = input("nouveau nombre de tour : ")
         return nouveau_nb_tour
@@ -113,18 +143,25 @@ class Views:
         print("[1] lister les clubs actuel")
         print("[2] ajouter un nouveau club")
         print("[3] retour au menu principal")
-        while choix != "1" and choix != "2" and choix != "3":
+        while choix not in ("1", "2", "3"):
+            if choix != "":
+                print("Mauvais choix !")
             choix = input("choix N° :")
-        return choix
+        return str(choix)
 
     def list_clubs(self, liste_clubs):
         '''liste des clubs existant'''
 
+        choix = 0
         print("liste des clubs actuel")
-        print(liste_clubs)
+        for id_club, club in enumerate(liste_clubs, start=1):
+            print(f"[{id_club}] {club}")
 
-        choix = input("clubs N° :")
-        return choix
+        while choix not in range(1, len(liste_clubs)):
+            if choix != 0:
+                print("Mauvais choix !")
+            choix = int(input("club N° :"))
+        return str(choix)
 
     def creer_club(self):
         '''formulaire de creation de club'''
@@ -147,9 +184,11 @@ class Views:
         print("[3] retour a la liste des clubs")
         print("[4] retour au menu principal")
 
-        while choix != "1" and choix != "2" and choix != "3" and choix != "4":
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
             choix = input("choix N° :")
-        return choix
+        return str(choix)
 
 # gestion des joueurs
     def menu_joueurs(self):
@@ -160,18 +199,24 @@ class Views:
         print("[1] lister les joueurs actuel")
         print("[2] créer un nouveau joueur")
         print("[3] retour au menu principal")
-        while choix != "1" and choix != "2" and choix != "3":
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
             choix = input("choix N° :")
-        return choix
+        return str(choix)
 
     def list_joueurs(self, liste_joueurs):
         '''liste des joueurs existant'''
-
+        choix = 0
         print("liste des joueurs actuel")
-        print(liste_joueurs)
+        for id_joueur, joueur in enumerate(liste_joueurs, start=1):
+            print(f"[{id_joueur}] {joueur}")
 
-        choix = input("joueurs N° :")
-        return choix
+        while choix not in range(1, len(liste_joueurs)):
+            if choix != 0:
+                print("Mauvais choix !")
+            choix = int(input("Joueur N° :"))
+        return str(choix)
 
     def creer_joueur(self):
         '''formulaire de creation de joueur'''
@@ -195,6 +240,8 @@ class Views:
         print("[3] retour a la liste des joueurs")
         print("[4] retour au menu principal")
 
-        while choix != "1" and choix != "2" and choix != "3" and choix != "4":
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
             choix = input("choix N° :")
-        return choix
+        return str(choix)
