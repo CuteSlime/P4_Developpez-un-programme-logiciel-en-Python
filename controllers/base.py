@@ -12,6 +12,24 @@ list_joueurs = database_access("joueurs", Joueur, "r")
 list_clubs = database_access("clubs", Club, "r")
 
 
+def add_tournoi_to_db(tournoi_data):
+    '''ajoute le tournoi rentrer depuis la vue'''
+    tournoi = Tournoi(tournoi_data)
+    add_to_database(tournoi, list_tournois, "tournois", Tournoi)
+
+
+def add_joueur_to_db(joueur_data):
+    '''ajoute le joueur rentrer depuis la vue'''
+    joueur = Joueur(joueur_data)
+    add_to_database(joueur, list_joueurs, "joueurs", Joueur)
+
+
+def add_club_to_db(clubs_data):
+    '''ajoute le tournoi rentrer depuis la vue'''
+    club = Club(clubs_data)
+    add_to_database(club, list_clubs, "clubs", Club)
+
+
 class Controller:
     '''Main controller'''
 
@@ -26,25 +44,6 @@ class Controller:
     #     print(tour.list_matchs)
 
 # créer un tournois
-
-    def add_tournoi():
-        '''ajoute le tournoi rentrer depuis la vue'''
-        tournois = Tournoi(tournois_data)
-        add_to_database(tournois, list_tournois, "tournois", Tournoi)
-
-    def add_joueur():
-        '''ajoute le joueur rentrer depuis la vue'''
-        joueur = Joueur(joueur_data)
-        add_to_database(joueur, list_joueurs, "joueurs", Joueur)
-
-    def add_club():
-        '''ajoute le tournoi rentrer depuis la vue'''
-        club = Club(clubs_data)
-        add_to_database(club, list_clubs, "clubs", Club)
-
-    def add_tour():
-        '''ajoute un tour au tournoi rentrer depuis la vue'''
-        pass
 
     def run(self):
         choix = ""
