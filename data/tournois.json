@@ -14,5 +14,21 @@
         ],
         "list_joueurs": [],
         "remarque": ""
+    },
+    {
+        "nom": "Coupe Champignion",
+        "lieu": "Royaume Champignion",
+        "date_debut": "22/12/2023",
+        "date_fin": "25/12/2023",
+        "nb_tour": 4,
+        "numero_tour_actuel": 1,
+        "list_tours": [
+            "Round1",
+            "Round2",
+            "Round3",
+            "Round4"
+        ],
+        "list_joueurs": [],
+        "remarque": ""
     }
 ]

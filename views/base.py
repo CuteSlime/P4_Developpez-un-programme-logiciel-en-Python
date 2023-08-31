@@ -46,7 +46,7 @@ class Views:
         while choix not in range(1, len(liste_tournois)):
             if choix != 0:
                 print("Mauvais choix !")
-            choix = int(input("tournoi N° :"))
+            choix = int(input("tournoi N° :")-1)
         return str(choix)
 
     def creer_tournoi(self):
@@ -74,7 +74,7 @@ class Views:
 
         return tournoi
 
-    def gestion_tournoi(self):
+    def gestion_tournoi(self, tournois_data):
         '''menu de gestion d'un tournoi'''
 
         choix = ""
