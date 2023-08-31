@@ -18,7 +18,7 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
 
 # gestion des tournois
     def menu_tournois(self):
@@ -33,7 +33,7 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
 
     def list_tournois(self, liste_tournois):
         '''liste des tournois existant'''
@@ -47,7 +47,7 @@ class Views:
             if choix != 0:
                 print("Mauvais choix !")
             choix = int(input("tournoi N° :")-1)
-        return str(choix)
+        return choix
 
     def creer_tournoi(self):
         '''formulaire de creation de tournoi'''
@@ -89,7 +89,7 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
 
     def menu_modification_tournoi(self, tournoi):
         '''formulaire d'édition d'un tournois'''
@@ -106,7 +106,7 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
 
     def update_nom_tournoi(self, tournoi):
         print("nom actuel : " + tournoi.nom)
@@ -147,7 +147,7 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
 
     def list_clubs(self, liste_clubs):
         '''liste des clubs existant'''
@@ -161,7 +161,7 @@ class Views:
             if choix != 0:
                 print("Mauvais choix !")
             choix = int(input("club N° :"))
-        return str(choix)
+        return choix
 
     def creer_club(self):
         '''formulaire de creation de club'''
@@ -188,7 +188,7 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
 
 # gestion des joueurs
     def menu_joueurs(self):
@@ -203,7 +203,7 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
 
     def list_joueurs(self, liste_joueurs):
         '''liste des joueurs existant'''
@@ -216,7 +216,7 @@ class Views:
             if choix != 0:
                 print("Mauvais choix !")
             choix = int(input("Joueur N° :"))
-        return str(choix)
+        return choix
 
     def creer_joueur(self):
         '''formulaire de creation de joueur'''
@@ -244,4 +244,4 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
-        return str(choix)
+        return choix
