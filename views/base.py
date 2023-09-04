@@ -1,6 +1,12 @@
 from datetime import datetime
 
 
+def validate_national_id(national_id):
+    if national_id != 7 or (national_id[0:1].isalpha() is False) or (national_id[2:].isnumeric() is False):
+        return False
+    return True
+
+
 class Views:
     '''vue principal appellant les autres'''
 
@@ -43,11 +49,11 @@ class Views:
         for id_tournoi, tournoi in enumerate(liste_tournois, start=1):
             print(f"[{id_tournoi}] {tournoi}")
 
-        while choix not in range(1, len(liste_tournois)):
+        while choix not in range(1, len(liste_tournois)+1):
             if choix != 0:
                 print("Mauvais choix !")
-            choix = int(input("tournoi N° :")-1)
-        return choix
+            choix = int(input("tournoi N° :"))
+        return (choix - 1)
 
     def creer_tournoi(self):
         '''formulaire de creation de tournoi'''
@@ -89,6 +95,15 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("choix N° :")
+        if choix == "2":
+            print(
+                f"/!\ Voulez vous vraiment supprimer le tournois {tournois_data.nom} ?")
+            print("/!\ cette action est irréversible.")
+            while choix != "O" and choix != "n" and choix != "N":
+                choix = input("[O/n] :")
+            if choix == "O":
+                return "2"
+
         return choix
 
     def menu_modification_tournoi(self, tournoi):
@@ -100,7 +115,7 @@ class Views:
         print("[2] Lieu : " + tournoi.lieu)
         print("[3] date de debut : " + tournoi.date_debut)
         print("[4] date de fin : " + tournoi.date_fin)
-        print("[5] nombre de tour : " + tournoi.nb_tour)
+        print("[5] nombre de tour : ", tournoi.nb_tour)
         print("[6] retour")
         while choix not in ("1", "2", "3", "4", "5", "6"):
             if choix != "":
@@ -223,7 +238,11 @@ class Views:
         '''formulaire de creation de club'''
 
         nom = input("Nom du club :")
-        national_id = input("Numéro d'identification national :")
+        national_id = input("Numéro d'identification national :").upper()
+        while validate_national_id(national_id) is False:
+            print("identifiant national invalide")
+            national_id = input("Numéro d'identification national :")
+
         club = (nom, national_id)
         # vérifier si le numéro poséde le bon format
         # deux lettres suivies de cinq chiffres (par exemple, AB12345)
