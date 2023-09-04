@@ -1,7 +1,3 @@
-import json
-# from .tour import Tour
-# from .joueur import Joueur
-# from .tour import Tour
 
 
 class Tournoi():

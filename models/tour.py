@@ -1,7 +1,6 @@
 from random import shuffle
 from datetime import datetime
 from .match import Match
-# from .club import Club
 
 
 class Tour:
