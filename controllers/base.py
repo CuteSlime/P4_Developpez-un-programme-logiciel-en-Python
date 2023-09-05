@@ -60,6 +60,24 @@ class Controller:
                         menu_main = False
                         return exit()
 
+            def sub_main_menu(self, view_name, menu_name_list, menu_name_create):
+                choix = getattr(self.view, view_name())
+                match choix:
+                    case "1":
+                        menu_list()
+                        break
+                    case "2":
+                        menu_create()
+                        break
+                    case "3":
+                        break
+
+            def menu_list(self, view_name):
+                choix = self.view.list_tournois(list_tournois)
+                menu_manage()
+                list_item = list_tournois[choix]
+                id = choix
+                break
             # menu principal des tournois
             while menu_tounois_main:
                 choix = self.view.menu_tournois()
@@ -231,7 +249,7 @@ class Controller:
                 choix = self.view.gestion_club()
 
     def test(self):
-        '''teste apeller depuis main (en changeant le run par test)'''
+        '''teste appeler depuis main (en changeant le run par test)'''
         list_tournois = database_access("tournois", Tournoi, "r")
         tournoi = list_tournois[2]
         print(tournoi)
