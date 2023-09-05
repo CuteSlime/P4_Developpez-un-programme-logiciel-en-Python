@@ -21,6 +21,70 @@ class Controller:
     #     print(tour.list_matchs)
 
 # créer un tournois
+    def main_menu(self, view_name):
+        choix = getattr(self.view, view_name())
+        match choix:
+            case "1":
+                return sub_main_menu('menu_tournois',
+                                     'list_tournois', 'creer_tournoi')
+            case "2":
+                return sub_main_menu('menu_joueurs',
+                                     'list_joueurs', 'creer_joueur')
+            case "3":
+                return sub_main_menu('menu_clubs',
+                                     'list_clubs', 'creer_club')
+            case "4":
+                return exit()
+
+    def sub_main_menu(self, view_name, menu_name_list, menu_name_create):
+        choix = getattr(self.view, view_name())
+        match choix:
+            case "1":
+                return self.menu_list(menu_name_list, view_name)
+            case "2":
+                return self.menu_create(menu_name_create)
+            case "3":
+                return self.main_menu("menu_principal")
+
+    def menu_list(self, view_name, list_objects):
+        choix = getattr(self.view, view_name(list_objects))
+        obj = list_objects[choix]
+        id = choix
+        return self.menu_manage('gestion_tournoi', id, obj, list_objects, view_name)
+
+    def menu_manage(self, view_name, id, obj, list_objects, menu_name_list):
+        choix = getattr(self.view, view_name(obj))
+        match choix:
+            case "1":
+                menu_tournoi_edit = True
+
+            case "2":
+                if isinstance(obj, Tournoi):
+                    remove_from_database(
+                        obj, list_objects, "tournois", Tournoi)
+                if isinstance(obj, Joueur):
+                    remove_from_database(
+                        obj, list_objects, "joueurs", Joueur)
+                if isinstance(obj, Club):
+                    remove_from_database(
+                        obj, list_objects, "clubs", Club)
+                return self.menu_list(menu_name_list, view_name, list_objects, menu_name_list)
+
+            case "3":
+                return self.menu_list(menu_name_list, view_name, list_objects, menu_name_list)
+
+            case "4":
+                return self.main_menu("menu_principal")
+
+    def menu_create(self, view_name):
+        obj = getattr(self.view, view_name())
+        obj = Tournoi(
+            tournoi[0], tournoi[1], tournoi[2], tournoi[3], nb_tour=tournoi[4])
+        print("/!\\", list_tournois)
+        add_to_database(tournoi, list_tournois, "tournois", Tournoi)
+        print("/!\\", list_tournois)
+        menu_tournoi_create = False
+        menu_tounois_main = True
 
     def run(self):
         list_tournois = database_access("tournois", Tournoi, "r")
@@ -28,6 +92,8 @@ class Controller:
         list_matchs = []
         list_joueurs = database_access("joueurs", Joueur, "r")
         list_clubs = database_access("clubs", Club, "r")
+
+        self.main_menu("menu_principal")
         while True:
             menu_main = True
 
@@ -60,24 +126,6 @@ class Controller:
                         menu_main = False
                         return exit()
 
-            def sub_main_menu(self, view_name, menu_name_list, menu_name_create):
-                choix = getattr(self.view, view_name())
-                match choix:
-                    case "1":
-                        menu_list()
-                        break
-                    case "2":
-                        menu_create()
-                        break
-                    case "3":
-                        break
-
-            def menu_list(self, view_name):
-                choix = self.view.list_tournois(list_tournois)
-                menu_manage()
-                list_item = list_tournois[choix]
-                id = choix
-                break
             # menu principal des tournois
             while menu_tounois_main:
                 choix = self.view.menu_tournois()
