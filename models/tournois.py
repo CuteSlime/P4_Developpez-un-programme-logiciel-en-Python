@@ -19,11 +19,17 @@ class Tournoi():
 
     def add_joueur(self, joueur):
         self.list_joueurs.append(joueur)
-        print(self.list_joueurs)
+
+    def remove_joueur(self, joueur):
+        self.list_joueurs.remove(joueur)
 
     def add_tour(self, tour_name):
         self.nb_tour += 1
         self.list_tours.append(tour_name)
+
+    def remove_tour(self, tour_name):
+        self.nb_tour -= 1
+        self.list_tours.remove(tour_name)
 
     def __str__(self):
         return f"\33[90m Nom : {self.nom} /n à : {self.lieu} /n Début du tournoi : {self.date_debut}   Fin : {self.date_fin} /nDescription : {self.remarque}\33[0m"
