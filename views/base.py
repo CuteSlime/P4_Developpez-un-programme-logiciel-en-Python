@@ -23,7 +23,7 @@ class Views:
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
         return choix
 
 # gestion des tournois
@@ -38,21 +38,21 @@ class Views:
         while choix not in ("1", "2", "3"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
         return choix
 
     def list_tournois(self, liste_tournois):
         '''liste des tournois existant'''
 
         choix = 0
-        print("liste des tournois actuel")
+        print("Liste des tournois actuel")
         for id_tournoi, tournoi in enumerate(liste_tournois, start=1):
             print(f"[{id_tournoi}] {tournoi}")
 
         while choix not in range(1, len(liste_tournois)+1):
             if choix != 0:
                 print("Mauvais choix !")
-            choix = int(input("tournoi N° :"))
+            choix = int(input("Tournoi N° :"))
         return (choix - 1)
 
     def creer_tournoi(self):
@@ -86,19 +86,19 @@ class Views:
         choix = ""
         print("Menu de gestion du tournoi")
         print(tournois_data)
-        print("[1] modifier le tournoi")
-        print("[2] suprimer le tournoi")
-        print("[3] retour a la liste des tournois")
-        print("[4] retour au menu principal")
+        print("[1] Modifier le tournoi")
+        print("[2] Suprimer le tournoi")
+        print("[3] Retour a la liste des tournois")
+        print("[4] Retour au menu principal")
 
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
         if choix == "2":
             print(
-                f"/!\ Voulez vous vraiment supprimer le tournois {tournois_data.nom} ?")
-            print("/!\ cette action est irréversible.")
+                f"/!\\ Voulez vous vraiment supprimer le tournoi {tournois_data.nom} ?")
+            print("/!\\ Cette action est irréversible.")
             while choix != "O" and choix != "n" and choix != "N":
                 choix = input("[O/n] :")
             if choix == "O":
@@ -110,42 +110,44 @@ class Views:
         '''formulaire d'édition d'un tournois'''
         choix = ""
         print("Modification du tournoi " + tournoi.nom)
-        print("que voulez vous modifier ?")
+        print("Que voulez vous modifier ?")
         print("[1] Nom : " + tournoi.nom)
         print("[2] Lieu : " + tournoi.lieu)
-        print("[3] date de debut : " + tournoi.date_debut)
-        print("[4] date de fin : " + tournoi.date_fin)
-        print("[5] nombre de tour : ", tournoi.nb_tour)
-        print("[6] retour")
-        while choix not in ("1", "2", "3", "4", "5", "6"):
+        print("[3] Date de debut : " + tournoi.date_debut)
+        print("[4] Date de fin : " + tournoi.date_fin)
+        print("[5] Nombre de tour : ", tournoi.nb_tour)
+        print("[6] Ajouter un joueur")
+        print("[7] Retirer un joueur")
+        print("[8] Retour")
+        while choix not in ("1", "2", "3", "4", "5", "6", "7", "8"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
         return choix
 
     def update_nom_tournoi(self, tournoi):
-        print("nom actuel : " + tournoi.nom)
-        nouveau_nom = input("nouveau nom : ")
+        print("Nom actuel : " + tournoi.nom)
+        nouveau_nom = input("Nouveau nom : ")
         return nouveau_nom
 
     def update_lieu_tournoi(self, tournoi):
-        print("lieu actuel : " + tournoi.lieu)
-        nouveau_lieu = input("nouveau lieu : ")
+        print("Lieu actuel : " + tournoi.lieu)
+        nouveau_lieu = input("Nouveau lieu : ")
         return nouveau_lieu
 
     def update_date_debut_tournoi(self, tournoi):
-        print("date de debut actuel : " + tournoi.date_debut)
-        nouvelle_date_debut = input("nouvelle date de debut : ")
+        print("Date de debut actuel : " + tournoi.date_debut)
+        nouvelle_date_debut = input("Nouvelle date de debut : ")
         return nouvelle_date_debut
 
     def update_date_fin_tournoi(self, tournoi):
-        print("date de fin actuel : " + tournoi.date_fin)
-        nouvelle_date_fin = input("nouvelle date de fin : ")
+        print("Date de fin actuel : " + tournoi.date_fin)
+        nouvelle_date_fin = input("Nouvelle date de fin : ")
         return nouvelle_date_fin
 
     def update_nb_tour_tournoi(self, tournoi):
-        print("nombre de tour actuel : " + tournoi.date_fin)
-        nouveau_nb_tour = input("nouveau nombre de tour : ")
+        print("Nombre de tour actuel : " + str(tournoi.nb_tour))
+        nouveau_nb_tour = input("Nouveau nombre de tour : ")
         return nouveau_nb_tour
 
 # gestion des joueurs
@@ -154,55 +156,101 @@ class Views:
 
         choix = ""
         print("Menu de gestion des joueurs")
-        print("[1] lister les joueurs actuel")
-        print("[2] créer un nouveau joueur")
-        print("[3] retour au menu principal")
+        print("[1] Lister les joueurs actuel")
+        print("[2] Créer un nouveau joueur")
+        print("[3] Retour au menu principal")
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
         return choix
 
     def list_joueurs(self, liste_joueurs):
         '''liste des joueurs existant'''
         choix = 0
-        print("liste des joueurs actuel")
+        print("Liste des joueurs actuel")
         for id_joueur, joueur in enumerate(liste_joueurs, start=1):
             print(f"[{id_joueur}] {joueur}")
 
-        while choix not in range(1, len(liste_joueurs)):
+        while choix not in range(1, len(liste_joueurs)+1):
             if choix != 0:
                 print("Mauvais choix !")
             choix = int(input("Joueur N° :"))
-        return choix
+        return (choix - 1)
 
     def creer_joueur(self):
         '''formulaire de creation de joueur'''
 
+        cls = "Joueur"
         nom = input("Nom du joueur :")
         prenom = input("Prenom du joueur :")
-        date_naissance = input("date de naissance au format JJ/MM/AAAA :")
-        club = input("club :")
-        joueur = (nom, prenom, date_naissance, club)
+        date_naissance = input("Date de naissance au format JJ/MM/AAAA :")
+        club = input("Club :")
+        joueur = (cls, nom, prenom, date_naissance, club)
         # vérifier si la date et le club sont valide
         return joueur
 
-    def gestion_joueur(self):
+    def gestion_joueur(self, joueurs_data):
         '''menu de de modification d'un joueur'''
 
         choix = ""
         print("Menu de gestion des joueurs")
         print(joueurs_data)
-        print("[1] modifier le joueur")
-        print("[2] suprimer le joueur")
-        print("[3] retour a la liste des joueurs")
-        print("[4] retour au menu principal")
-
+        print("[1] Modifier le joueur")
+        print("[2] Suprimer le joueur")
+        print("[3] Retour a la liste des joueurs")
+        print("[4] Retour au menu principal")
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
+        if choix == "2":
+            print(
+                f"/!\\ Voulez vous vraiment supprimer le joueur {joueurs_data.nom} ?")
+            print("/!\\ Cette action est irréversible.")
+            while choix != "O" and choix != "n" and choix != "N":
+                choix = input("[O/n] :")
+            if choix == "O":
+                return "2"
+
         return choix
+
+    def menu_modification_joueur(self, joueur):
+        '''formulaire d'édition d'un joueur'''
+        choix = ""
+        print("Modification du joueur " + joueur.nom)
+        print("Que voulez vous modifier ?")
+        print("[1] Nom : " + joueur.nom)
+        print("[2] Prenom : " + joueur.prenom)
+        print("[3] Date de naissance : " + joueur.date_naissance)
+        print("[4] Club : " + joueur.club)
+
+        print("[5] Retour")
+        while choix not in ("1", "2", "3", "4", "5"):
+            if choix != "":
+                print("Mauvais choix !")
+            choix = input("Choix N° :")
+        return choix
+
+    def update_nom_joueur(self, joueur):
+        print("Nom actuel : " + joueur.nom)
+        nouveau_nom = input("Nouveau nom : ")
+        return nouveau_nom
+
+    def update_prenom_joueur(self, joueur):
+        print("Prenom actuel : " + joueur.prenom)
+        nouveau_lieu = input("Nouveau prenom : ")
+        return nouveau_lieu
+
+    def update_date_naissance_joueur(self, joueur):
+        print("Date de naissance actuel : " + joueur.date_naissance)
+        nouvelle_date_debut = input("Nouvelle date de naissance : ")
+        return nouvelle_date_debut
+
+    def update_club_joueur(self, joueur):
+        print("Club actuel : " + joueur.club)
+        nouvelle_date_fin = input("Nouveau club : ")
+        return nouvelle_date_fin
 
 # gestion des club
 
@@ -211,56 +259,86 @@ class Views:
 
         choix = ""
         print("Menu de gestion des clubs")
-        print("[1] lister les clubs actuel")
-        print("[2] ajouter un nouveau club")
-        print("[3] retour au menu principal")
+        print("[1] Lister les clubs actuel")
+        print("[2] Ajouter un nouveau club")
+        print("[3] Retour au menu principal")
         while choix not in ("1", "2", "3"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
         return choix
 
     def list_clubs(self, liste_clubs):
         '''liste des clubs existant'''
 
         choix = 0
-        print("liste des clubs actuel")
+        print("Liste des clubs actuel")
         for id_club, club in enumerate(liste_clubs, start=1):
             print(f"[{id_club}] {club}")
 
-        while choix not in range(1, len(liste_clubs)):
+        while choix not in range(1, len(liste_clubs) + 1):
             if choix != 0:
                 print("Mauvais choix !")
-            choix = int(input("club N° :"))
-        return choix
+            choix = int(input("Club N° :"))
+        return (choix - 1)
 
     def creer_club(self):
         '''formulaire de creation de club'''
 
+        cls = "Club"
         nom = input("Nom du club :")
         national_id = input("Numéro d'identification national :").upper()
         while validate_national_id(national_id) is False:
-            print("identifiant national invalide")
+            print("Identifiant national invalide")
             national_id = input("Numéro d'identification national :")
 
-        club = (nom, national_id)
-        # vérifier si le numéro poséde le bon format
-        # deux lettres suivies de cinq chiffres (par exemple, AB12345)
+        club = (cls, nom, national_id)
         return club
 
-    def gestion_club(self):
+    def gestion_club(self, clubs_data):
         '''menu de de modification d'un club'''
 
         choix = ""
         print("Menu de gestion des clubs")
         print(clubs_data)
-        print("[1] modifier le club")
-        print("[2] suprimer le club")
-        print("[3] retour a la liste des clubs")
-        print("[4] retour au menu principal")
+        print("[1] Modifier le club")
+        print("[2] Suprimer le club")
+        print("[3] Retour a la liste des clubs")
+        print("[4] Retour au menu principal")
 
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
                 print("Mauvais choix !")
-            choix = input("choix N° :")
+            choix = input("Choix N° :")
+        if choix == "2":
+            print(
+                f"/!\\ Voulez vous vraiment supprimer le club {clubs_data.nom} ?")
+            print("/!\\ Cette action est irréversible.")
+            while choix != "O" and choix != "n" and choix != "N":
+                choix = input("[O/n] :")
+            if choix == "O":
+                return "2"
+
+    def menu_modification_club(self, club):
+        '''formulaire d'édition d'un club'''
+        choix = ""
+        print("Modification du club " + club.nom)
+        print("Que voulez vous modifier ?")
+        print("[1] Nom : " + club.nom)
+        print("[2] Identification national : " + club.identifiant_national)
+        print("[3] Retour")
+        while choix not in ("1", "2", "3"):
+            if choix != "":
+                print("Mauvais choix !")
+            choix = input("Choix N° :")
         return choix
+
+    def update_nom_club(self, club):
+        print("Nom actuel : " + club.nom)
+        nouveau_nom = input("Nouveau nom : ")
+        return nouveau_nom
+
+    def update_identifiant_national_club(self, club):
+        print("Identification national actuel : " + club.identifiant_national)
+        nouvelle_id = input("Nouvelle identification national : ")
+        return nouvelle_id
