@@ -57,7 +57,7 @@ class Views:
 
     def creer_tournoi(self):
         '''formulaire de creation de tournoi'''
-
+        cls = "Tournoi"
         nom = input("Nom du tournois :")
         lieu = input("Lieu du déroulement :")
         while True:
@@ -76,7 +76,7 @@ class Views:
                 print("Format invalide, exemple de format valide : 31/08/2023")
 
         nb_tour = int(input("Nombre de tour :") or 4)
-        tournoi = (nom, lieu, date_debut, date_fin, nb_tour)
+        tournoi = (cls, nom, lieu, date_debut, date_fin, nb_tour)
 
         return tournoi
 
