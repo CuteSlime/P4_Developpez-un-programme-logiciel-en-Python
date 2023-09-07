@@ -15,14 +15,38 @@ class Views:
 
         choix = ""
         print("Bonjour, /nBienvenu dans l'outils de gestion de tournois./nQue souhaiter vous faire ?")
-        print("[1] Gérer les tournois")
-        print("[2] Gérer les joueur")
-        print("[3] Gérer les club")
-        print("[4] Quitter")
+        print("[1] Gérer les tournois en cours")
+        print("[2] Gérer les tournois")
+        print("[3] Gérer les joueur")
+        print("[4] Gérer les club")
+        print("[5] Quitter")
 
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
                 print("Mauvais choix !")
+            choix = input("Choix N° :")
+        return choix
+
+    def tournois_actuel(self, tournoi, **kwargs):
+        '''gestion des tournois actif'''
+
+        choix = ""
+        print(f"Bienvenu au tournoi {tournoi.nom} ")
+        print("[1] Commencer le round actuel")
+        print("[2] Liste des participants")
+        print("[3] Liste des match")
+        print("[4] Retour au menu principal")
+
+        while choix not in ("1", "2", "3", "4"):
+            if choix != "":
+                print("Mauvais choix !")
+            choix = input("Choix N° :")
+        if choix == "2" and kwargs:
+            print(kwargs.get("list_participants"))
+
+            choix = input("Choix N° :")
+        if choix == "3" and kwargs:
+            print(kwargs.get("list_matchs"))
             choix = input("Choix N° :")
         return choix
 
@@ -318,6 +342,7 @@ class Views:
                 choix = input("[O/n] :")
             if choix == "O":
                 return "2"
+        return choix
 
     def menu_modification_club(self, club):
         '''formulaire d'édition d'un club'''
