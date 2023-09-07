@@ -4,12 +4,13 @@ from .match import Match
 
 
 class Tour:
-    def __init__(self, nom):
+    def __init__(self, nom, list_joueurs_tournois):
         self.nom = nom
         self.list_matchs = []
         self.date_debut = ""
         self.date_fin = "en cours"
-        self.add_match()
+        self.start_tour()
+        self.add_match(list_joueurs_tournois)
 
     def add_match(self, list_joueurs_tournois):
         joueurs = list_joueurs_tournois
