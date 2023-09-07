@@ -63,6 +63,9 @@ def update_database(self, original, objects_list, database_name, object_class):
             objects_list[objects_list.index(obj)] = self
     dict_list = []
     for obj in objects_list:
+        if obj.list_joueurs:
+            for sub_object in obj.list_joueurs:
+                sub_object = sub_object.__dict__
         obj = obj.__dict__
         dict_list.append(obj)
     database_access(database_name, object_class, "w", *dict_list)
