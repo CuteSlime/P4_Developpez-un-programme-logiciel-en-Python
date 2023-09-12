@@ -55,31 +55,31 @@ class Menu:
             case "5":
                 return exit()
 
-    def active_tournament(self, view_name, list_tournois, **kwargs):
-        list_joueurs = database_access("joueurs", Joueur, "r")
+    def active_tournament(self, view_name, list_tournois):
+        '''gestion des tour'''
         tournoi = self.menu_list(
             "list_tournois", list_tournois, list_only=True)
-        if 'tour' not in locals():
-            tour = None
-            for round in tournoi.list_tours:
-                if round[:-1] == str(tournoi.numero_tour_actuel):
-                    tour = Tour(tour, list_joueurs)
-                return tour
-        list_participants = list_joueurs
-        list_matchs = tour.list_matchs
+
+        tour = tournoi.list_tours[int(tournoi.numero_tour_actuel) - 1]
+        if tournoi.numero_tour_actuel == 1:
+            tour.participants = tournoi.list_joueurs
+            tour.add_match(tour.participants)
+            list_participants = tour.participants
+            list_matchs = tour.list_matchs
+            print(list_participants, list_matchs)
+
         choix = getattr(self.view, view_name)(
-            tournoi, **kwargs.get('list_participants'), **kwargs.get('list_matchs'))
+            tournoi, list_participants, list_matchs)
+
         match choix:
             case "1":
-                return self.view.active_tournament(view_name, list_tournois, **tour, **list_participants, **list_matchs)
-            case "2":
-                return self.view.active_tournament(view_name, list_tournois, **tour, **list_participants, **list_matchs)
-            case "3":
-                return self.view.active_tournament(view_name, list_tournois, **tour, **list_participants, **list_matchs)
+                pass
             case "4":
                 pass
 
     def sub_main_menu(self, view_name, menu_name_list, list_objects, menu_name_create):
+        '''gestion des sous menu (gestion des tournois, joueurs, clubs)'''
+
         choix = getattr(self.view, view_name)()
         match choix:
             case "1":
@@ -90,6 +90,8 @@ class Menu:
                 pass
 
     def menu_list(self, view_name, list_objects, **kargs):
+        '''menu de selection des tournois, joueurs ou clubs'''
+
         choix = getattr(self.view, view_name)(list_objects)
         obj = list_objects[int(choix)]
         id = choix
@@ -100,6 +102,8 @@ class Menu:
         return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def menu_manage(self, view_name, id, obj, list_objects, menu_name_list):
+        '''gestion des menu de gestion pour les tournois, joueurs, clubs de façon individuel'''
+
         choix = getattr(self.view, view_name)(obj)
         edit_view = view_name.split("_")[1]
         edit_view = "menu_modification_" + edit_view
@@ -127,6 +131,8 @@ class Menu:
                 pass
 
     def menu_create(self, view_name, list_objects, ):
+        '''gestion du menu de création d'un tournoi, joueur, club'''
+
         obj = getattr(self.view, view_name)()
         match obj[0]:
             case "Tournoi":
@@ -146,6 +152,8 @@ class Menu:
                 return self.sub_main_menu("menu_clubs", 'list_clubs', list_objects, 'creer_club')
 
     def menu_edit(self, view_name, id, obj, list_objects):
+        '''gestion de l'edition d'un tournoi, joueur, club'''
+
         choix = getattr(self.view, view_name)(obj)
         manage_view = view_name.split("_")[2]
         manage_view = "gestion_" + manage_view
@@ -163,6 +171,8 @@ class Menu:
                                list_objects, manage_view)
 
     def edit_tournoi(self, choix, view_name, id, obj, list_objects, manage_view):
+        '''gestion dédier a l'edition d'un tournoi'''
+
         list_joueurs = database_access("joueurs", Joueur, "r")
         match choix:
             case "1":
@@ -212,6 +222,8 @@ class Menu:
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def edit_joueur(self, choix, view_name, id, obj, list_objects, manage_view):
+        '''gestion dédier a l'edition d'un joueur'''
+
         match choix:
             case "1":
                 obj.nom = self.view.update_nom_joueur(obj)
@@ -238,6 +250,8 @@ class Menu:
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def edit_club(self, choix, view_name, id, obj, list_objects, manage_view):
+        '''gestion dédier a l'edition d'un club'''
+
         match choix:
             case "1":
                 obj.nom = self.view.update_nom_club(obj)

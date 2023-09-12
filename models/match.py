@@ -31,4 +31,4 @@ class Match:
         return self.match_print()
 
     def __repr__(self) -> str:
-        self.match
+        self.match_print()

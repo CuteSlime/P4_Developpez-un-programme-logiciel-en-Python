@@ -27,11 +27,12 @@ class Views:
             choix = input("Choix N° :")
         return choix
 
-    def tournois_actuel(self, tournoi, **kwargs):
+    def tournois_actuel(self, tournoi, participants, matchs):
         '''gestion des tournois actif'''
 
         choix = ""
         print(f"Bienvenu au tournoi {tournoi.nom} ")
+        print(f"Le tournois en est au tour N°{tournoi.numero_tour_actuel}")
         print("[1] Commencer le round actuel")
         print("[2] Liste des participants")
         print("[3] Liste des match")
@@ -41,12 +42,12 @@ class Views:
             if choix != "":
                 print("Mauvais choix !")
             choix = input("Choix N° :")
-        if choix == "2" and kwargs:
-            print(kwargs.get("list_participants"))
+        if choix == "2":
+            print(participants)
 
             choix = input("Choix N° :")
-        if choix == "3" and kwargs:
-            print(kwargs.get("list_matchs"))
+        if choix == "3":
+            print(matchs)
             choix = input("Choix N° :")
         return choix
 
