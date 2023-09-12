@@ -6,15 +6,39 @@ from models.joueur import Joueur
 from models.database import database_access, add_to_database, remove_from_database, update_database
 
 
+def convert_sub_objects(list_tournois):
+    for obj in list_tournois:
+        if obj.list_joueurs:
+            list_joueur = []
+            for joueur in obj.list_joueurs:
+                joueur = Joueur(**joueur)
+                list_joueur.append(joueur)
+
+            obj.list_joueurs = list_joueur
+
+        if obj.list_tours:
+            list_tour = []
+            for tour in obj.list_tours:
+                if isinstance(tour, dict):
+                    tour = Tour(**tour)
+                list_tour.append(tour)
+            obj.list_tours = list_tour
+    print(list_tournois[1].list_joueurs, "_____________")
+    return list_tournois
+
+
 class Menu:
     def __init__(self, view):
         self.view = view
 
     def main_menu(self):
-        choix = self.view.menu_principal()
-        list_tournois = database_access("tournois", Tournoi, "r")
+        '''gestion du  Menu principale'''
+
+        list_tournois = convert_sub_objects(
+            database_access("tournois", Tournoi, "r"))
         list_joueurs = database_access("joueurs", Joueur, "r")
         list_clubs = database_access("clubs", Club, "r")
+        choix = self.view.menu_principal()
         match choix:
             case "1":
                 return self.active_tournament("tournois_actuel", list_tournois)

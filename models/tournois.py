@@ -10,7 +10,7 @@ class Tournoi():
         tour_name = []
         i = 0
         while i < self.nb_tour:
-            tour_name.append("Round" + str(i+1))
+            tour_name.append({"nom": "Round" + str(i+1), "participants": []})
             i += 1
         self.numero_tour_actuel = kwargs.get('numero_tour_actuel', 1)
         self.list_tours = kwargs.get('list_tours', tour_name)

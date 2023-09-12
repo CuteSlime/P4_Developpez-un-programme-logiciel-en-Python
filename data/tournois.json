@@ -7,10 +7,22 @@
         "nb_tour": 4,
         "numero_tour_actuel": 1,
         "list_tours": [
-            "Round1",
-            "Round2",
-            "Round3",
-            "Round4"
+            {
+                "nom": "Round1",
+                "participants": []
+            },
+            {
+                "nom": "Round2",
+                "participants": []
+            },
+            {
+                "nom": "Round3",
+                "participants": []
+            },
+            {
+                "nom": "Round4",
+                "participants": []
+            }
         ],
         "list_joueurs": [],
         "remarque": ""
@@ -23,12 +35,54 @@
         "nb_tour": 4,
         "numero_tour_actuel": 1,
         "list_tours": [
-            "Round1",
-            "Round2",
-            "Round3",
-            "Round4"
+            {
+                "nom": "Round1",
+                "participants": []
+            },
+            {
+                "nom": "Round2",
+                "participants": []
+            },
+            {
+                "nom": "Round3",
+                "participants": []
+            },
+            {
+                "nom": "Round4",
+                "participants": []
+            }
+
         ],
-        "list_joueurs": [],
+        "list_joueurs": [
+            {
+                "nom": "Cage",
+                "prenom": "Nicolas",
+                "date_naissance": "7 janvier 1964",
+                "score": 0,
+                "club": "Ghost Rider"
+            },
+            {
+                "nom": "Willis",
+                "prenom": "Bruce",
+                "date_naissance": "19 mars 1955",
+                "score": 0,
+                "club": "Sixi\u00e8me Sens"
+            },
+            {
+                "nom": "Van Damme",
+                "prenom": "Jean-Claude",
+                "date_naissance": "18 octobre 1960",
+                "score": 0,
+                "club": "Full Contact"
+            },
+            {
+                "nom": "Toucuit",
+                "prenom": "Phillipe",
+                "date_naissance": "14 Mars 2001",
+                "score": 0,
+                "club": "not an actor"
+            }
+        ],
         "remarque": ""
     }
 ]

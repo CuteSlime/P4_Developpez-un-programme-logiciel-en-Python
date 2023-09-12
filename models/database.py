@@ -56,16 +56,25 @@ def remove_from_database(self, objects_list, database_name, object_class):
 
 
 def update_database(self, original, objects_list, database_name, object_class):
+    '''
+    replace orignal in a list of object by a new object, 
+    translate the new list into dictionnary and send it to database
+    '''
     if not isinstance(self, object_class):
         return ValueError("Ceci n'est pas un ", str(database_name), " valide")
     for obj in objects_list:
         if original.__dict__ == obj.__dict__:
             objects_list[objects_list.index(obj)] = self
-    dict_list = []
-    for obj in objects_list:
+        list_dict = []
         if obj.list_joueurs:
             for sub_object in obj.list_joueurs:
-                sub_object = sub_object.__dict__
+                if isinstance(sub_object, dict) is False:
+                    list_dict.append(sub_object.__dict__)
+                else:
+                    list_dict.append(sub_object)
+        obj.list_joueurs = list_dict
+    dict_list = []
+    for obj in objects_list:
         obj = obj.__dict__
         dict_list.append(obj)
     database_access(database_name, object_class, "w", *dict_list)
