@@ -11,8 +11,8 @@ class Tour:
         self.date_debut = ""
         self.date_fin = "en cours"
 
-    def add_match(self, list_joueurs_tournois):
-        joueurs = list_joueurs_tournois
+    def add_match(self, participants):
+        joueurs = participants[:]
         shuffle(joueurs)
         while len(joueurs) > 1:
             self.list_matchs.append(Match(joueurs[0], joueurs[1]))

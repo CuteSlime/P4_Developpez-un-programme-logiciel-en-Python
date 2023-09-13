@@ -31,24 +31,26 @@ class Views:
         '''gestion des tournois actif'''
 
         choix = ""
-        print(f"Bienvenu au tournoi {tournoi.nom} ")
-        print(f"Le tournois en est au tour N°{tournoi.numero_tour_actuel}")
-        print("[1] Commencer le round actuel")
-        print("[2] Liste des participants")
-        print("[3] Liste des match")
-        print("[4] Retour au menu principal")
+        while choix not in ("1", "4"):
 
-        while choix not in ("1", "2", "3", "4"):
-            if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
-        if choix == "2":
-            print(participants)
+            print(f"Bienvenu au tournoi {tournoi.nom} ")
+            print(f"Le tournois en est au tour N°{tournoi.numero_tour_actuel}")
+            print("[1] Commencer le round actuel")
+            print("[2] Liste des participants")
+            print("[3] Liste des match")
+            print("[4] Retour au menu principal")
 
-            choix = input("Choix N° :")
-        if choix == "3":
-            print(matchs)
-            choix = input("Choix N° :")
+            while choix not in ("1", "2", "3", "4"):
+                if choix != "":
+                    print("Mauvais choix !")
+                choix = input("Choix N° :")
+            if choix == "2":
+                print([str(participant) for participant in participants])
+
+                choix = input("Choix N° :")
+            if choix == "3":
+                print([str(match) for match in matchs])
+                choix = input("Choix N° :")
         return choix
 
 # gestion des tournois

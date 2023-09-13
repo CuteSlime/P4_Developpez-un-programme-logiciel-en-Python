@@ -7,12 +7,12 @@ class Match:
     def __init__(self, joueur1, joueur2):
         self.joueur1 = joueur1
         self.joueur2 = joueur2
-        self.match_print()
+        # self.match_print()
 
     def match_print(self):
         x = [self.joueur1.full_name(), self.joueur1.score]
         y = [self.joueur2.full_name(), self.joueur2.score]
-        return (x, y)
+        return str(x, y)
 
     def play_match(self):
         winner = random()
@@ -30,5 +30,5 @@ class Match:
         print(self.match_print(), "teste")
         return self.match_print()
 
-    def __repr__(self) -> str:
-        self.match_print()
+    def __str__(self):
+        f'{self.joueur1.full_name()} {self.joueur1.score} VS {self.joueur2.full_name()} {self.joueur2.score}'
