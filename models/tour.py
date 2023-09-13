@@ -4,10 +4,10 @@ from .match import Match
 
 
 class Tour:
-    def __init__(self, nom, participants):
+    def __init__(self, nom, **kwargs):
         self.nom = nom
         self.list_matchs = []
-        self.participants = participants
+        self.participants = kwargs.get('participants', [])
         self.date_debut = ""
         self.date_fin = "en cours"
 

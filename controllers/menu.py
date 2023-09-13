@@ -62,11 +62,11 @@ class Menu:
 
         tour = tournoi.list_tours[int(tournoi.numero_tour_actuel) - 1]
         if tournoi.numero_tour_actuel == 1:
-            tour.participants = tournoi.list_joueurs
+            tour.participants.extend(tournoi.list_joueurs)
             tour.add_match(tour.participants)
             list_participants = tour.participants
             list_matchs = tour.list_matchs
-            print(list_participants, list_matchs)
+            print(tour.participants, "list_matchs")
 
         choix = getattr(self.view, view_name)(
             tournoi, list_participants, list_matchs)
