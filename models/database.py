@@ -65,14 +65,23 @@ def update_database(self, original, objects_list, database_name, object_class):
     for obj in objects_list:
         if original.__dict__ == obj.__dict__:
             objects_list[objects_list.index(obj)] = self
-        list_dict = []
+
         if obj.list_joueurs:
+            list_dict = []
             for sub_object in obj.list_joueurs:
                 if isinstance(sub_object, dict) is False:
                     list_dict.append(sub_object.__dict__)
                 else:
                     list_dict.append(sub_object)
-        obj.list_joueurs = list_dict
+            obj.list_joueurs = list_dict
+        if obj.list_tours:
+            list_dict = []
+            for sub_object in obj.list_tours:
+                if isinstance(sub_object, dict) is False:
+                    list_dict.append(sub_object.__dict__)
+                else:
+                    list_dict.append(sub_object)
+            obj.list_tours = list_dict
     dict_list = []
     for obj in objects_list:
         obj = obj.__dict__

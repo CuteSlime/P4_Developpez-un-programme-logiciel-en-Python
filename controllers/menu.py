@@ -58,22 +58,42 @@ class Menu:
     def active_tournament(self, view_name, list_tournois):
         '''gestion des tour'''
         tournoi = self.menu_list(
-            "list_tournois", list_tournois, list_only=True)
-
+            "list_tournois", list_tournois, list_only=True)[1]
+        id = tournoi
+        tournoi = list_tournois[tournoi]
         tour = tournoi.list_tours[int(tournoi.numero_tour_actuel) - 1]
-        if tournoi.numero_tour_actuel == 1:
+        # if tournoi.numero_tour_actuel == 1:
+        if tour.participants == []:
             tour.participants = tournoi.list_joueurs
             tour.add_match(tour.participants)
             print(tour)
 
-            print([str(participant) for participant in tour.participants], [
-                  str(x) for x in tour.list_matchs])
+            print([str(participant) for participant in tour.participants])
+            for match in tour.list_matchs:
+                for joueur in match:
+                    print(joueur[0].full_name(), joueur[0].score)
 
         choix = getattr(self.view, view_name)(
             tournoi, tour.participants, tour.list_matchs)
 
         match choix:
             case "1":
+                tour.play_match()
+                for match in tour.list_matchs:
+                    for joueur in match:
+                        joueur[0] = joueur[0].__dict__
+                list_participants = []
+                for participant in tour.participants:
+                    participant = participant.__dict__
+                    list_participants.append(participant)
+                tour.participants = list_participants
+                update_database(tournoi, list_tournois[id],
+                                list_tournois, "tournois", Tournoi)
+                # for match in tour.list_matchs:
+                #     for joueur in match:
+                #         print(joueur[0].full_name(), joueur[0].score)
+                # print([str(participant) for participant in tour.participants])
+                # print("8888888888")
                 pass
             case "4":
                 pass
@@ -99,7 +119,7 @@ class Menu:
         manage_view = view_name.split("_")[1][:-1]
         manage_view = "gestion_" + manage_view
         if kargs:
-            return obj
+            return [obj, id]
         return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def menu_manage(self, view_name, id, obj, list_objects, menu_name_list):
@@ -209,13 +229,13 @@ class Menu:
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "6":
                 joueur = self.menu_list(
-                    "list_joueurs", list_joueurs, list_only=True)
+                    "list_joueurs", list_joueurs, list_only=True)[0]
                 obj.add_joueur(joueur)
                 update_database(
                     obj, list_objects[id], list_objects, "tournois", Tournoi)
             case "7":
                 joueur = self.menu_list(
-                    "list_joueurs", obj.list_joueurs, list_only=True)
+                    "list_joueurs", obj.list_joueurs, list_only=True)[0]
                 obj.remove_joueur(joueur)
                 update_database(
                     obj, list_objects[id], list_objects, "tournois", Tournoi)

@@ -45,11 +45,15 @@ class Views:
                     print("Mauvais choix !")
                 choix = input("Choix N° :")
             if choix == "2":
-                print([str(participant) for participant in participants])
+                for match in matchs:
+                    for joueur in match:
+                        print(joueur[0].full_name(), joueur[0].score)
 
                 choix = input("Choix N° :")
             if choix == "3":
-                print([str(match) for match in matchs])
+                for match in matchs:
+                    print(
+                        f'{match[0][0].full_name(), match[0][0].score} vs {match[1][0].full_name(), match[1][0].score}')
                 choix = input("Choix N° :")
         return choix
 
