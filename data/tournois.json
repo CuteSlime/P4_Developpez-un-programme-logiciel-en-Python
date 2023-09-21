@@ -4,142 +4,39 @@
         "lieu": "Lyon",
         "date_debut": "22/12/2023",
         "date_fin": "25/12/2023",
-        "nb_tour": 4,
+        "nb_tour": 1,
+        "started": false,
         "numero_tour_actuel": 1,
-        "list_tours": [
+        "list_tours": [],
+        "list_joueurs": [
             {
-                "nom": "Round1",
-                "list_matchs": [],
-                "participants": [],
-                "date_debut": "",
-                "date_fin": "en cours"
-            },
-            {
-                "nom": "Round2",
-                "list_matchs": [],
-                "participants": [],
-                "date_debut": "",
-                "date_fin": "en cours"
-            },
-            {
-                "nom": "Round3",
-                "list_matchs": [],
-                "participants": [],
-                "date_debut": "",
-                "date_fin": "en cours"
-            },
-            {
-                "nom": "Round4",
-                "list_matchs": [],
-                "participants": [],
-                "date_debut": "",
-                "date_fin": "en cours"
+                "nom": "Cage",
+                "prenom": "Nicolas",
+                "date_naissance": "7 janvier 1964",
+                "score": 0,
+                "club": "Ghost Rider"
             }
         ],
-        "list_joueurs": [],
         "remarque": ""
     },
     {
         "nom": "Coupe Champignion",
         "lieu": "Royaume Champignion",
         "date_debut": "22/12/2023",
-        "date_fin": "25/12/2023",
-        "nb_tour": 4,
+        "date_fin": "26/12/2023",
+        "nb_tour": 2,
+        "started": true,
         "numero_tour_actuel": 1,
         "list_tours": [
             {
                 "nom": "Round1",
-                "list_matchs": [
-                    [
-                        [
-                            {
-                                "nom": "Van Damme",
-                                "prenom": "Jean-Claude",
-                                "date_naissance": "18 octobre 1960",
-                                "score": 1,
-                                "club": "Full Contact"
-                            }
-                        ],
-                        [
-                            {
-                                "nom": "Willis",
-                                "prenom": "Bruce",
-                                "date_naissance": "19 mars 1955",
-                                "score": 0,
-                                "club": "Sixi\u00e8me Sens"
-                            }
-                        ]
-                    ],
-                    [
-                        [
-                            {
-                                "nom": "Cage",
-                                "prenom": "Nicolas",
-                                "date_naissance": "7 janvier 1964",
-                                "score": 0,
-                                "club": "Ghost Rider"
-                            }
-                        ],
-                        [
-                            {
-                                "nom": "Toucuit",
-                                "prenom": "Phillipe",
-                                "date_naissance": "14 Mars 2001",
-                                "score": 1,
-                                "club": "not an actor"
-                            }
-                        ]
-                    ]
-                ],
-                "participants": [
-                    {
-                        "nom": "Van Damme",
-                        "prenom": "Jean-Claude",
-                        "date_naissance": "18 octobre 1960",
-                        "score": 1,
-                        "club": "Full Contact"
-                    },
-                    {
-                        "nom": "Willis",
-                        "prenom": "Bruce",
-                        "date_naissance": "19 mars 1955",
-                        "score": 0,
-                        "club": "Sixi\u00e8me Sens"
-                    },
-                    {
-                        "nom": "Cage",
-                        "prenom": "Nicolas",
-                        "date_naissance": "7 janvier 1964",
-                        "score": 0,
-                        "club": "Ghost Rider"
-                    },
-                    {
-                        "nom": "Toucuit",
-                        "prenom": "Phillipe",
-                        "date_naissance": "14 Mars 2001",
-                        "score": 1,
-                        "club": "not an actor"
-                    }
-                ],
+                "list_matchs": [],
+                "participants": [],
                 "date_debut": "",
                 "date_fin": "en cours"
             },
             {
                 "nom": "Round2",
-                "list_matchs": [],
-                "participants": [],
-                "date_debut": "",
-                "date_fin": "en cours"
-            },
-            {
-                "nom": "Round3",
-                "list_matchs": [],
-                "participants": [],
-                "date_debut": "",
-                "date_fin": "en cours"
-            },
-            {
-                "nom": "Round4",
                 "list_matchs": [],
                 "participants": [],
                 "date_debut": "",
@@ -148,18 +45,18 @@
         ],
         "list_joueurs": [
             {
+                "nom": "Toucuit",
+                "prenom": "Phillipe",
+                "date_naissance": "14 Mars 2001",
+                "score": 0,
+                "club": "not an actor"
+            },
+            {
                 "nom": "Van Damme",
                 "prenom": "Jean-Claude",
                 "date_naissance": "18 octobre 1960",
-                "score": 1,
-                "club": "Full Contact"
-            },
-            {
-                "nom": "Willis",
-                "prenom": "Bruce",
-                "date_naissance": "19 mars 1955",
                 "score": 0,
-                "club": "Sixi\u00e8me Sens"
+                "club": "Full Contact"
             },
             {
                 "nom": "Cage",
@@ -169,11 +66,11 @@
                 "club": "Ghost Rider"
             },
             {
-                "nom": "Toucuit",
-                "prenom": "Phillipe",
-                "date_naissance": "14 Mars 2001",
-                "score": 1,
-                "club": "not an actor"
+                "nom": "Willis",
+                "prenom": "Bruce",
+                "date_naissance": "19 mars 1955",
+                "score": 0,
+                "club": "Sixi\u00e8me Sens"
             }
         ],
         "remarque": ""
