@@ -1,3 +1,10 @@
+def number_of_turn(number_of_player):
+    nb_turn = 0
+    while float(number_of_player) > 1:
+        number_of_player /= 2
+        nb_turn += 1
+
+    return nb_turn
 
 
 class Tournoi():
