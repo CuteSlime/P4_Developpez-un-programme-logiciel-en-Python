@@ -6,14 +6,36 @@ from datetime import datetime
 class Tour:
     def __init__(self, nom, **kwargs):
         self.nom = nom
-        self.list_matchs = []
+        self.list_matchs = kwargs.get('list_matchs', [])
         self.participants = kwargs.get('participants', [])
-        self.date_debut = ""
-        self.date_fin = "en cours"
+        self.date_debut = kwargs.get('date_debut', "")
+        self.date_fin = kwargs.get('date_fin', "en cours")
 
     def add_match(self, participants):
         joueurs = participants
-        shuffle(joueurs)
+
+        is_first_match = True
+        for joueur in joueurs:
+            if joueur.score > 0:
+                is_first_match = False
+        if is_first_match:
+            shuffle(joueurs)
+        else:
+            i = 0
+            list_joueurs = []
+            not_sorted_joueur = joueurs[:]
+            while i < len(joueurs):
+                score = -1
+
+                meilleur_joueur = not_sorted_joueur[0]
+                for joueur in not_sorted_joueur:
+                    if joueur.score > score:
+                        score = joueur.score
+                        meilleur_joueur = joueur
+                list_joueurs.append(meilleur_joueur)
+                not_sorted_joueur.remove(meilleur_joueur)
+                i += 1
+            joueurs = list_joueurs
 
         groupes = (joueurs[i:i+2] for i in range(0, len(joueurs), 2))
         for groupe in groupes:
