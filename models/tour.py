@@ -23,7 +23,7 @@ class Tour:
     def start_tour(self):
         self.date_debut = datetime.now().strftime('%d/%m/%Y %H:%M')
 
-    def tour_fini(self):
+    def end_tour(self):
         self.date_fin = datetime.now().strftime('%d/%m/%Y %H:%M')
         return self.date_fin
 
@@ -41,5 +41,3 @@ class Tour:
                 print('c\'est une égalité !')
                 match[0][0].score += 0.5
                 match[1][0].score += 0.5
-            print(match, "teste")
-        print(self.list_matchs)
