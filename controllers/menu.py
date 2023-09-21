@@ -3,6 +3,7 @@ from models.tour import Tour
 # from models.match import Match
 from models.club import Club
 from models.joueur import Joueur
+from datetime import datetime
 from models.database import database_access, add_to_database, remove_from_database, update_database
 
 
@@ -56,10 +57,20 @@ class Menu:
 
     def active_tournament(self, view_name, list_tournois):
         '''gestion des tour'''
+        list_tournois = convert_sub_objects(
+            database_access("tournois", Tournoi, "r"))
         tournoi = self.menu_list(
             "list_tournois", list_tournois, list_only=True)[1]
         id = tournoi
-        tournoi = list_tournois[tournoi]
+        tournoi = list_tournois[id]
+        while tournoi.started is False:
+            while list_tournois[id].started is False:
+                print("\33[91mCe tournoi n'as pas encore commencé.\33[00m")
+                tournoi = self.menu_list(
+                    "list_tournois", list_tournois, list_only=True)[1]
+                id = tournoi
+                tournoi = list_tournois[id]
+
         tour = tournoi.list_tours[int(tournoi.numero_tour_actuel) - 1]
         # if tournoi.numero_tour_actuel == 1:
         if tour.participants == []:
@@ -76,6 +87,20 @@ class Menu:
         match choix:
             case "1":
                 tour.play_match()
+                if tournoi.numero_tour_actuel == len(tournoi.list_tours):
+                    best_score = 0
+                    winner = tour.participants[0]
+                    for participant in tour.participants:
+                        if participant.score > best_score:
+                            best_score = participant.score
+                            winner = participant
+                    tournoi.date_fin = datetime.now().strftime('%d/%m/%Y %H:%M')
+                    print(f"Tournoi {tournoi.nom} terminé !")
+                    print(f"Félicitation à {winner.full_name()} !")
+
+                if tournoi.numero_tour_actuel < len(tournoi.list_tours):
+                    tournoi.numero_tour_actuel += 1
+
                 for match in tour.list_matchs:
                     for joueur in match:
                         joueur[0] = joueur[0].__dict__
@@ -106,7 +131,7 @@ class Menu:
             case "3":
                 pass
 
-    def menu_list(self, view_name, list_objects, **kargs):
+    def menu_list(self, view_name, list_objects, **kwargs):
         '''menu de selection des tournois, joueurs ou clubs'''
 
         choix = getattr(self.view, view_name)(list_objects)
