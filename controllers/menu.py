@@ -23,7 +23,6 @@ def convert_sub_objects(list_tournois):
                     tour = Tour(**tour)
                 list_tour.append(tour)
             obj.list_tours = list_tour
-    print(list_tournois[1].list_joueurs, "_____________")
     return list_tournois
 
 
@@ -66,9 +65,7 @@ class Menu:
         if tour.participants == []:
             tour.participants = tournoi.list_joueurs
             tour.add_match(tour.participants)
-            print(tour)
 
-            print([str(participant) for participant in tour.participants])
             for match in tour.list_matchs:
                 for joueur in match:
                     print(joueur[0].full_name(), joueur[0].score)
@@ -86,15 +83,14 @@ class Menu:
                 for participant in tour.participants:
                     participant = participant.__dict__
                     list_participants.append(participant)
+
                 tour.participants = list_participants
+
                 update_database(tournoi, list_tournois[id],
                                 list_tournois, "tournois", Tournoi)
-                # for match in tour.list_matchs:
-                #     for joueur in match:
-                #         print(joueur[0].full_name(), joueur[0].score)
-                # print([str(participant) for participant in tour.participants])
-                # print("8888888888")
-                pass
+                list_tournois = convert_sub_objects(
+                    database_access("tournois", Tournoi, "r"))
+                return self.active_tournament("tournois_actuel", list_tournois)
             case "4":
                 pass
 
@@ -116,9 +112,10 @@ class Menu:
         choix = getattr(self.view, view_name)(list_objects)
         obj = list_objects[int(choix)]
         id = choix
+
         manage_view = view_name.split("_")[1][:-1]
         manage_view = "gestion_" + manage_view
-        if kargs:
+        if kwargs:
             return [obj, id]
         return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
