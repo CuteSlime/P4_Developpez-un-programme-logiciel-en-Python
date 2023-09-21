@@ -14,15 +14,28 @@ class Tournoi():
         self.date_debut = date_debut
         self.date_fin = date_fin
         self.nb_tour = kwargs.get('nb_tour', 4)
-        tour_name = []
-        i = 0
-        while i < self.nb_tour:
-            tour_name.append({"nom": "Round" + str(i+1), "participants": []})
-            i += 1
+        self.started = kwargs.get('started', False)
+
         self.numero_tour_actuel = kwargs.get('numero_tour_actuel', 1)
-        self.list_tours = kwargs.get('list_tours', tour_name)
+        self.list_tours = kwargs.get('list_tours', [])
         self.list_joueurs = kwargs.get('list_joueurs', [])
         self.remarque = kwargs.get('remarque', "")
+
+    def fill_tour(self):
+        if self.started:
+            i = 0
+            while i < self.nb_tour:
+                self.list_tours.append(
+                    {"nom": "Round" + str(i+1), "list_matchs": [], "participants": [], "date_debut":  "", "date_fin": "en cours"})
+                i += 1
+
+    def start(self):
+        if len(self.list_joueurs) % 2 == 0:
+            self.nb_tour = number_of_turn(len(self.list_joueurs))
+            self.started = True
+            self.fill_tour()
+        else:
+            return "erreur"
 
     def add_joueur(self, joueur):
         self.list_joueurs.append(joueur)
