@@ -52,4 +52,4 @@ class Tournoi():
         self.list_tours.remove(tour_name)
 
     def __str__(self):
-        return f"\33[90m Nom : {self.nom} /n à : {self.lieu} /n Début du tournoi : {self.date_debut}   Fin : {self.date_fin} /nDescription : {self.remarque}\33[0m"
+        return f"\33[92m \nNom : {self.nom}  \nà : {self.lieu} \nDébut du tournoi : {self.date_debut}   Fin : {self.date_fin} \nDescription : {self.remarque}\33[0m"

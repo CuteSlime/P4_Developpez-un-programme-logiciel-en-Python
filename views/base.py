@@ -14,17 +14,17 @@ class Views:
         '''menu principal'''
 
         choix = ""
-        print("Bonjour, /nBienvenu dans l'outils de gestion de tournois./nQue souhaiter vous faire ?")
-        print("[1] Gérer les tournois en cours")
-        print("[2] Gérer les tournois")
-        print("[3] Gérer les joueur")
-        print("[4] Gérer les club")
-        print("[5] Quitter")
+        print("\33[94mBonjour, \nBienvenu dans l'outils de gestion de tournois.\nQue souhaiter vous faire ?\33[00m")
+        print("[\33[93m1\33[00m] Gérer les tournois en cours")
+        print("[\33[93m2\33[00m] Gérer les tournois")
+        print("[\33[93m3\33[00m] Gérer les joueur")
+        print("[\33[93m4\33[00m] Gérer les club")
+        print("[\33[93m5\33[00m] Quitter")
 
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         return choix
 
     def tournois_actuel(self, tournoi, participants, matchs):
@@ -35,26 +35,26 @@ class Views:
 
             print(f"Bienvenu au tournoi {tournoi.nom} ")
             print(f"Le tournois en est au tour N°{tournoi.numero_tour_actuel}")
-            print("[1] Commencer le round actuel")
-            print("[2] Liste des participants")
-            print("[3] Liste des match")
-            print("[4] Retour au menu principal")
+            print("[\33[93m1\33[00m] Commencer le round actuel")
+            print("[\33[93m2\33[00m] Liste des participants")
+            print("[\33[93m3\33[00m] Liste des match")
+            print("[\33[93m4\33[00m] Retour au menu principal")
 
             while choix not in ("1", "2", "3", "4"):
                 if choix != "":
-                    print("Mauvais choix !")
-                choix = input("Choix N° :")
+                    print("\33[91mMauvais choix !\33[00m")
+                choix = input("\nChoix N° :")
             if choix == "2":
                 for match in matchs:
                     for joueur in match:
                         print(joueur[0].full_name(), joueur[0].score)
 
-                choix = input("Choix N° :")
+                choix = input("\nChoix N° :")
             if choix == "3":
                 for match in matchs:
                     print(
                         f'{match[0][0].full_name(), match[0][0].score} vs {match[1][0].full_name(), match[1][0].score}')
-                choix = input("Choix N° :")
+                choix = input("\nChoix N° :")
         return choix
 
 # gestion des tournois
@@ -63,13 +63,13 @@ class Views:
 
         choix = ""
         print("Menu de gestion des tournois")
-        print("[1] Lister les tournois actuel")
-        print("[2] Créer un nouveau tournoi")
-        print("[3] Retour au menu principal")
+        print("[\33[93m1\33[00m] Lister les tournois actuel")
+        print("[\33[93m2\33[00m] Créer un nouveau tournoi")
+        print("[\33[93m3\33[00m] Retour au menu principal")
         while choix not in ("1", "2", "3"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         return choix
 
     def list_tournois(self, liste_tournois):
@@ -87,7 +87,7 @@ class Views:
                     f"[\33[93m{id_tournoi}\33[00m] [\33[93mEn cours\33[00m] {tournoi}")
         while choix not in range(1, len(liste_tournois)+1):
             if choix != 0:
-                print("Mauvais choix !")
+                print("\33[91mMauvais choix !\33[00m")
             choix = int(input("Tournoi N° :"))
         return (choix - 1)
 
@@ -122,19 +122,19 @@ class Views:
         choix = ""
         print("Menu de gestion du tournoi")
         print(tournois_data)
-        print("[1] Modifier le tournoi")
-        print("[2] Suprimer le tournoi")
-        print("[3] Retour a la liste des tournois")
-        print("[4] Retour au menu principal")
+        print("[\33[93m1\33[00m] Modifier le tournoi")
+        print("[\33[93m2\33[00m] Suprimer le tournoi")
+        print("[\33[93m3\33[00m] Retour a la liste des tournois")
+        print("[\33[93m4\33[00m] Retour au menu principal")
 
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         if choix == "2":
             print(
-                f"/!\\ Voulez vous vraiment supprimer le tournoi {tournois_data.nom} ?")
-            print("/!\\ Cette action est irréversible.")
+                f"\33[91m/!\\ Voulez vous vraiment supprimer le tournoi {tournois_data.nom} ?\33[00m")
+            print("\33[91m/!\\ Cette action est irréversible.\33[00m")
             while choix != "O" and choix != "n" and choix != "N":
                 choix = input("[O/n] :")
             if choix == "O":
@@ -147,6 +147,13 @@ class Views:
         choix = ""
         print("Modification du tournoi " + tournoi.nom)
         print("Que voulez vous modifier ?")
+        print("[\33[93m1\33[00m] Nom : " + tournoi.nom)
+        print("[\33[93m2\33[00m] Lieu : " + tournoi.lieu)
+        print("[\33[93m3\33[00m] Date de debut : " + tournoi.date_debut)
+        print("[\33[93m4\33[00m] Date de fin : " + tournoi.date_fin)
+        print("[\33[93m5\33[00m] Nombre de tour : ", tournoi.nb_tour)
+        print("[\33[93m6\33[00m] Ajouter un joueur")
+        print("[\33[93m7\33[00m] Retirer un joueur")
         print("[\33[93m8\33[00m] Commencer le tournoi")
         print("[\33[93m9\33[00m] Retour")
         while choix not in ("1", "2", "3", "4", "5", "6", "7", "8", "9"):
@@ -196,13 +203,13 @@ class Views:
 
         choix = ""
         print("Menu de gestion des joueurs")
-        print("[1] Lister les joueurs actuel")
-        print("[2] Créer un nouveau joueur")
-        print("[3] Retour au menu principal")
+        print("[\33[93m1\33[00m] Lister les joueurs actuel")
+        print("[\33[93m2\33[00m] Créer un nouveau joueur")
+        print("[\33[93m3\33[00m] Retour au menu principal")
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         return choix
 
     def list_joueurs(self, liste_joueurs):
@@ -214,7 +221,7 @@ class Views:
 
         while choix not in range(1, len(liste_joueurs)+1):
             if choix != 0:
-                print("Mauvais choix !")
+                print("\33[91mMauvais choix !\33[00m")
             choix = int(input("Joueur N° :"))
         return (choix - 1)
 
@@ -236,18 +243,18 @@ class Views:
         choix = ""
         print("Menu de gestion des joueurs")
         print(joueurs_data)
-        print("[1] Modifier le joueur")
-        print("[2] Suprimer le joueur")
-        print("[3] Retour a la liste des joueurs")
-        print("[4] Retour au menu principal")
+        print("[\33[93m1\33[00m] Modifier le joueur")
+        print("[\33[93m2\33[00m] Suprimer le joueur")
+        print("[\33[93m3\33[00m] Retour a la liste des joueurs")
+        print("[\33[93m4\33[00m] Retour au menu principal")
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         if choix == "2":
             print(
-                f"/!\\ Voulez vous vraiment supprimer le joueur {joueurs_data.nom} ?")
-            print("/!\\ Cette action est irréversible.")
+                f"\33[91m/!\\ Voulez vous vraiment supprimer le joueur {joueurs_data.nom} ?\33[00m")
+            print("\33[91m/!\\ Cette action est irréversible.\33[00m")
             while choix != "O" and choix != "n" and choix != "N":
                 choix = input("[O/n] :")
             if choix == "O":
@@ -260,16 +267,16 @@ class Views:
         choix = ""
         print("Modification du joueur " + joueur.nom)
         print("Que voulez vous modifier ?")
-        print("[1] Nom : " + joueur.nom)
-        print("[2] Prenom : " + joueur.prenom)
-        print("[3] Date de naissance : " + joueur.date_naissance)
-        print("[4] Club : " + joueur.club)
+        print("[\33[93m1\33[00m] Nom : " + joueur.nom)
+        print("[\33[93m2\33[00m] Prenom : " + joueur.prenom)
+        print("[\33[93m3\33[00m] Date de naissance : " + joueur.date_naissance)
+        print("[\33[93m4\33[00m] Club : " + joueur.club)
 
-        print("[5] Retour")
+        print("[\33[93m5\33[00m] Retour")
         while choix not in ("1", "2", "3", "4", "5"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         return choix
 
     def update_nom_joueur(self, joueur):
@@ -299,13 +306,13 @@ class Views:
 
         choix = ""
         print("Menu de gestion des clubs")
-        print("[1] Lister les clubs actuel")
-        print("[2] Ajouter un nouveau club")
-        print("[3] Retour au menu principal")
+        print("[\33[93m1\33[00m] Lister les clubs actuel")
+        print("[\33[93m2\33[00m] Ajouter un nouveau club")
+        print("[\33[93m3\33[00m] Retour au menu principal")
         while choix not in ("1", "2", "3"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         return choix
 
     def list_clubs(self, liste_clubs):
@@ -318,7 +325,7 @@ class Views:
 
         while choix not in range(1, len(liste_clubs) + 1):
             if choix != 0:
-                print("Mauvais choix !")
+                print("\33[91mMauvais choix !\33[00m")
             choix = int(input("Club N° :"))
         return (choix - 1)
 
@@ -329,7 +336,7 @@ class Views:
         nom = input("Nom du club :")
         national_id = input("Numéro d'identification national :").upper()
         while validate_national_id(national_id) is False:
-            print("Identifiant national invalide")
+            print("\33[91mIdentifiant national invalide\33[00m")
             national_id = input("Numéro d'identification national :")
 
         club = (cls, nom, national_id)
@@ -341,19 +348,19 @@ class Views:
         choix = ""
         print("Menu de gestion des clubs")
         print(clubs_data)
-        print("[1] Modifier le club")
-        print("[2] Suprimer le club")
-        print("[3] Retour a la liste des clubs")
-        print("[4] Retour au menu principal")
+        print("[\33[93m1\33[00m] Modifier le club")
+        print("[\33[93m2\33[00m] Suprimer le club")
+        print("[\33[93m3\33[00m] Retour a la liste des clubs")
+        print("[\33[93m4\33[00m] Retour au menu principal")
 
         while choix not in ("1", "2", "3", "4"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         if choix == "2":
             print(
-                f"/!\\ Voulez vous vraiment supprimer le club {clubs_data.nom} ?")
-            print("/!\\ Cette action est irréversible.")
+                f"\33[91m/!\\ Voulez vous vraiment supprimer le club {clubs_data.nom} ?\33[00m")
+            print("\33[91m/!\\ Cette action est irréversible.\33[00m")
             while choix != "O" and choix != "n" and choix != "N":
                 choix = input("[O/n] :")
             if choix == "O":
@@ -365,13 +372,14 @@ class Views:
         choix = ""
         print("Modification du club " + club.nom)
         print("Que voulez vous modifier ?")
-        print("[1] Nom : " + club.nom)
-        print("[2] Identification national : " + club.identifiant_national)
-        print("[3] Retour")
+        print("[\33[93m1\33[00m] Nom : " + club.nom)
+        print("[\33[93m2\33[00m] Identification national : " +
+              club.identifiant_national)
+        print("[\33[93m3\33[00m] Retour")
         while choix not in ("1", "2", "3"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
         return choix
 
     def update_nom_club(self, club):
