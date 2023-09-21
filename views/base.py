@@ -77,9 +77,14 @@ class Views:
 
         choix = 0
         print("Liste des tournois actuel")
-        for id_tournoi, tournoi in enumerate(liste_tournois, start=1):
-            print(f"[{id_tournoi}] {tournoi}")
 
+        for id_tournoi, tournoi in enumerate(liste_tournois, start=1):
+            if tournoi.started is False:
+                print(
+                    f"[\33[93m{id_tournoi}\33[00m] [\33[93mEn attente\33[00m]{tournoi}")
+            else:
+                print(
+                    f"[\33[93m{id_tournoi}\33[00m] [\33[93mEn cours\33[00m] {tournoi}")
         while choix not in range(1, len(liste_tournois)+1):
             if choix != 0:
                 print("Mauvais choix !")
@@ -142,18 +147,22 @@ class Views:
         choix = ""
         print("Modification du tournoi " + tournoi.nom)
         print("Que voulez vous modifier ?")
-        print("[1] Nom : " + tournoi.nom)
-        print("[2] Lieu : " + tournoi.lieu)
-        print("[3] Date de debut : " + tournoi.date_debut)
-        print("[4] Date de fin : " + tournoi.date_fin)
-        print("[5] Nombre de tour : ", tournoi.nb_tour)
-        print("[6] Ajouter un joueur")
-        print("[7] Retirer un joueur")
-        print("[8] Retour")
-        while choix not in ("1", "2", "3", "4", "5", "6", "7", "8"):
+        print("[\33[93m8\33[00m] Commencer le tournoi")
+        print("[\33[93m9\33[00m] Retour")
+        while choix not in ("1", "2", "3", "4", "5", "6", "7", "8", "9"):
             if choix != "":
-                print("Mauvais choix !")
-            choix = input("Choix N° :")
+                print("\33[91mMauvais choix !\33[00m")
+            choix = input("\nChoix N° :")
+        while choix == "8":
+            if tournoi.started:
+                print("\33[91mtournoi déjà commencer !\33[00m")
+                choix = input("\nChoix N° :")
+            if len(tournoi.list_joueurs) % 2 != 0:
+                print(
+                    f"\33[91mnombre de joueur invalide !({len(tournoi.list_joueurs)}) (le nombre de joueurs doit être pair.)\33[00m")
+                choix = input("\nChoix N° :")
+            else:
+                return choix
         return choix
 
     def update_nom_tournoi(self, tournoi):

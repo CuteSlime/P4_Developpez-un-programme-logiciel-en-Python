@@ -237,6 +237,11 @@ class Menu:
                 update_database(
                     obj, list_objects[id], list_objects, "tournois", Tournoi)
             case "8":
+                obj.start()
+                update_database(
+                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                return self.menu_manage(manage_view, id, obj, list_objects, view_name)
+            case "9":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def edit_joueur(self, choix, view_name, id, obj, list_objects, manage_view):
