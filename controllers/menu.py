@@ -1,6 +1,5 @@
 from models.tournois import Tournoi
 from models.tour import Tour
-# from models.match import Match
 from models.club import Club
 from models.joueur import Joueur
 from datetime import datetime
