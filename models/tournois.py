@@ -15,7 +15,7 @@ class Tournoi():
         self.date_fin = date_fin
         self.nb_tour = kwargs.get('nb_tour', 4)
         self.started = kwargs.get('started', False)
-
+        self.ended = kwargs.get('ended', False)
         self.numero_tour_actuel = kwargs.get('numero_tour_actuel', 1)
         self.list_tours = kwargs.get('list_tours', [])
         self.list_joueurs = kwargs.get('list_joueurs', [])

@@ -90,9 +90,12 @@ class Views:
             if tournoi.started is False:
                 print(
                     f"[\33[93m{id_tournoi}\33[00m] [\33[93mEn attente\33[00m]{tournoi}")
+            elif tournoi.ended:
+                print(
+                    f"[\33[93m{id_tournoi}\33[00m] [\33[91mTerminé\33[00m]{tournoi}")
             else:
                 print(
-                    f"[\33[93m{id_tournoi}\33[00m] [\33[93mEn cours\33[00m] {tournoi}")
+                    f"[\33[93m{id_tournoi}\33[00m] [\33[94mEn cours\33[00m] {tournoi}")
         while choix not in range(1, len(liste_tournois)+1):
             if choix != 0:
                 print("\33[93m" "Mauvais choix !" "\33[00m")

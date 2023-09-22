@@ -70,6 +70,13 @@ class Menu:
                     "list_tournois", list_tournois, list_only=True)[1]
                 id = tournoi
                 tournoi = list_tournois[id]
+        while tournoi.ended is True:
+            while list_tournois[id].ended is True:
+                print("\33[93m" "Ce tournoi est terminé" "\33[00m")
+                tournoi = self.menu_list(
+                    "list_tournois", list_tournois, list_only=True)[1]
+                id = tournoi
+                tournoi = list_tournois[id]
 
         tour = tournoi.list_tours[int(tournoi.numero_tour_actuel) - 1]
         # if tournoi.numero_tour_actuel == 1:
@@ -89,6 +96,7 @@ class Menu:
             case "1":
                 tour.play_match()
                 if tournoi.numero_tour_actuel == len(tournoi.list_tours):
+                    tournoi.ended = True
                     best_score = 0
                     winner = tour.participants[0]
                     for participant in tour.participants:
@@ -96,9 +104,9 @@ class Menu:
                             best_score = participant.score
                             winner = participant
                     tournoi.date_fin = datetime.now().strftime('%d/%m/%Y %H:%M')
-                    print(f"\33[94mTournoi {tournoi.nom} terminé !\33[00m")
+                    print("\33[94m" f"Tournoi {tournoi.nom} terminé !\33[00m")
                     print(
-                        f"\33[94mFélicitation à {winner.full_name()} !\33[00m")
+                        "\33[94m" f"Félicitation à {winner.full_name()} !\33[00m")
 
                 if tournoi.numero_tour_actuel < len(tournoi.list_tours):
                     tournoi.numero_tour_actuel += 1
