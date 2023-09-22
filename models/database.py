@@ -57,7 +57,7 @@ def remove_from_database(self, objects_list, database_name, object_class):
 
 def update_database(self, original, objects_list, database_name, object_class):
     '''
-    replace orignal in a list of object by a new object, 
+    replace orignal in a list of object by a new object,
     translate the new list into dictionnary and send it to database
     '''
     if not isinstance(self, object_class):

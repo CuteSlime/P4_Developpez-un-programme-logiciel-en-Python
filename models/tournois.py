@@ -25,8 +25,12 @@ class Tournoi():
         if self.started:
             i = 0
             while i < self.nb_tour:
-                self.list_tours.append(
-                    {"nom": "Round" + str(i+1), "list_matchs": [], "participants": [], "date_debut":  "", "date_fin": "en cours"})
+                self.list_tours.append({
+                    "nom": "Round" + str(i+1),
+                    "list_matchs": [],
+                    "participants": [],
+                    "date_debut":  "", "date_fin": "en cours"
+                })
                 i += 1
 
     def start(self):
@@ -52,4 +56,9 @@ class Tournoi():
         self.list_tours.remove(tour_name)
 
     def __str__(self):
-        return f"\33[92m \nNom : {self.nom}  \nà : {self.lieu} \nDébut du tournoi : {self.date_debut}   Fin : {self.date_fin} \nDescription : {self.remarque}\33[0m"
+        return (f"\33[92m \n"
+                f"Nom : {self.nom}  \n"
+                f"à : {self.lieu} \n"
+                f"Début du tournoi : {self.date_debut}   Fin : {self.date_fin} \n"
+                f"Description : {self.remarque}\33[0m"
+                )

@@ -53,7 +53,10 @@ class Views:
             if choix == "3":
                 for match in matchs:
                     print(
-                        f'{match[0][0].full_name(), match[0][0].score} vs {match[1][0].full_name(), match[1][0].score}')
+                        f'{match[0][0].full_name()} : {match[0][0].score}'
+                        f' vs '
+                        f'{match[1][0].full_name()} : {match[1][0].score}'
+                    )
                 choix = input("\nChoix N° :")
         return choix
 
@@ -166,7 +169,9 @@ class Views:
                 choix = input("\nChoix N° :")
             if len(tournoi.list_joueurs) % 2 != 0:
                 print(
-                    f"\33[91mnombre de joueur invalide !({len(tournoi.list_joueurs)}) (le nombre de joueurs doit être pair.)\33[00m")
+                    f"\33[91mnombre de joueur invalide !({len(tournoi.list_joueurs)}) "
+                    f"(le nombre de joueurs doit être pair.)\33[00m"
+                )
                 choix = input("\nChoix N° :")
             else:
                 return choix

@@ -79,7 +79,8 @@ class Menu:
 
             for match in tour.list_matchs:
                 for joueur in match:
-                    print(joueur[0].full_name(), joueur[0].score)
+                    print(
+                        f'\33[94m{joueur[0].full_name()} : {joueur[0].score}\33[00m')
 
         choix = getattr(self.view, view_name)(
             tournoi, tour.participants, tour.list_matchs)
@@ -95,8 +96,9 @@ class Menu:
                             best_score = participant.score
                             winner = participant
                     tournoi.date_fin = datetime.now().strftime('%d/%m/%Y %H:%M')
-                    print(f"Tournoi {tournoi.nom} terminé !")
-                    print(f"Félicitation à {winner.full_name()} !")
+                    print(f"\33[94mTournoi {tournoi.nom} terminé !\33[00m")
+                    print(
+                        f"\33[94mFélicitation à {winner.full_name()} !\33[00m")
 
                 if tournoi.numero_tour_actuel < len(tournoi.list_tours):
                     tournoi.numero_tour_actuel += 1

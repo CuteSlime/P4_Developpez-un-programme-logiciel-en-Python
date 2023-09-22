@@ -53,11 +53,11 @@ class Tour:
         for match in self.list_matchs:
             winner = random()
             if winner > 0.5:
-                print(match[0][0].full_name(), "gagne !")
+                print("\33[94m", match[0][0].full_name(), "gagne !\33[00m")
                 match[0][0].score += 1
 
             elif winner < 0.5:
-                print(match[1][0].full_name(), "gagne !")
+                print("\33[94m", match[1][0].full_name(), "gagne !\33[00m")
                 match[1][0].score += 1
             else:
                 print('c\'est une égalité !')
