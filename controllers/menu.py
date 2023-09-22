@@ -83,11 +83,6 @@ class Menu:
             tour.participants = tournoi.list_joueurs
             tour.add_match(tour.participants)
 
-            for match in tour.list_matchs:
-                for joueur in match:
-                    print(
-                        f'\33[94m{joueur[0].full_name()} : {joueur[0].score}\33[00m')
-
         choix = getattr(self.view, view_name)(
             tournoi, tour.participants, tour.list_matchs)
 

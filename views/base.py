@@ -14,11 +14,11 @@ class Views:
         '''menu principal'''
 
         choix = ""
-        print("\33[94m"
-              "Bonjour, \n"
-              "Bienvenu dans l'outils de gestion de tournois.\n"
-              "Que souhaiter vous faire ?"
-              "\33[00m"
+        print("\n"
+              "| Bonjour,\n"
+              "| Bienvenu dans l'outils de gestion de tournois. \n"
+              "| Que souhaiter vous faire ?"
+              "\n"
               )
         print("[\33[93m" "1" "\33[00m] Gérer les tournois en cours")
         print("[\33[93m" "2" "\33[00m] Gérer les tournois")
@@ -26,7 +26,7 @@ class Views:
         print("[\33[93m" "4" "\33[00m] Gérer les club")
         print("[\33[93m" "5" "\33[00m] Quitter")
 
-        while choix not in ("1", "2", "3", "4"):
+        while choix not in ("1", "2", "3", "4", "5"):
             if choix != "":
                 print("\33[93m" "Mauvais choix !" "\33[00m")
             choix = input("\nChoix N° :")
@@ -38,8 +38,9 @@ class Views:
         choix = ""
         while choix not in ("1", "4"):
 
-            print(f"Bienvenu au tournoi {tournoi.nom} ")
-            print(f"Le tournois en est au tour N°{tournoi.numero_tour_actuel}")
+            print(f"\n--- Bienvenu au tournoi {tournoi.nom} ---\n")
+            print(
+                f"- Le tournois en est au tour N°{tournoi.numero_tour_actuel}\n")
             print("[\33[93m" "1" "\33[00m] Commencer le round actuel")
             print("[\33[93m" "2" "\33[00m] Liste des participants")
             print("[\33[93m" "3" "\33[00m] Liste des match")
@@ -52,16 +53,20 @@ class Views:
             if choix == "2":
                 for match in matchs:
                     for joueur in match:
-                        print(joueur[0].full_name(), joueur[0].score)
+                        print("\33[94m", joueur[0].full_name(),
+                              joueur[0].score, "\33[00m")
 
                 choix = input("\nChoix N° :")
             if choix == "3":
                 for match in matchs:
-                    print(
-                        f'{match[0][0].full_name()} : {match[0][0].score}'
-                        f' vs '
-                        f'{match[1][0].full_name()} : {match[1][0].score}'
-                    )
+                    print("\33[94m"
+                          f'{match[0][0].full_name()} : {match[0][0].score}'
+                          "\33[00m"
+                          "\33[93m" " vs " "\33[00m"
+                          "\33[94m"
+                          f'{match[1][0].full_name()} : {match[1][0].score}'
+                          "\33[00m"
+                          )
                 choix = input("\nChoix N° :")
         return choix
 
@@ -70,7 +75,7 @@ class Views:
         '''menu de gestion des tournois'''
 
         choix = ""
-        print("Menu de gestion des tournois")
+        print("\n--- Menu de gestion des tournois ---")
         print("[\33[93m" "1" "\33[00m] Lister les tournois actuel")
         print("[\33[93m" "2" "\33[00m] Créer un nouveau tournoi")
         print("[\33[93m" "3" "\33[00m] Retour au menu principal")
@@ -84,7 +89,7 @@ class Views:
         '''liste des tournois existant'''
 
         choix = 0
-        print("Liste des tournois actuel")
+        print("\n--- Liste des tournois actuel ---\n")
 
         for id_tournoi, tournoi in enumerate(liste_tournois, start=1):
             if tournoi.started is False:
@@ -131,7 +136,7 @@ class Views:
         '''menu de gestion d'un tournoi'''
 
         choix = ""
-        print("Menu de gestion du tournoi")
+        print("\n--- Menu de gestion du tournoi ---")
         print(tournois_data)
         print("[\33[93m" "1" "\33[00m] Modifier le tournoi")
         print("[\33[93m" "2" "\33[00m] Suprimer le tournoi")
@@ -158,7 +163,7 @@ class Views:
     def menu_modification_tournoi(self, tournoi):
         '''formulaire d'édition d'un tournois'''
         choix = ""
-        print("Modification du tournoi " + tournoi.nom)
+        print("\n--- Modification du tournoi " + tournoi.nom, "---")
         print("Que voulez vous modifier ?")
         print("[\33[93m" "1" "\33[00m] Nom : " + tournoi.nom)
         print("[\33[93m" "2" "\33[00m] Lieu : " + tournoi.lieu)
@@ -218,7 +223,7 @@ class Views:
         '''menu de gestion des joueurs'''
 
         choix = ""
-        print("Menu de gestion des joueurs")
+        print("\n--- Menu de gestion des joueurs ---\n")
         print("[\33[93m" "1" "\33[00m] Lister les joueurs actuel")
         print("[\33[93m" "2" "\33[00m] Créer un nouveau joueur")
         print("[\33[93m" "3" "\33[00m] Retour au menu principal")
@@ -231,7 +236,7 @@ class Views:
     def list_joueurs(self, liste_joueurs):
         '''liste des joueurs existant'''
         choix = 0
-        print("Liste des joueurs actuel")
+        print("--- Liste des joueurs actuel ---\n")
         for id_joueur, joueur in enumerate(liste_joueurs, start=1):
             print(f"[{id_joueur}] {joueur}")
 
@@ -257,7 +262,7 @@ class Views:
         '''menu de de modification d'un joueur'''
 
         choix = ""
-        print("Menu de gestion des joueurs")
+        print("\n--- Menu de gestion des joueurs ---\n")
         print(joueurs_data)
         print("[\33[93m" "1" "\33[00m] Modifier le joueur")
         print("[\33[93m" "2" "\33[00m] Suprimer le joueur")
@@ -281,8 +286,8 @@ class Views:
     def menu_modification_joueur(self, joueur):
         '''formulaire d'édition d'un joueur'''
         choix = ""
-        print("Modification du joueur " + joueur.nom)
-        print("Que voulez vous modifier ?")
+        print("\n--- Modification du joueur " + joueur.nom, "---")
+        print("Que voulez vous modifier ?\n")
         print("[\33[93m" "1" "\33[00m] Nom : " + joueur.nom)
         print("[\33[93m" "2" "\33[00m] Prenom : " + joueur.prenom)
         print("[\33[93m" "3" "\33[00m] Date de naissance : " +
@@ -322,7 +327,7 @@ class Views:
         '''menu de gestion des club'''
 
         choix = ""
-        print("Menu de gestion des clubs")
+        print("\n--- Menu de gestion des clubs ---\n")
         print("[\33[93m" "1" "\33[00m] Lister les clubs actuel")
         print("[\33[93m" "2" "\33[00m] Ajouter un nouveau club")
         print("[\33[93m" "3" "\33[00m] Retour au menu principal")
@@ -336,7 +341,7 @@ class Views:
         '''liste des clubs existant'''
 
         choix = 0
-        print("Liste des clubs actuel")
+        print("\n--- Liste des clubs actuel ---\n")
         for id_club, club in enumerate(liste_clubs, start=1):
             print(f"[{id_club}] {club}")
 
@@ -363,7 +368,7 @@ class Views:
         '''menu de de modification d'un club'''
 
         choix = ""
-        print("Menu de gestion des clubs")
+        print("\n--- Menu de gestion des clubs ---\n")
         print(clubs_data)
         print("[\33[93m" "1" "\33[00m] Modifier le club")
         print("[\33[93m" "2" "\33[00m] Suprimer le club")
@@ -387,8 +392,8 @@ class Views:
     def menu_modification_club(self, club):
         '''formulaire d'édition d'un club'''
         choix = ""
-        print("Modification du club " + club.nom)
-        print("Que voulez vous modifier ?")
+        print("\n--- Modification du club " + club.nom, '---')
+        print("Que voulez vous modifier ?\n")
         print("[\33[93m" "1" "\33[00m] Nom : " + club.nom)
         print("[\33[93m" "2" "\33[00m] Identification national : " +
               club.identifiant_national)

@@ -60,5 +60,5 @@ class Tournoi():
                 f"Nom : {self.nom}  \n"
                 f"à : {self.lieu} \n"
                 f"Début du tournoi : {self.date_debut}   Fin : {self.date_fin} \n"
-                f"Description : {self.remarque}\33[0m"
+                f"Description : {self.remarque}\33[0m \n"
                 )
