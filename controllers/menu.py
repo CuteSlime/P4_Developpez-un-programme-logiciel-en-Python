@@ -65,7 +65,7 @@ class Menu:
         tournoi = list_tournois[id]
         while tournoi.started is False:
             while list_tournois[id].started is False:
-                print("\33[91mCe tournoi n'as pas encore commencé.\33[00m")
+                print("\33[93m" "Ce tournoi n'as pas encore commencé." "\33[00m")
                 tournoi = self.menu_list(
                     "list_tournois", list_tournois, list_only=True)[1]
                 id = tournoi
