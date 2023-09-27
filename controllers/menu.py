@@ -80,12 +80,13 @@ class Menu:
         tour = tournoi.list_tours[int(tournoi.numero_tour_actuel) - 1]
         # if tournoi.numero_tour_actuel == 1:
         if tour.participants == []:
-            last_matchs = []
+            list_previous_match = []
             if int(tournoi.numero_tour_actuel) > 1:
-                last_matchs = tournoi.list_tours[int(
-                    tournoi.numero_tour_actuel) - 2].list_matchs
+                for round in tournoi.list_tours:
+                    list_previous_match += round.list_matchs
+                    print(list_previous_match)
             tour.participants = tournoi.list_joueurs
-            tour.add_match(tour.participants, last_matchs)
+            tour.add_match(tour.participants, list_previous_match)
 
         choix = getattr(self.view, view_name)(
             tournoi, tour.participants, tour.list_matchs)

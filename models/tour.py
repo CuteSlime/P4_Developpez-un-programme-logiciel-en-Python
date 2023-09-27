@@ -35,6 +35,7 @@ class Tour:
                 list_joueurs.append(meilleur_joueur)
                 not_sorted_joueur.remove(meilleur_joueur)
                 i += 1
+                print(list_joueurs, " VS ", last_matchs)
             joueurs = list_joueurs
 
         groupes = (joueurs[i:i+2] for i in range(0, len(joueurs), 2))
