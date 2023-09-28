@@ -84,7 +84,6 @@ class Menu:
             if int(tournoi.numero_tour_actuel) > 1:
                 for round in tournoi.list_tours:
                     list_previous_match += round.list_matchs
-                    print(list_previous_match)
             tour.participants = tournoi.list_joueurs
             tour.add_match(tour.participants, list_previous_match)
 
@@ -264,6 +263,8 @@ class Menu:
                 obj.add_joueur(joueur)
                 update_database(
                     obj, list_objects[id], list_objects, "tournois", Tournoi)
+                return self.edit_tournoi(choix, view_name, id, obj,
+                                         list_objects, manage_view)
             case "7":
                 joueur = self.menu_list(
                     "list_joueurs", obj.list_joueurs, list_only=True)[0]
