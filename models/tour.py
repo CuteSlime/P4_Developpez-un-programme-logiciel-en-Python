@@ -49,10 +49,16 @@ class Tour:
                         for match in round:
                             if list_joueurs[i].__dict__ in match:
                                 print(
-                                    list_joueurs[i].full_name(), " [------joueur------] ", list_joueurs[i + 1].full_name())
+                                    list_joueurs[i].full_name(),
+                                    " [------joueur------] ",
+                                    list_joueurs[i + 1].full_name()
+                                )
                                 if list_joueurs[i + 1].__dict__ in match:
                                     print(
-                                        list_joueurs[i].full_name(), " [--VS--] ", list_joueurs[i + 1].full_name())
+                                        list_joueurs[i].full_name(),
+                                        " [--VS--] ",
+                                        list_joueurs[i + 1].full_name()
+                                    )
                                     list_joueurs.insert(
                                         i + 1, list_joueurs.pop(i))
                     i += 1
