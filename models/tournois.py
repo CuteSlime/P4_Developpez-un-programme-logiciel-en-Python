@@ -1,10 +1,10 @@
-def number_of_turn(number_of_player):
-    nb_turn = 0
-    while float(number_of_player) > 1:
-        number_of_player /= 2
-        nb_turn += 1
+# def number_of_turn(number_of_player):
+#     nb_turn = 0
+#     while float(number_of_player) > 1:
+#         number_of_player /= 2
+#         nb_turn += 1
 
-    return nb_turn
+#     return nb_turn
 
 
 class Tournoi():
@@ -35,7 +35,7 @@ class Tournoi():
 
     def start(self):
         if len(self.list_joueurs) % 2 == 0:
-            self.nb_tour = number_of_turn(len(self.list_joueurs))
+
             self.started = True
             self.fill_tour()
         else:
