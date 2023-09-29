@@ -1,6 +1,20 @@
 import json
 
 
+def objects_list_to_dict(objects_list):
+    ''' convert a list of object to a list of dictionary.
+        used when we want to send object to json database.
+    '''
+
+    list_dict = []
+    for obj in objects_list:
+        if isinstance(obj, dict) is False:
+            list_dict.append(obj.__dict__)
+        else:
+            list_dict.append(obj)
+    return list_dict
+
+
 def database_access(database_name, object_class, access_type, *dict_list):
     access_type = str(access_type)
 
@@ -36,21 +50,9 @@ def add_to_database(self, objects_list, database_name, object_class):
     dict_list = []
     for obj in objects_list:
         if obj.list_joueurs:
-            list_dict = []
-            for sub_object in obj.list_joueurs:
-                if isinstance(sub_object, dict) is False:
-                    list_dict.append(sub_object.__dict__)
-                else:
-                    list_dict.append(sub_object)
-            obj.list_joueurs = list_dict
+            obj.list_joueurs = objects_list_to_dict(obj.list_joueurs)
         if obj.list_tours:
-            list_dict = []
-            for sub_object in obj.list_tours:
-                if isinstance(sub_object, dict) is False:
-                    list_dict.append(sub_object.__dict__)
-                else:
-                    list_dict.append(sub_object)
-            obj.list_tours = list_dict
+            obj.list_tours = objects_list_to_dict(obj.list_tours)
         print("\33[93m", obj, "\33[00m")
         dict_list.append(obj.__dict__)
     database_access(database_name, object_class, "w", *dict_list)
@@ -83,21 +85,9 @@ def update_database(self, original, objects_list, database_name, object_class):
             objects_list[objects_list.index(obj)] = self
 
         if obj.list_joueurs:
-            list_dict = []
-            for sub_object in obj.list_joueurs:
-                if isinstance(sub_object, dict) is False:
-                    list_dict.append(sub_object.__dict__)
-                else:
-                    list_dict.append(sub_object)
-            obj.list_joueurs = list_dict
+            obj.list_joueurs = objects_list_to_dict(obj.list_joueurs)
         if obj.list_tours:
-            list_dict = []
-            for sub_object in obj.list_tours:
-                if isinstance(sub_object, dict) is False:
-                    list_dict.append(sub_object.__dict__)
-                else:
-                    list_dict.append(sub_object)
-            obj.list_tours = list_dict
+            obj.list_tours = objects_list_to_dict(obj.list_tours)
     dict_list = []
     for obj in objects_list:
         obj = obj.__dict__
