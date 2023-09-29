@@ -36,6 +36,8 @@ class Tournoi():
     def start(self):
         if len(self.list_joueurs) % 2 == 0:
 
+            for id, player in enumerate(self.list_joueurs):
+                player.id = id
             self.started = True
             self.fill_tour()
         else:

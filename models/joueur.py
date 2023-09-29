@@ -8,6 +8,7 @@ class Joueur:
         self.date_naissance = date_naissance
         self.score = kwargs.get('score', 0)
         self.club = kwargs.get('club')
+        self.id = kwargs.get('id', 0)
 
     def full_name(self):
         return f"{self.prenom} {self.nom}"
