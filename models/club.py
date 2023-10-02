@@ -1,12 +1,12 @@
 
 
 class Club:
-    def __init__(self, nom, identifiant_national):
-        self.nom = nom
-        self.identifiant_national = identifiant_national
+    def __init__(self, name, national_id):
+        self.name = name
+        self.national_id = national_id
 
     def __str__(self):
-        return f"{self.nom} ID National : {self.identifiant_national}."
+        return f"{self.name} ID National : {self.national_id}."
 
     def __repr__(self):
-        self.nom, self.identifiant_national
+        self.name, self.national_id

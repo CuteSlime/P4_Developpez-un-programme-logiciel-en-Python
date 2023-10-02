@@ -1,14 +1,14 @@
 [
     { 
-        "nom": "Ghost Rider",
-        "identifiant_national": "AB12345"
+        "name": "Ghost Rider",
+        "national_id": "AB12345"
     },
     { 
-        "nom": "Sixième Sens",
-        "identifiant_national": "CD23456"
+        "name": "Sixième Sens",
+        "national_id": "CD23456"
     },
     { 
-        "nom": "Full Contact",
-        "identifiant_national": "EF34567"
+        "name": "Full Contact",
+        "national_id": "EF34567"
     }
 ]

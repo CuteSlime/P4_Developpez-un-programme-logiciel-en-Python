@@ -1,29 +1,29 @@
-from models.tournois import Tournoi
-from models.tour import Tour
+from models.tournaments import Tournament
+from models.round import Round
 from models.club import Club
-from models.joueur import Joueur
+from models.player import Player
 from datetime import datetime
 from models.database import database_access, add_to_database, remove_from_database, update_database
 
 
-def convert_sub_objects(list_tournois):
-    for obj in list_tournois:
-        if obj.list_joueurs:
-            list_joueur = []
-            for joueur in obj.list_joueurs:
-                joueur = Joueur(**joueur)
-                list_joueur.append(joueur)
+def convert_sub_objects(list_tournaments):
+    for obj in list_tournaments:
+        if obj.list_players:
+            list_player = []
+            for player in obj.list_players:
+                player = Player(**player)
+                list_player.append(player)
 
-            obj.list_joueurs = list_joueur
+            obj.list_players = list_player
 
-        if obj.list_tours:
-            list_tour = []
-            for tour in obj.list_tours:
-                if isinstance(tour, dict):
-                    tour = Tour(**tour)
-                list_tour.append(tour)
-            obj.list_tours = list_tour
-    return list_tournois
+        if obj.list_rounds:
+            list_round = []
+            for round in obj.list_rounds:
+                if isinstance(round, dict):
+                    round = Round(**round)
+                list_round.append(round)
+            obj.list_rounds = list_round
+    return list_tournaments
 
 
 class Menu:
@@ -33,20 +33,20 @@ class Menu:
     def main_menu(self):
         '''gestion du  Menu principale'''
 
-        list_tournois = convert_sub_objects(
-            database_access("tournois", Tournoi, "r"))
-        list_joueurs = database_access("joueurs", Joueur, "r")
+        list_tournaments = convert_sub_objects(
+            database_access("tournaments", Tournament, "r"))
+        list_players = database_access("players", Player, "r")
         list_clubs = database_access("clubs", Club, "r")
-        choix = self.view.menu_principal()
-        match choix:
+        choice = self.view.menu_principal()
+        match choice:
             case "1":
-                return self.active_tournament("tournois_actuel", list_tournois)
+                return self.active_tournament("tournaments_actuel", list_tournaments)
             case "2":
-                return self.sub_main_menu('menu_tournois',
-                                          'list_tournois', list_tournois, 'creer_tournoi')
+                return self.sub_main_menu('menu_tournaments',
+                                          'list_tournaments', list_tournaments, 'creer_tournament')
             case "3":
-                return self.sub_main_menu('menu_joueurs',
-                                          'list_joueurs', list_joueurs, 'creer_joueur')
+                return self.sub_main_menu('menu_players',
+                                          'list_players', list_players, 'creer_player')
             case "4":
                 return self.sub_main_menu('menu_clubs',
                                           'list_clubs', list_clubs, 'creer_club')
@@ -54,84 +54,84 @@ class Menu:
             case "5":
                 return exit()
 
-    def active_tournament(self, view_name, list_tournois):
-        '''gestion des tour'''
-        list_tournois = convert_sub_objects(
-            database_access("tournois", Tournoi, "r"))
-        tournoi = self.menu_list(
-            "list_tournois", list_tournois, list_only=True)[1]
-        id = tournoi
-        tournoi = list_tournois[id]
-        while tournoi.started is False:
-            while list_tournois[id].started is False:
+    def active_tournament(self, view_name, list_tournaments):
+        '''gestion des round'''
+        list_tournaments = convert_sub_objects(
+            database_access("tournaments", Tournament, "r"))
+        tournament = self.menu_list(
+            "list_tournaments", list_tournaments, list_only=True)[1]
+        id = tournament
+        tournament = list_tournaments[id]
+        while tournament.started is False:
+            while list_tournaments[id].started is False:
                 print("\33[93m" "Ce tournoi n'as pas encore commencé." "\33[00m")
-                tournoi = self.menu_list(
-                    "list_tournois", list_tournois, list_only=True)[1]
-                id = tournoi
-                tournoi = list_tournois[id]
-        while tournoi.ended is True:
-            while list_tournois[id].ended is True:
+                tournament = self.menu_list(
+                    "list_tournaments", list_tournaments, list_only=True)[1]
+                id = tournament
+                tournament = list_tournaments[id]
+        while tournament.ended is True:
+            while list_tournaments[id].ended is True:
                 print("\33[93m" "Ce tournoi est terminé" "\33[00m")
-                tournoi = self.menu_list(
-                    "list_tournois", list_tournois, list_only=True)[1]
-                id = tournoi
-                tournoi = list_tournois[id]
+                tournament = self.menu_list(
+                    "list_tournaments", list_tournaments, list_only=True)[1]
+                id = tournament
+                tournament = list_tournaments[id]
 
-        tour = tournoi.list_tours[int(tournoi.numero_tour_actuel) - 1]
-        # if tournoi.numero_tour_actuel == 1:
-        if tour.participants == []:
+        round = tournament.list_rounds[int(tournament.actual_turn_number) - 1]
+        # if tournament.actual_turn_number == 1:
+        if round.participants == []:
             list_previous_match = []
-            if int(tournoi.numero_tour_actuel) > 1:
-                for round in tournoi.list_tours:
+            if int(tournament.actual_turn_number) > 1:
+                for round in tournament.list_rounds:
                     list_previous_match += round.list_matchs
-            tour.participants = tournoi.list_joueurs
-            tour.add_match(tour.participants, list_previous_match)
+            round.participants = tournament.list_players
+            round.add_match(round.participants, list_previous_match)
 
-        choix = getattr(self.view, view_name)(
-            tournoi, tour.participants, tour.list_matchs)
+        choice = getattr(self.view, view_name)(
+            tournament, round.participants, round.list_matchs)
 
-        match choix:
+        match choice:
             case "1":
-                tour.play_match()
-                if tournoi.numero_tour_actuel == len(tournoi.list_tours):
-                    tournoi.ended = True
+                round.play_match()
+                if tournament.actual_turn_number == len(tournament.list_rounds):
+                    tournament.ended = True
                     best_score = 0
-                    winner = tour.participants[0]
-                    for participant in tour.participants:
+                    winner = round.participants[0]
+                    for participant in round.participants:
                         if participant.score > best_score:
                             best_score = participant.score
                             winner = participant
-                    tournoi.date_fin = datetime.now().strftime('%d/%m/%Y %H:%M')
-                    print("\33[94m" f"Tournoi {tournoi.nom} terminé !\33[00m")
+                    tournament.end_date = datetime.now().strftime('%d/%m/%Y %H:%M')
+                    print("\33[94m" f"Tournament {tournament.name} terminé !\33[00m")
                     print(
                         "\33[94m" f"Félicitation à {winner.full_name()} !\33[00m")
 
-                if tournoi.numero_tour_actuel < len(tournoi.list_tours):
-                    tournoi.numero_tour_actuel += 1
+                if tournament.actual_turn_number < len(tournament.list_rounds):
+                    tournament.actual_turn_number += 1
 
-                for match in tour.list_matchs:
-                    for joueur in match:
-                        joueur[0] = joueur[0].__dict__
+                for game in round.list_matchs:
+                    for player in game:
+                        player[0] = player[0].__dict__
                 list_participants = []
-                for participant in tour.participants:
+                for participant in round.participants:
                     participant = participant.__dict__
                     list_participants.append(participant)
 
-                tour.participants = list_participants
+                round.participants = list_participants
 
-                update_database(tournoi, list_tournois[id],
-                                list_tournois, "tournois", Tournoi)
-                list_tournois = convert_sub_objects(
-                    database_access("tournois", Tournoi, "r"))
-                return self.active_tournament("tournois_actuel", list_tournois)
+                update_database(tournament, list_tournaments[id],
+                                list_tournaments, "tournaments", Tournament)
+                list_tournaments = convert_sub_objects(
+                    database_access("tournaments", Tournament, "r"))
+                return self.active_tournament("tournaments_actuel", list_tournaments)
             case "4":
                 pass
 
     def sub_main_menu(self, view_name, menu_name_list, list_objects, menu_name_create):
-        '''gestion des sous menu (gestion des tournois, joueurs, clubs)'''
+        '''gestion des sous menu (gestion des tournaments, players, clubs)'''
 
-        choix = getattr(self.view, view_name)()
-        match choix:
+        choice = getattr(self.view, view_name)()
+        match choice:
             case "1":
                 return self.menu_list(menu_name_list, list_objects)
             case "2":
@@ -140,35 +140,35 @@ class Menu:
                 pass
 
     def menu_list(self, view_name, list_objects, **kwargs):
-        '''menu de selection des tournois, joueurs ou clubs'''
+        '''menu de selection des tournois, joueur ou clubs'''
 
-        choix = getattr(self.view, view_name)(list_objects)
-        obj = list_objects[int(choix)]
-        id = choix
+        choice = getattr(self.view, view_name)(list_objects)
+        obj = list_objects[int(choice)]
+        id = choice
 
         manage_view = view_name.split("_")[1][:-1]
-        manage_view = "gestion_" + manage_view
+        manage_view = "manage_" + manage_view
         if kwargs:
             return [obj, id]
         return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def menu_manage(self, view_name, id, obj, list_objects, menu_name_list):
-        '''gestion des menu de gestion pour les tournois, joueurs, clubs de façon individuel'''
+        '''gestion des menu de gestion pour les tournaments, players, clubs de façon individuel'''
 
-        choix = getattr(self.view, view_name)(obj)
+        choice = getattr(self.view, view_name)(obj)
         edit_view = view_name.split("_")[1]
         edit_view = "menu_modification_" + edit_view
-        match choix:
+        match choice:
             case "1":
                 return self.menu_edit(edit_view, id, obj, list_objects)
 
             case "2":
-                if isinstance(obj, Tournoi):
+                if isinstance(obj, Tournament):
                     remove_from_database(
-                        obj, list_objects, "tournois", Tournoi)
+                        obj, list_objects, "tournaments", Tournament)
 
-                elif isinstance(obj, Joueur):
-                    remove_from_database(obj, list_objects, "joueurs", Joueur)
+                elif isinstance(obj, Player):
+                    remove_from_database(obj, list_objects, "players", Player)
 
                 elif isinstance(obj, Club):
                     remove_from_database(obj, list_objects, "clubs", Club)
@@ -182,20 +182,20 @@ class Menu:
                 pass
 
     def menu_create(self, view_name, list_objects, ):
-        '''gestion du menu de création d'un tournoi, joueur, club'''
+        '''gestion du menu de création d'un tournament, player, club'''
 
         obj = getattr(self.view, view_name)()
         match obj[0]:
-            case "Tournoi":
-                obj = Tournoi(obj[1], obj[2], obj[3], obj[4], nb_tour=obj[5])
-                add_to_database(obj, list_objects, "tournois", Tournoi)
-                return self.sub_main_menu("menu_tournois", 'list_tournois', list_objects, 'creer_tournoi')
+            case "Tournament":
+                obj = Tournament(obj[1], obj[2], obj[3], obj[4], nb_round=obj[5])
+                add_to_database(obj, list_objects, "tournaments", Tournament)
+                return self.sub_main_menu("menu_tournaments", 'list_tournaments', list_objects, 'creer_tournament')
 
-            case "Joueur":
-                obj = Joueur(obj[1], obj[2], obj[3], club=obj[4])
+            case "Player":
+                obj = Player(obj[1], obj[2], obj[3], club=obj[4])
                 add_to_database(
-                    obj, list_objects, "joueurs", Joueur)
-                return self.sub_main_menu("menu_joueurs", 'list_joueurs', list_objects, 'creer_joueur')
+                    obj, list_objects, "players", Player)
+                return self.sub_main_menu("menu_players", 'list_players', list_objects, 'creer_player')
 
             case "Club":
                 obj = Club(obj[1], obj[2])
@@ -203,121 +203,121 @@ class Menu:
                 return self.sub_main_menu("menu_clubs", 'list_clubs', list_objects, 'creer_club')
 
     def menu_edit(self, view_name, id, obj, list_objects):
-        '''gestion de l'edition d'un tournoi, joueur, club'''
+        '''gestion de l'edition d'un tournament, player, club'''
 
-        choix = getattr(self.view, view_name)(obj)
+        choice = getattr(self.view, view_name)(obj)
         manage_view = view_name.split("_")[2]
-        manage_view = "gestion_" + manage_view
+        manage_view = "manage_" + manage_view
         match manage_view:
-            case "gestion_tournoi":
-                self.edit_tournoi(choix, view_name, id, obj,
-                                  list_objects, manage_view)
+            case "manage_tournament":
+                self.edit_tournament(choice, view_name, id, obj,
+                                     list_objects, manage_view)
 
-            case "gestion_joueur":
-                self.edit_joueur(choix, view_name, id, obj,
+            case "manage_player":
+                self.edit_player(choice, view_name, id, obj,
                                  list_objects, manage_view)
 
-            case "gestion_club":
-                self.edit_club(choix, view_name, id, obj,
+            case "manage_club":
+                self.edit_club(choice, view_name, id, obj,
                                list_objects, manage_view)
 
-    def edit_tournoi(self, choix, view_name, id, obj, list_objects, manage_view):
+    def edit_tournament(self, choice, view_name, id, obj, list_objects, manage_view):
         '''gestion dédier a l'edition d'un tournoi'''
 
-        list_joueurs = database_access("joueurs", Joueur, "r")
-        match choix:
+        list_players = database_access("players", Player, "r")
+        match choice:
             case "1":
-                obj.nom = self.view.update_nom_tournoi(obj)
+                obj.name = self.view.update_name_tournament(obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "2":
-                obj.lieu = self.view.update_lieu_tournoi(obj)
+                obj.place = self.view.update_place_tournament(obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "3":
-                obj.date_debut = self.view.update_date_debut_tournoi(obj)
+                obj.start_date = self.view.update_start_date_tournament(obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "4":
-                obj.date_fin = self.view.update_date_fin_tournoi(obj)
+                obj.end_date = self.view.update_end_date_tournament(obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "5":
-                obj.nb_tour = int(self.view.update_nb_tour_tournoi(obj))
-                while obj.nb_tour != len(obj.list_tours):
-                    if obj.nb_tour > len(obj.list_tours):
-                        obj.add_tour("Round" + str(len(obj.list_tours) + 1))
-                    if obj.nb_tour < len(obj.list_tours):
-                        obj.remove_tour(obj.list_tours[len(obj.list_tours)])
+                obj.nb_round = int(self.view.update_nb_round_tournament(obj))
+                while obj.nb_round != len(obj.list_rounds):
+                    if obj.nb_round > len(obj.list_rounds):
+                        obj.add_tour("Round" + str(len(obj.list_rounds) + 1))
+                    if obj.nb_round < len(obj.list_rounds):
+                        obj.remove_tour(obj.list_rounds[len(obj.list_rounds)])
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
 
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "6":
-                joueur = self.menu_list(
-                    "list_joueurs", list_joueurs, list_only=True)[0]
-                obj.add_joueur(joueur)
+                player = self.menu_list(
+                    "list_players", list_players, list_only=True)[0]
+                obj.add_player(player)
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
-                return self.edit_tournoi(choix, view_name, id, obj,
-                                         list_objects, manage_view)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
+                return self.edit_tournament(choice, view_name, id, obj,
+                                            list_objects, manage_view)
             case "7":
-                joueur = self.menu_list(
-                    "list_joueurs", obj.list_joueurs, list_only=True)[0]
-                obj.remove_joueur(joueur)
+                player = self.menu_list(
+                    "list_players", obj.list_players, list_only=True)[0]
+                obj.remove_player(player)
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
             case "8":
                 obj.start()
                 update_database(
-                    obj, list_objects[id], list_objects, "tournois", Tournoi)
+                    obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
             case "9":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
-    def edit_joueur(self, choix, view_name, id, obj, list_objects, manage_view):
-        '''gestion dédier a l'edition d'un joueur'''
+    def edit_player(self, choice, view_name, id, obj, list_objects, manage_view):
+        '''gestion dédier a l'edition d'un player'''
 
-        match choix:
+        match choice:
             case "1":
-                obj.nom = self.view.update_nom_joueur(obj)
+                obj.name = self.view.update_name_player(obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "joueurs", Joueur)
+                    obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "2":
-                obj.prenom = self.view.update_prenom_joueur(obj)
+                obj.first_name = self.view.update_prenom_player(obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "joueurs", Joueur)
+                    obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "3":
-                obj.date_naissance = self.view.update_date_naissance_joueur(
+                obj.birthday = self.view.update_birthday_player(
                     obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "joueurs", Joueur)
+                    obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "4":
-                obj.club = self.view.update_club_joueur(obj)
+                obj.club = self.view.update_club_player(obj)
                 update_database(
-                    obj, list_objects[id], list_objects, "joueurs", Joueur)
+                    obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "5":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
-    def edit_club(self, choix, view_name, id, obj, list_objects, manage_view):
+    def edit_club(self, choice, view_name, id, obj, list_objects, manage_view):
         '''gestion dédier a l'edition d'un club'''
 
-        match choix:
+        match choice:
             case "1":
-                obj.nom = self.view.update_nom_club(obj)
+                obj.name = self.view.update_name_club(obj)
                 update_database(
                     obj, list_objects[id], list_objects, "clubs", Club)
                 return self.menu_edit(view_name, id, obj, list_objects)
             case "2":
-                obj.identifiant_national = self.view.update_identifiant_national_club(
+                obj.national_id = self.view.update_national_id_club(
                     obj)
                 update_database(
                     obj, list_objects[id], list_objects, "clubs", Club)

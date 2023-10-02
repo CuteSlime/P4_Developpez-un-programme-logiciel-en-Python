@@ -6,7 +6,7 @@ class Controller:
         self.view = view
         self.menu = menu
 
-# créer un tournois
+# créer un tournaments
 
     def run(self):
 
@@ -15,10 +15,10 @@ class Controller:
 
     # def test(self):
     #     '''teste appeler depuis main (en changeant le run par test)'''
-    #     list_tournois = database_access("tournois", Tournoi, "r")
-    #     tournoi = list_tournois[2]
-    #     print(tournoi)
-    #     tournoi.nom = "tata"
-    #     print(tournoi)
+    #     list_tournaments = database_access("tournaments", Tournament, "r")
+    #     tournament = list_tournaments[2]
+    #     print(tournament)
+    #     tournament.name = "tata"
+    #     print(tournament)
     #     update_database(
-    #         tournoi, list_tournois[2], list_tournois, "tournois", Tournoi)
+    #         tournament, list_tournaments[2], list_tournaments, "tournaments", Tournament)

@@ -1,361 +1,361 @@
 [
     {
-        "nom": "Tarte",
-        "lieu": "Lyon",
-        "date_debut": "22/12/2023",
-        "date_fin": "25/12/2023",
-        "nb_tour": 1,
+        "name": "Tarte",
+        "place": "Lyon",
+        "start_date": "22/12/2023",
+        "end_date": "25/12/2023",
+        "nb_round": 1,
         "started": false,
         "ended": false,
-        "numero_tour_actuel": 1,
-        "list_tours": [],
-        "list_joueurs": [
+        "actual_turn_number": 1,
+        "list_rounds": [],
+        "list_players": [
             {
-                "nom": "Cage",
-                "prenom": "Nicolas",
-                "date_naissance": "7 janvier 1964",
+                "name": "Cage",
+                "first_name": "Nicolas",
+                "birthday": "7 janvier 1964",
                 "score": 0,
                 "club": "Ghost Rider",
                 "id": 0
             }
         ],
-        "remarque": ""
+        "remark": ""
     },
     {
-        "nom": "Last Survivor",
-        "lieu": "Nice",
-        "date_debut": "22/12/2023",
-        "date_fin": "25/12/2023",
-        "nb_tour": 1,
+        "name": "Last Survivor",
+        "place": "Nice",
+        "start_date": "22/12/2023",
+        "end_date": "25/12/2023",
+        "nb_round": 1,
         "started": false,
         "ended": false,
-        "numero_tour_actuel": 1,
-        "list_tours": [],
-        "list_joueurs": [
+        "actual_turn_number": 1,
+        "list_rounds": [],
+        "list_players": [
             {
-                "nom": "Seifert",
-                "prenom": "R\u00e9jane",
-                "date_naissance": "27/10/1971",
+                "name": "Seifert",
+                "first_name": "R\u00e9jane",
+                "birthday": "27/10/1971",
                 "score": 0,
                 "club": "Bubblemix",
                 "id": 0
             },
             {
-                "nom": "Grimwood",
-                "prenom": "Daphn\u00e9e",
-                "date_naissance": "25/04/1980",
+                "name": "Grimwood",
+                "first_name": "Daphn\u00e9e",
+                "birthday": "25/04/1980",
                 "score": 0,
                 "club": "Livefish",
                 "id": 0
             },
             {
-                "nom": "Agneau",
-                "prenom": "Ma\u00e9na",
-                "date_naissance": "01/07/1995",
+                "name": "Agneau",
+                "first_name": "Ma\u00e9na",
+                "birthday": "01/07/1995",
                 "score": 0,
                 "club": "Kare",
                 "id": 0
             },
             {
-                "nom": "Wybourne",
-                "prenom": "Th\u00e9r\u00e8sa",
-                "date_naissance": "25/12/1982",
+                "name": "Wybourne",
+                "first_name": "Th\u00e9r\u00e8sa",
+                "birthday": "25/12/1982",
                 "score": 0,
                 "club": "Edgepulse",
                 "id": 0
             },
             {
-                "nom": "Elington",
-                "prenom": "Marie-no\u00ebl",
-                "date_naissance": "21/11/1972",
+                "name": "Elington",
+                "first_name": "Marie-no\u00ebl",
+                "birthday": "21/11/1972",
                 "score": 0,
                 "club": "Chatterpoint",
                 "id": 0
             },
             {
-                "nom": "Cella",
-                "prenom": "Erw\u00e9i",
-                "date_naissance": "07/05/1965",
+                "name": "Cella",
+                "first_name": "Erw\u00e9i",
+                "birthday": "07/05/1965",
                 "score": 0,
                 "club": "Jetpulse",
                 "id": 0
             },
             {
-                "nom": "Walworth",
-                "prenom": "Andr\u00e9",
-                "date_naissance": "06/06/1993",
+                "name": "Walworth",
+                "first_name": "Andr\u00e9",
+                "birthday": "06/06/1993",
                 "score": 0,
                 "club": "Eare",
                 "id": 0
             },
             {
-                "nom": "Ramsden",
-                "prenom": "G\u00e9rald",
-                "date_naissance": "17/04/1993",
+                "name": "Ramsden",
+                "first_name": "G\u00e9rald",
+                "birthday": "17/04/1993",
                 "score": 0,
                 "club": "Gabtune",
                 "id": 0
             },
             {
-                "nom": "Olivari",
-                "prenom": "El\u00e9onore",
-                "date_naissance": "27/07/1982",
+                "name": "Olivari",
+                "first_name": "El\u00e9onore",
+                "birthday": "27/07/1982",
                 "score": 0,
                 "club": "Zoozzy",
                 "id": 0
             },
             {
-                "nom": "Ellis",
-                "prenom": "Ana\u00eblle",
-                "date_naissance": "29/06/1990",
+                "name": "Ellis",
+                "first_name": "Ana\u00eblle",
+                "birthday": "29/06/1990",
                 "score": 0,
                 "club": "Kaymbo",
                 "id": 0
             },
             {
-                "nom": "Clavey",
-                "prenom": "Mil\u00e9na",
-                "date_naissance": "11/07/1957",
+                "name": "Clavey",
+                "first_name": "Mil\u00e9na",
+                "birthday": "11/07/1957",
                 "score": 0,
                 "club": "Blogtag",
                 "id": 0
             },
             {
-                "nom": "Dovidian",
-                "prenom": "Ana\u00eblle",
-                "date_naissance": "08/05/1955",
+                "name": "Dovidian",
+                "first_name": "Ana\u00eblle",
+                "birthday": "08/05/1955",
                 "score": 0,
                 "club": "Livefish",
                 "id": 0
             },
             {
-                "nom": "Camous",
-                "prenom": "Clo\u00e9",
-                "date_naissance": "08/06/1952",
+                "name": "Camous",
+                "first_name": "Clo\u00e9",
+                "birthday": "08/06/1952",
                 "score": 0,
                 "club": "Eayo",
                 "id": 0
             },
             {
-                "nom": "Cluett",
-                "prenom": "Lucr\u00e8ce",
-                "date_naissance": "31/03/1989",
+                "name": "Cluett",
+                "first_name": "Lucr\u00e8ce",
+                "birthday": "31/03/1989",
                 "score": 0,
                 "club": "Youspan",
                 "id": 0
             },
             {
-                "nom": "Butten",
-                "prenom": "El\u00e9a",
-                "date_naissance": "11/03/2005",
+                "name": "Butten",
+                "first_name": "El\u00e9a",
+                "birthday": "11/03/2005",
                 "score": 0,
                 "club": "Photobug",
                 "id": 0
             },
             {
-                "nom": "Goldhill",
-                "prenom": "Val\u00e9rie",
-                "date_naissance": "15/09/1962",
+                "name": "Goldhill",
+                "first_name": "Val\u00e9rie",
+                "birthday": "15/09/1962",
                 "score": 0,
                 "club": "Gigazoom",
                 "id": 0
             },
             {
-                "nom": "Townshend",
-                "prenom": "\u00c5ke",
-                "date_naissance": "22/03/1990",
+                "name": "Townshend",
+                "first_name": "\u00c5ke",
+                "birthday": "22/03/1990",
                 "score": 0,
                 "club": "Babblestorm",
                 "id": 0
             },
             {
-                "nom": "Spick",
-                "prenom": "Mich\u00e8le",
-                "date_naissance": "04/04/2005",
+                "name": "Spick",
+                "first_name": "Mich\u00e8le",
+                "birthday": "04/04/2005",
                 "score": 0,
                 "club": "Flashspan",
                 "id": 0
             },
             {
-                "nom": "Sibbs",
-                "prenom": "Cl\u00e9mence",
-                "date_naissance": "02/07/1975",
+                "name": "Sibbs",
+                "first_name": "Cl\u00e9mence",
+                "birthday": "02/07/1975",
                 "score": 0,
                 "club": "Realfire",
                 "id": 0
             },
             {
-                "nom": "Fossick",
-                "prenom": "Esbj\u00f6rn",
-                "date_naissance": "02/10/1963",
+                "name": "Fossick",
+                "first_name": "Esbj\u00f6rn",
+                "birthday": "02/10/1963",
                 "score": 0,
                 "club": "Dazzlesphere",
                 "id": 0
             },
             {
-                "nom": "Worcs",
-                "prenom": "Ma\u00ef",
-                "date_naissance": "16/08/2001",
+                "name": "Worcs",
+                "first_name": "Ma\u00ef",
+                "birthday": "16/08/2001",
                 "score": 0,
                 "club": "Mydeo",
                 "id": 0
             },
             {
-                "nom": "Surmeyer",
-                "prenom": "L\u00e9a",
-                "date_naissance": "17/10/1969",
+                "name": "Surmeyer",
+                "first_name": "L\u00e9a",
+                "birthday": "17/10/1969",
                 "score": 0,
                 "club": "Skajo",
                 "id": 0
             },
             {
-                "nom": "Twinborough",
-                "prenom": "El\u00e9a",
-                "date_naissance": "24/08/1992",
+                "name": "Twinborough",
+                "first_name": "El\u00e9a",
+                "birthday": "24/08/1992",
                 "score": 0,
                 "club": "Linktype",
                 "id": 0
             },
             {
-                "nom": "McSporon",
-                "prenom": "M\u00e9thode",
-                "date_naissance": "20/06/1989",
+                "name": "McSporon",
+                "first_name": "M\u00e9thode",
+                "birthday": "20/06/1989",
                 "score": 0,
                 "club": "Yata",
                 "id": 0
             },
             {
-                "nom": "Denne",
-                "prenom": "T\u00e1ng",
-                "date_naissance": "08/10/1978",
+                "name": "Denne",
+                "first_name": "T\u00e1ng",
+                "birthday": "08/10/1978",
                 "score": 0,
                 "club": "Ooba",
                 "id": 0
             },
             {
-                "nom": "Langthorne",
-                "prenom": "K\u00f9",
-                "date_naissance": "04/02/1975",
+                "name": "Langthorne",
+                "first_name": "K\u00f9",
+                "birthday": "04/02/1975",
                 "score": 0,
                 "club": "Aimbu",
                 "id": 0
             },
             {
-                "nom": "Stell",
-                "prenom": "Annot\u00e9s",
-                "date_naissance": "07/06/1995",
+                "name": "Stell",
+                "first_name": "Annot\u00e9s",
+                "birthday": "07/06/1995",
                 "score": 0,
                 "club": "Quimm",
                 "id": 0
             },
             {
-                "nom": "Aseef",
-                "prenom": "L\u00e9n",
-                "date_naissance": "23/01/1968",
+                "name": "Aseef",
+                "first_name": "L\u00e9n",
+                "birthday": "23/01/1968",
                 "score": 0,
                 "club": "Ailane",
                 "id": 0
             },
             {
-                "nom": "Hickisson",
-                "prenom": "B\u00e9r\u00e9nice",
-                "date_naissance": "01/11/1973",
+                "name": "Hickisson",
+                "first_name": "B\u00e9r\u00e9nice",
+                "birthday": "01/11/1973",
                 "score": 0,
                 "club": "Shufflester",
                 "id": 0
             },
             {
-                "nom": "Braidley",
-                "prenom": "M\u00e9lina",
-                "date_naissance": "01/10/1958",
+                "name": "Braidley",
+                "first_name": "M\u00e9lina",
+                "birthday": "01/10/1958",
                 "score": 0,
                 "club": "Photobean",
                 "id": 0
             },
             {
-                "nom": "Oak",
-                "prenom": "Ath\u00e9na",
-                "date_naissance": "29/03/1991",
+                "name": "Oak",
+                "first_name": "Ath\u00e9na",
+                "birthday": "29/03/1991",
                 "score": 0,
                 "club": "Gigashots",
                 "id": 0
             },
             {
-                "nom": "Swift",
-                "prenom": "Dani\u00e8le",
-                "date_naissance": "14/04/2000",
+                "name": "Swift",
+                "first_name": "Dani\u00e8le",
+                "birthday": "14/04/2000",
                 "score": 0,
                 "club": "Jayo",
                 "id": 0
             }
         ],
-        "remarque": ""
+        "remark": ""
     },
     {
-        "nom": "Coupe Champignion",
-        "lieu": "Royaume Champignion",
-        "date_debut": "22/12/2023",
-        "date_fin": "26/12/2023",
-        "nb_tour": 4,
+        "name": "Coupe Champignion",
+        "place": "Royaume Champignion",
+        "start_date": "22/12/2023",
+        "end_date": "26/12/2023",
+        "nb_round": 4,
         "started": false,
         "ended": false,
-        "numero_tour_actuel": 1,
-        "list_tours": [],
-        "list_joueurs": [
+        "actual_turn_number": 1,
+        "list_rounds": [],
+        "list_players": [
             {
-                "nom": "Van Damme",
-                "prenom": "Jean-Claude",
-                "date_naissance": "18 octobre 1960",
+                "name": "Van Damme",
+                "first_name": "Jean-Claude",
+                "birthday": "18 octobre 1960",
                 "score": 1,
                 "club": "Full Contact",
                 "id": 0
             },
             {
-                "nom": "Cage",
-                "prenom": "Nicolas",
-                "date_naissance": "7 janvier 1964",
+                "name": "Cage",
+                "first_name": "Nicolas",
+                "birthday": "7 janvier 1964",
                 "score": 0,
                 "club": "Ghost Rider",
                 "id": 0
             },
             {
-                "nom": "Toucuit",
-                "prenom": "Phillipe",
-                "date_naissance": "14 Mars 2001",
+                "name": "Toucuit",
+                "first_name": "Phillipe",
+                "birthday": "14 Mars 2001",
                 "score": 0,
                 "club": "not an actor",
                 "id": 0
             },
             {
-                "nom": "Willis",
-                "prenom": "Bruce",
-                "date_naissance": "19 mars 1955",
+                "name": "Willis",
+                "first_name": "Bruce",
+                "birthday": "19 mars 1955",
                 "score": 1,
                 "club": "Sixi\u00e8me Sens",
                 "id": 0
             }
         ],
-        "remarque": ""
+        "remark": ""
     },
     {
-        "nom": "8King",
-        "lieu": "Paris",
-        "date_debut": "23/11/2023",
-        "date_fin": "24/11/2023",
-        "nb_tour": 3,
+        "name": "8King",
+        "place": "Paris",
+        "start_date": "23/11/2023",
+        "end_date": "24/11/2023",
+        "nb_round": 3,
         "started": true,
         "ended": false,
-        "numero_tour_actuel": 3,
-        "list_tours": [
+        "actual_turn_number": 3,
+        "list_rounds": [
             {
-                "nom": "Round1",
+                "name": "Round1",
                 "list_matchs": [
                     [
                         [
                             {
-                                "nom": "Willis",
-                                "prenom": "Bruce",
-                                "date_naissance": "19 mars 1955",
+                                "name": "Willis",
+                                "first_name": "Bruce",
+                                "birthday": "19 mars 1955",
                                 "score": 1,
                                 "club": "Sixi\u00e8me Sens",
                                 "id": 0
@@ -363,9 +363,9 @@
                         ],
                         [
                             {
-                                "nom": "Van Damme",
-                                "prenom": "Jean-Claude",
-                                "date_naissance": "18 octobre 1960",
+                                "name": "Van Damme",
+                                "first_name": "Jean-Claude",
+                                "birthday": "18 octobre 1960",
                                 "score": 0,
                                 "club": "Full Contact",
                                 "id": 1
@@ -375,9 +375,9 @@
                     [
                         [
                             {
-                                "nom": "Seifert",
-                                "prenom": "R\u00e9jane",
-                                "date_naissance": "27/10/1971",
+                                "name": "Seifert",
+                                "first_name": "R\u00e9jane",
+                                "birthday": "27/10/1971",
                                 "score": 1,
                                 "club": "Bubblemix",
                                 "id": 2
@@ -385,9 +385,9 @@
                         ],
                         [
                             {
-                                "nom": "Swift",
-                                "prenom": "Dani\u00e8le",
-                                "date_naissance": "14/04/2000",
+                                "name": "Swift",
+                                "first_name": "Dani\u00e8le",
+                                "birthday": "14/04/2000",
                                 "score": 0,
                                 "club": "Jayo",
                                 "id": 3
@@ -397,9 +397,9 @@
                     [
                         [
                             {
-                                "nom": "Braidley",
-                                "prenom": "M\u00e9lina",
-                                "date_naissance": "01/10/1958",
+                                "name": "Braidley",
+                                "first_name": "M\u00e9lina",
+                                "birthday": "01/10/1958",
                                 "score": 0,
                                 "club": "Photobean",
                                 "id": 4
@@ -407,9 +407,9 @@
                         ],
                         [
                             {
-                                "nom": "McSporon",
-                                "prenom": "M\u00e9thode",
-                                "date_naissance": "20/06/1989",
+                                "name": "McSporon",
+                                "first_name": "M\u00e9thode",
+                                "birthday": "20/06/1989",
                                 "score": 1,
                                 "club": "Yata",
                                 "id": 5
@@ -419,9 +419,9 @@
                     [
                         [
                             {
-                                "nom": "Oak",
-                                "prenom": "Ath\u00e9na",
-                                "date_naissance": "29/03/1991",
+                                "name": "Oak",
+                                "first_name": "Ath\u00e9na",
+                                "birthday": "29/03/1991",
                                 "score": 0,
                                 "club": "Gigashots",
                                 "id": 6
@@ -429,9 +429,9 @@
                         ],
                         [
                             {
-                                "nom": "Cage",
-                                "prenom": "Nicolas",
-                                "date_naissance": "7 janvier 1964",
+                                "name": "Cage",
+                                "first_name": "Nicolas",
+                                "birthday": "7 janvier 1964",
                                 "score": 1,
                                 "club": "Ghost Rider",
                                 "id": 7
@@ -441,82 +441,82 @@
                 ],
                 "participants": [
                     {
-                        "nom": "Willis",
-                        "prenom": "Bruce",
-                        "date_naissance": "19 mars 1955",
+                        "name": "Willis",
+                        "first_name": "Bruce",
+                        "birthday": "19 mars 1955",
                         "score": 1,
                         "club": "Sixi\u00e8me Sens",
                         "id": 0
                     },
                     {
-                        "nom": "Van Damme",
-                        "prenom": "Jean-Claude",
-                        "date_naissance": "18 octobre 1960",
+                        "name": "Van Damme",
+                        "first_name": "Jean-Claude",
+                        "birthday": "18 octobre 1960",
                         "score": 0,
                         "club": "Full Contact",
                         "id": 1
                     },
                     {
-                        "nom": "Seifert",
-                        "prenom": "R\u00e9jane",
-                        "date_naissance": "27/10/1971",
+                        "name": "Seifert",
+                        "first_name": "R\u00e9jane",
+                        "birthday": "27/10/1971",
                         "score": 1,
                         "club": "Bubblemix",
                         "id": 2
                     },
                     {
-                        "nom": "Swift",
-                        "prenom": "Dani\u00e8le",
-                        "date_naissance": "14/04/2000",
+                        "name": "Swift",
+                        "first_name": "Dani\u00e8le",
+                        "birthday": "14/04/2000",
                         "score": 0,
                         "club": "Jayo",
                         "id": 3
                     },
                     {
-                        "nom": "Braidley",
-                        "prenom": "M\u00e9lina",
-                        "date_naissance": "01/10/1958",
+                        "name": "Braidley",
+                        "first_name": "M\u00e9lina",
+                        "birthday": "01/10/1958",
                         "score": 0,
                         "club": "Photobean",
                         "id": 4
                     },
                     {
-                        "nom": "McSporon",
-                        "prenom": "M\u00e9thode",
-                        "date_naissance": "20/06/1989",
+                        "name": "McSporon",
+                        "first_name": "M\u00e9thode",
+                        "birthday": "20/06/1989",
                         "score": 1,
                         "club": "Yata",
                         "id": 5
                     },
                     {
-                        "nom": "Oak",
-                        "prenom": "Ath\u00e9na",
-                        "date_naissance": "29/03/1991",
+                        "name": "Oak",
+                        "first_name": "Ath\u00e9na",
+                        "birthday": "29/03/1991",
                         "score": 0,
                         "club": "Gigashots",
                         "id": 6
                     },
                     {
-                        "nom": "Cage",
-                        "prenom": "Nicolas",
-                        "date_naissance": "7 janvier 1964",
+                        "name": "Cage",
+                        "first_name": "Nicolas",
+                        "birthday": "7 janvier 1964",
                         "score": 1,
                         "club": "Ghost Rider",
                         "id": 7
                     }
                 ],
-                "date_debut": "",
-                "date_fin": "en cours"
+                "start_date": "",
+                "end_date": "en cours"
             },
             {
-                "nom": "Round2",
+                "name": "Round2",
                 "list_matchs": [
                     [
                         [
                             {
-                                "nom": "Willis",
-                                "prenom": "Bruce",
-                                "date_naissance": "19 mars 1955",
+                                "name": "Willis",
+                                "first_name": "Bruce",
+                                "birthday": "19 mars 1955",
                                 "score": 2,
                                 "club": "Sixi\u00e8me Sens",
                                 "id": 0
@@ -524,9 +524,9 @@
                         ],
                         [
                             {
-                                "nom": "Seifert",
-                                "prenom": "R\u00e9jane",
-                                "date_naissance": "27/10/1971",
+                                "name": "Seifert",
+                                "first_name": "R\u00e9jane",
+                                "birthday": "27/10/1971",
                                 "score": 1,
                                 "club": "Bubblemix",
                                 "id": 2
@@ -536,9 +536,9 @@
                     [
                         [
                             {
-                                "nom": "McSporon",
-                                "prenom": "M\u00e9thode",
-                                "date_naissance": "20/06/1989",
+                                "name": "McSporon",
+                                "first_name": "M\u00e9thode",
+                                "birthday": "20/06/1989",
                                 "score": 2,
                                 "club": "Yata",
                                 "id": 5
@@ -546,9 +546,9 @@
                         ],
                         [
                             {
-                                "nom": "Cage",
-                                "prenom": "Nicolas",
-                                "date_naissance": "7 janvier 1964",
+                                "name": "Cage",
+                                "first_name": "Nicolas",
+                                "birthday": "7 janvier 1964",
                                 "score": 1,
                                 "club": "Ghost Rider",
                                 "id": 7
@@ -558,9 +558,9 @@
                     [
                         [
                             {
-                                "nom": "Van Damme",
-                                "prenom": "Jean-Claude",
-                                "date_naissance": "18 octobre 1960",
+                                "name": "Van Damme",
+                                "first_name": "Jean-Claude",
+                                "birthday": "18 octobre 1960",
                                 "score": 0,
                                 "club": "Full Contact",
                                 "id": 1
@@ -568,9 +568,9 @@
                         ],
                         [
                             {
-                                "nom": "Swift",
-                                "prenom": "Dani\u00e8le",
-                                "date_naissance": "14/04/2000",
+                                "name": "Swift",
+                                "first_name": "Dani\u00e8le",
+                                "birthday": "14/04/2000",
                                 "score": 1,
                                 "club": "Jayo",
                                 "id": 3
@@ -580,9 +580,9 @@
                     [
                         [
                             {
-                                "nom": "Braidley",
-                                "prenom": "M\u00e9lina",
-                                "date_naissance": "01/10/1958",
+                                "name": "Braidley",
+                                "first_name": "M\u00e9lina",
+                                "birthday": "01/10/1958",
                                 "score": 0,
                                 "club": "Photobean",
                                 "id": 4
@@ -590,9 +590,9 @@
                         ],
                         [
                             {
-                                "nom": "Oak",
-                                "prenom": "Ath\u00e9na",
-                                "date_naissance": "29/03/1991",
+                                "name": "Oak",
+                                "first_name": "Ath\u00e9na",
+                                "birthday": "29/03/1991",
                                 "score": 1,
                                 "club": "Gigashots",
                                 "id": 6
@@ -602,147 +602,147 @@
                 ],
                 "participants": [
                     {
-                        "nom": "Willis",
-                        "prenom": "Bruce",
-                        "date_naissance": "19 mars 1955",
+                        "name": "Willis",
+                        "first_name": "Bruce",
+                        "birthday": "19 mars 1955",
                         "score": 2,
                         "club": "Sixi\u00e8me Sens",
                         "id": 0
                     },
                     {
-                        "nom": "Van Damme",
-                        "prenom": "Jean-Claude",
-                        "date_naissance": "18 octobre 1960",
+                        "name": "Van Damme",
+                        "first_name": "Jean-Claude",
+                        "birthday": "18 octobre 1960",
                         "score": 0,
                         "club": "Full Contact",
                         "id": 1
                     },
                     {
-                        "nom": "Seifert",
-                        "prenom": "R\u00e9jane",
-                        "date_naissance": "27/10/1971",
+                        "name": "Seifert",
+                        "first_name": "R\u00e9jane",
+                        "birthday": "27/10/1971",
                         "score": 1,
                         "club": "Bubblemix",
                         "id": 2
                     },
                     {
-                        "nom": "Swift",
-                        "prenom": "Dani\u00e8le",
-                        "date_naissance": "14/04/2000",
+                        "name": "Swift",
+                        "first_name": "Dani\u00e8le",
+                        "birthday": "14/04/2000",
                         "score": 1,
                         "club": "Jayo",
                         "id": 3
                     },
                     {
-                        "nom": "Braidley",
-                        "prenom": "M\u00e9lina",
-                        "date_naissance": "01/10/1958",
+                        "name": "Braidley",
+                        "first_name": "M\u00e9lina",
+                        "birthday": "01/10/1958",
                         "score": 0,
                         "club": "Photobean",
                         "id": 4
                     },
                     {
-                        "nom": "McSporon",
-                        "prenom": "M\u00e9thode",
-                        "date_naissance": "20/06/1989",
+                        "name": "McSporon",
+                        "first_name": "M\u00e9thode",
+                        "birthday": "20/06/1989",
                         "score": 2,
                         "club": "Yata",
                         "id": 5
                     },
                     {
-                        "nom": "Oak",
-                        "prenom": "Ath\u00e9na",
-                        "date_naissance": "29/03/1991",
+                        "name": "Oak",
+                        "first_name": "Ath\u00e9na",
+                        "birthday": "29/03/1991",
                         "score": 1,
                         "club": "Gigashots",
                         "id": 6
                     },
                     {
-                        "nom": "Cage",
-                        "prenom": "Nicolas",
-                        "date_naissance": "7 janvier 1964",
+                        "name": "Cage",
+                        "first_name": "Nicolas",
+                        "birthday": "7 janvier 1964",
                         "score": 1,
                         "club": "Ghost Rider",
                         "id": 7
                     }
                 ],
-                "date_debut": "",
-                "date_fin": "en cours"
+                "start_date": "",
+                "end_date": "en cours"
             },
             {
-                "nom": "Round3",
+                "name": "Round3",
                 "list_matchs": [],
                 "participants": [],
-                "date_debut": "",
-                "date_fin": "en cours"
+                "start_date": "",
+                "end_date": "en cours"
             }
         ],
-        "list_joueurs": [
+        "list_players": [
             {
-                "nom": "Willis",
-                "prenom": "Bruce",
-                "date_naissance": "19 mars 1955",
+                "name": "Willis",
+                "first_name": "Bruce",
+                "birthday": "19 mars 1955",
                 "score": 2,
                 "club": "Sixi\u00e8me Sens",
                 "id": 0
             },
             {
-                "nom": "Van Damme",
-                "prenom": "Jean-Claude",
-                "date_naissance": "18 octobre 1960",
+                "name": "Van Damme",
+                "first_name": "Jean-Claude",
+                "birthday": "18 octobre 1960",
                 "score": 0,
                 "club": "Full Contact",
                 "id": 1
             },
             {
-                "nom": "Seifert",
-                "prenom": "R\u00e9jane",
-                "date_naissance": "27/10/1971",
+                "name": "Seifert",
+                "first_name": "R\u00e9jane",
+                "birthday": "27/10/1971",
                 "score": 1,
                 "club": "Bubblemix",
                 "id": 2
             },
             {
-                "nom": "Swift",
-                "prenom": "Dani\u00e8le",
-                "date_naissance": "14/04/2000",
+                "name": "Swift",
+                "first_name": "Dani\u00e8le",
+                "birthday": "14/04/2000",
                 "score": 1,
                 "club": "Jayo",
                 "id": 3
             },
             {
-                "nom": "Braidley",
-                "prenom": "M\u00e9lina",
-                "date_naissance": "01/10/1958",
+                "name": "Braidley",
+                "first_name": "M\u00e9lina",
+                "birthday": "01/10/1958",
                 "score": 0,
                 "club": "Photobean",
                 "id": 4
             },
             {
-                "nom": "McSporon",
-                "prenom": "M\u00e9thode",
-                "date_naissance": "20/06/1989",
+                "name": "McSporon",
+                "first_name": "M\u00e9thode",
+                "birthday": "20/06/1989",
                 "score": 2,
                 "club": "Yata",
                 "id": 5
             },
             {
-                "nom": "Oak",
-                "prenom": "Ath\u00e9na",
-                "date_naissance": "29/03/1991",
+                "name": "Oak",
+                "first_name": "Ath\u00e9na",
+                "birthday": "29/03/1991",
                 "score": 1,
                 "club": "Gigashots",
                 "id": 6
             },
             {
-                "nom": "Cage",
-                "prenom": "Nicolas",
-                "date_naissance": "7 janvier 1964",
+                "name": "Cage",
+                "first_name": "Nicolas",
+                "birthday": "7 janvier 1964",
                 "score": 1,
                 "club": "Ghost Rider",
                 "id": 7
             }
         ],
-        "remarque": ""
+        "remark": ""
     }
 ]
