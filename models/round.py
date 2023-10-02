@@ -30,6 +30,18 @@ def already_played_together(list_players, list_previous_match):
             last_match_player_1 = round[0][0]
             last_match_player_2 = round[1][0]
 
+            if (not_sorted_players[0].id in (last_match_player_1["id"], last_match_player_2["id"])
+                    and
+                    not_sorted_players[i].id in (last_match_player_1["id"], last_match_player_2["id"])):
+
+                i += 1
+            else:
+
+                sorted_players.append(not_sorted_players[0])
+                sorted_players.append(not_sorted_players[i])
+                not_sorted_players.remove(not_sorted_players[i])
+                not_sorted_players.remove(not_sorted_players[0])
+                i = 1
 
     return sorted_players
 
