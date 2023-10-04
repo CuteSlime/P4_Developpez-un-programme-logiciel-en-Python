@@ -1,0 +1,8 @@
+text_grey = "\33[90m"
+text_red = "\33[91m"
+text_green = "\33[92m"
+text_orange = "\33[93m"
+text_blue = "\33[94m"
+text_purple = "\33[95m"
+text_azure = "\33[96m"
+text_white = "\33[00m"

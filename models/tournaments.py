@@ -1,12 +1,3 @@
-# def number_of_turn(number_of_player):
-#     nb_round = 0
-#     while float(number_of_player) > 1:
-#         number_of_player /= 2
-#         nb_round += 1
-
-#     return nb_round
-
-
 class Tournament():
     def __init__(self, name, place, start_date, end_date, **kwargs):
         self.name = name
@@ -58,9 +49,8 @@ class Tournament():
         self.list_rounds.remove(tour_name)
 
     def __str__(self):
-        return (f"\33[92m \n"
-                f"Nom : {self.name}  \n"
-                f"à : {self.place} \n"
+        return (f"\n"
+                f"Nom : {self.name}    à : {self.place} \n"
                 f"Début du tournoi : {self.start_date}   Fin : {self.end_date} \n"
-                f"Description : {self.remark}\33[0m \n"
+                f"Description : {self.remark}\n"
                 )
