@@ -143,14 +143,29 @@ class Menu:
         '''menu de selection des tournois, joueur ou clubs'''
 
         choice = getattr(self.view, view_name)(list_objects)
-        obj = list_objects[int(choice)]
-        id = choice
+        print(choice)
+        if choice == -1:
+            match view_name:
+                case "list_tournaments":
+                    return self.main_menu()
+                case "menu_tournaments":
+                    return self.sub_main_menu('menu_tournaments',
+                                              'list_tournaments', list_objects, 'creer_tournament')
+                case "menu_players":
+                    return self.sub_main_menu('menu_players',
+                                              'list_players', list_objects, 'creer_player')
+                case "menu_clubs":
+                    return self.sub_main_menu('menu_clubs',
+                                              'list_clubs', list_objects, 'creer_club')
+        else:
+            obj = list_objects[int(choice)]
+            id = choice
 
-        manage_view = view_name.split("_")[1][:-1]
-        manage_view = "manage_" + manage_view
-        if kwargs:
-            return [obj, id]
-        return self.menu_manage(manage_view, id, obj, list_objects, view_name)
+            manage_view = view_name.split("_")[1][:-1]
+            manage_view = "manage_" + manage_view
+            if kwargs:
+                return [obj, id]
+            return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def menu_manage(self, view_name, id, obj, list_objects, menu_name_list):
         '''gestion des menu de gestion pour les tournaments, players, clubs de façon individuel'''

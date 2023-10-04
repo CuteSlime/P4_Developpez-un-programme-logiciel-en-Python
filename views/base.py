@@ -93,7 +93,7 @@ class Views:
     def list_tournaments(self, list_tournaments):
         '''liste des tournois existant'''
 
-        choice = 0
+        choice = ""
         print("\n--- Liste des tournois actuel ---\n")
 
         for id_tournament, tournament in enumerate(list_tournaments, start=1):
@@ -112,6 +112,21 @@ class Views:
                     f"[{text_orange, id_tournament, text_white}]"
                     f"[{text_blue}En cours{text_white}]",
                     text_green, tournament, text_white)
+
+        while choice not in range(0, len(list_tournaments)+1):
+            if choice != "":
+                print(text_orange, "Mauvais choix !", text_white)
+            print("[", text_orange, "0", text_white, "] Pour retour")
+            choice = input("Tournoi N° :")
+            try:
+
+                choice = int(choice)
+
+            except ValueError:
+                print("rentrer un chiffre.")
+                choice = -1
+
+        return choice - 1
 
     def creer_tournament(self):
         '''formulaire de creation de tournoi'''
@@ -247,16 +262,22 @@ class Views:
 
     def list_players(self, list_players):
         '''liste des joueurs existant'''
-        choice = 0
+        choice = ""
         print("--- Liste des joueurs actuel ---\n")
         for id_player, player in enumerate(list_players, start=1):
             print(f"[{id_player}] {player}")
 
-        while choice not in range(1, len(list_players)+1):
-            if choice != 0:
-                print("\33[93m" "Mauvais choix !" "\33[00m")
-            choice = int(input("Joueur N° :"))
-        return (choice - 1)
+        while choice not in range(0, len(list_players)+1):
+            if choice != "":
+                print(text_orange, "Mauvais choix !", text_white)
+            print("[", text_orange, "0", text_white, "] Pour retour")
+            choice = input("Joueur N° :")
+            try:
+                choice = int(choice)
+            except ValueError:
+                print("rentrer un chiffre.")
+                choice = -1
+        return choice - 1
 
     def creer_player(self):
         '''formulaire de creation de joueur'''
@@ -352,16 +373,23 @@ class Views:
     def list_clubs(self, list_clubs):
         '''liste des clubs existant'''
 
-        choice = 0
+        choice = ""
         print("\n--- Liste des clubs actuel ---\n")
         for id_club, club in enumerate(list_clubs, start=1):
             print(f"[{id_club}] {club}")
 
-        while choice not in range(1, len(list_clubs) + 1):
-            if choice != 0:
-                print("\33[93m" "Mauvais choix !" "\33[00m")
-            choice = int(input("Club N° :"))
-        return (choice - 1)
+        while choice not in range(0, len(list_clubs) + 1):
+            if choice != "":
+                print(text_orange, "Mauvais choix !", text_white)
+            print("[", text_orange, "0", text_white, "] Pour retour")
+
+            choice = input("Club N° :")
+            try:
+                choice = int(choice)
+            except ValueError:
+                print("rentrer un chiffre.")
+                choice = -1
+        return choice - 1
 
     def creer_club(self):
         '''formulaire de creation de club'''
