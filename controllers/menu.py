@@ -40,7 +40,7 @@ class Menu:
         choice = self.view.menu_principal()
         match choice:
             case "1":
-                return self.active_tournament("tournaments_actuel", list_tournaments)
+                return self.active_tournament("actual_tournaments", list_tournaments)
             case "2":
                 return self.sub_main_menu('menu_tournaments',
                                           'list_tournaments', list_tournaments, 'creer_tournament')
@@ -123,7 +123,7 @@ class Menu:
                                 list_tournaments, "tournaments", Tournament)
                 list_tournaments = convert_sub_objects(
                     database_access("tournaments", Tournament, "r"))
-                return self.active_tournament("tournaments_actuel", list_tournaments)
+                return self.active_tournament("actual_tournaments", list_tournaments)
             case "4":
                 pass
 

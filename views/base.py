@@ -32,7 +32,7 @@ class Views:
             choice = input("\nChoix N° :")
         return choice
 
-    def tournaments_actuel(self, tournament, participants, games):
+    def actual_tournaments(self, tournament, participants, games):
         '''gestion des tournois actif'''
 
         choice = ""
