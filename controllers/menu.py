@@ -2,8 +2,12 @@ from models.tournaments import Tournament
 from models.club import Club
 from models.player import Player
 from datetime import datetime
-from utils.database import database_access, add_to_database, remove_from_database, update_database
-from utils import convert_sub_objects
+from utils.database import convert_sub_objects, database_access, add_to_database, remove_from_database, update_database
+from utils.text_color import (
+    text_orange,
+    text_blue,
+    text_white
+)
 
 
 class Menu:
