@@ -1,29 +1,9 @@
 from models.tournaments import Tournament
-from models.round import Round
 from models.club import Club
 from models.player import Player
 from datetime import datetime
-from models.database import database_access, add_to_database, remove_from_database, update_database
-
-
-def convert_sub_objects(list_tournaments):
-    for obj in list_tournaments:
-        if obj.list_players:
-            list_player = []
-            for player in obj.list_players:
-                player = Player(**player)
-                list_player.append(player)
-
-            obj.list_players = list_player
-
-        if obj.list_rounds:
-            list_round = []
-            for round in obj.list_rounds:
-                if isinstance(round, dict):
-                    round = Round(**round)
-                list_round.append(round)
-            obj.list_rounds = list_round
-    return list_tournaments
+from utils.database import database_access, add_to_database, remove_from_database, update_database
+from utils import convert_sub_objects
 
 
 class Menu:
@@ -41,12 +21,15 @@ class Menu:
         match choice:
             case "1":
                 return self.active_tournament("actual_tournaments", list_tournaments)
+
             case "2":
                 return self.sub_main_menu('menu_tournaments',
                                           'list_tournaments', list_tournaments, 'creer_tournament')
+
             case "3":
                 return self.sub_main_menu('menu_players',
                                           'list_players', list_players, 'creer_player')
+
             case "4":
                 return self.sub_main_menu('menu_clubs',
                                           'list_clubs', list_clubs, 'creer_club')
@@ -56,12 +39,14 @@ class Menu:
 
     def active_tournament(self, view_name, list_tournaments):
         '''gestion des round'''
+
         list_tournaments = convert_sub_objects(
             database_access("tournaments", Tournament, "r"))
         tournament = self.menu_list(
             "list_tournaments", list_tournaments, list_only=True)[1]
         id = tournament
         tournament = list_tournaments[id]
+
         while tournament.started is False:
             while list_tournaments[id].started is False:
                 print("\33[93m" "Ce tournoi n'as pas encore commencé." "\33[00m")
@@ -69,6 +54,7 @@ class Menu:
                     "list_tournaments", list_tournaments, list_only=True)[1]
                 id = tournament
                 tournament = list_tournaments[id]
+
         while tournament.ended is True:
             while list_tournaments[id].ended is True:
                 print("\33[93m" "Ce tournoi est terminé" "\33[00m")
@@ -78,7 +64,7 @@ class Menu:
                 tournament = list_tournaments[id]
 
         round = tournament.list_rounds[int(tournament.actual_turn_number) - 1]
-        # if tournament.actual_turn_number == 1:
+
         if round.participants == []:
             list_previous_match = []
             if int(tournament.actual_turn_number) > 1:
@@ -113,6 +99,7 @@ class Menu:
                     for player in game:
                         player[0] = player[0].__dict__
                 list_participants = []
+
                 for participant in round.participants:
                     participant = participant.__dict__
                     list_participants.append(participant)
@@ -124,6 +111,7 @@ class Menu:
                 list_tournaments = convert_sub_objects(
                     database_access("tournaments", Tournament, "r"))
                 return self.active_tournament("actual_tournaments", list_tournaments)
+
             case "4":
                 pass
 
@@ -134,8 +122,10 @@ class Menu:
         match choice:
             case "1":
                 return self.menu_list(menu_name_list, list_objects)
+
             case "2":
                 return self.menu_create(menu_name_create, list_objects)
+
             case "3":
                 pass
 
@@ -148,12 +138,15 @@ class Menu:
             match view_name:
                 case "list_tournaments":
                     return self.main_menu()
+
                 case "menu_tournaments":
                     return self.sub_main_menu('menu_tournaments',
                                               'list_tournaments', list_objects, 'creer_tournament')
+
                 case "menu_players":
                     return self.sub_main_menu('menu_players',
                                               'list_players', list_objects, 'creer_player')
+
                 case "menu_clubs":
                     return self.sub_main_menu('menu_clubs',
                                               'list_clubs', list_objects, 'creer_club')
@@ -246,23 +239,28 @@ class Menu:
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "2":
                 obj.place = self.view.update_place_tournament(obj)
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "3":
                 obj.start_date = self.view.update_start_date_tournament(obj)
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "4":
                 obj.end_date = self.view.update_end_date_tournament(obj)
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "5":
                 obj.nb_round = int(self.view.update_nb_round_tournament(obj))
+
                 while obj.nb_round != len(obj.list_rounds):
                     if obj.nb_round > len(obj.list_rounds):
                         obj.add_tour("Round" + str(len(obj.list_rounds) + 1))
@@ -272,6 +270,7 @@ class Menu:
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
 
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "6":
                 player = self.menu_list(
                     "list_players", list_players, list_only=True)[0]
@@ -286,11 +285,13 @@ class Menu:
                 obj.remove_player(player)
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
+
             case "8":
                 obj.start()
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
+
             case "9":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
@@ -303,22 +304,26 @@ class Menu:
                 update_database(
                     obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "2":
                 obj.first_name = self.view.update_prenom_player(obj)
                 update_database(
                     obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "3":
                 obj.birthday = self.view.update_birthday_player(
                     obj)
                 update_database(
                     obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "4":
                 obj.club = self.view.update_club_player(obj)
                 update_database(
                     obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "5":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
@@ -331,11 +336,13 @@ class Menu:
                 update_database(
                     obj, list_objects[id], list_objects, "clubs", Club)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "2":
                 obj.national_id = self.view.update_national_id_club(
                     obj)
                 update_database(
                     obj, list_objects[id], list_objects, "clubs", Club)
                 return self.menu_edit(view_name, id, obj, list_objects)
+
             case "3":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
