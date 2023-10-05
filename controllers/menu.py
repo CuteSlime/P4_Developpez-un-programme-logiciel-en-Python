@@ -42,7 +42,12 @@ class Menu:
                 return exit()
 
     def active_tournament(self, view_name, list_tournaments):
-        '''gestion des round'''
+        '''gestion des tours
+
+        Args:
+            view_name : nom de la vue
+            list_tournaments : liste des tournois
+        '''
 
         list_tournaments = convert_sub_objects(
             database_access("tournaments", Tournament, "r"))
@@ -53,7 +58,7 @@ class Menu:
 
         while tournament.started is False:
             while list_tournaments[id].started is False:
-                print("\33[93m" "Ce tournoi n'as pas encore commencé." "\33[00m")
+                print(text_orange, "Ce tournoi n'as pas encore commencé.", text_white)
                 tournament = self.menu_list(
                     "list_tournaments", list_tournaments, list_only=True)[1]
                 id = tournament
@@ -61,7 +66,7 @@ class Menu:
 
         while tournament.ended is True:
             while list_tournaments[id].ended is True:
-                print("\33[93m" "Ce tournoi est terminé" "\33[00m")
+                print(text_orange, "Ce tournoi est terminé", text_white)
                 tournament = self.menu_list(
                     "list_tournaments", list_tournaments, list_only=True)[1]
                 id = tournament
@@ -92,9 +97,9 @@ class Menu:
                             best_score = participant.score
                             winner = participant
                     tournament.end_date = datetime.now().strftime('%d/%m/%Y %H:%M')
-                    print("\33[94m" f"Tournament {tournament.name} terminé !\33[00m")
+                    print(text_blue, f"Tournament {tournament.name} terminé !{text_white}")
                     print(
-                        "\33[94m" f"Félicitation à {winner.full_name()} !\33[00m")
+                        text_blue, f"Félicitation à {winner.full_name()} {text_white}")
 
                 if tournament.actual_turn_number < len(tournament.list_rounds):
                     tournament.actual_turn_number += 1
@@ -120,7 +125,14 @@ class Menu:
                 pass
 
     def sub_main_menu(self, view_name, menu_name_list, list_objects, menu_name_create):
-        '''gestion des sous menu (gestion des tournaments, players, clubs)'''
+        '''gestion des sous menu (gestion des tournois, joueurs, clubs)
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            menu_name_list (_str_) : nom de la vue a renvoyer au menu de listing
+            menu_name_create (_str_) : nom de la vue a renvoyer au menu de création
+            list_objects (_list_) : liste de tournois, joueurs, clubs
+        '''
 
         choice = getattr(self.view, view_name)()
         match choice:
@@ -134,7 +146,17 @@ class Menu:
                 pass
 
     def menu_list(self, view_name, list_objects, **kwargs):
-        '''menu de selection des tournois, joueur ou clubs'''
+        '''menu de selection des tournois, joueur ou clubs
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            list_objects (_list_) : liste de tournois, joueurs, clubs
+            kwargs (_bool_) : option pour choisir le return
+
+        return:
+            **_list_ : un objet et sont id
+             _def_ : le menu_manage correspondant a la vue
+        '''
 
         choice = getattr(self.view, view_name)(list_objects)
         print(choice)
@@ -165,7 +187,15 @@ class Menu:
             return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def menu_manage(self, view_name, id, obj, list_objects, menu_name_list):
-        '''gestion des menu de gestion pour les tournaments, players, clubs de façon individuel'''
+        '''Menu de gestion pour les tournois, joueurs et clubs, de façon individuel
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            id (_int_) : numéro identifiant de l'objet dans ça liste
+            obj (_object_) : objet individuel tirer de ça liste
+            list_objects (_list_) : liste d'ou l'objet et originaire
+            menu_name_list (_str_) : nom de la vue a renvoyer au menu de listing
+        '''
 
         choice = getattr(self.view, view_name)(obj)
         edit_view = view_name.split("_")[1]
@@ -194,7 +224,12 @@ class Menu:
                 pass
 
     def menu_create(self, view_name, list_objects, ):
-        '''gestion du menu de création d'un tournament, player, club'''
+        '''menu de création d'un tournoi, joueur, club
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            list_objects (_list_) : liste de tournois, joueurs, clubs
+        '''
 
         obj = getattr(self.view, view_name)()
         match obj[0]:
@@ -214,8 +249,15 @@ class Menu:
                 add_to_database(obj, list_objects, "clubs", Club)
                 return self.sub_main_menu("menu_clubs", 'list_clubs', list_objects, 'creer_club')
 
-    def menu_edit(self, view_name, id, obj, list_objects):
-        '''gestion de l'edition d'un tournament, player, club'''
+    def menu_edit(self, view_name: str, id: int, obj: object, list_objects: list):
+        '''menu de selection d'un tournoi, joueur, club à editer
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            id (_int_) : numéro identifiant de l'objet dans ça liste
+            obj (_object_) : objet individuel tirer de ça liste
+            list_objects (_list_) : liste d'ou l'objet et originaire
+        '''
 
         choice = getattr(self.view, view_name)(obj)
         manage_view = view_name.split("_")[2]
@@ -233,8 +275,17 @@ class Menu:
                 self.edit_club(choice, view_name, id, obj,
                                list_objects, manage_view)
 
-    def edit_tournament(self, choice, view_name, id, obj, list_objects, manage_view):
-        '''gestion dédier a l'edition d'un tournoi'''
+    def edit_tournament(self, choice: int, view_name: str, id: int, obj: object, list_objects: list, manage_view: str):
+        '''gestion dédier a l'edition d'un tournoi
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            id (_int_) : numéro identifiant de l'objet dans ça liste
+            obj (_object_) : objet individuel tirer de ça liste
+            list_objects (_list_) : liste d'ou l'objet et originaire
+            manage_view (_str_) : vue de gestion du tournoi
+
+            '''
 
         list_players = database_access("players", Player, "r")
         match choice:
@@ -300,7 +351,16 @@ class Menu:
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def edit_player(self, choice, view_name, id, obj, list_objects, manage_view):
-        '''gestion dédier a l'edition d'un player'''
+        '''gestion dédier a l'edition d'un joueur
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            id (_int_) : numéro identifiant de l'objet dans ça liste
+            obj (_object_) : objet individuel tirer de ça liste
+            list_objects (_list_) : liste d'ou l'objet et originaire
+            manage_view (_str_) : vue de gestion du joueur
+
+        '''
 
         match choice:
             case "1":
@@ -332,7 +392,15 @@ class Menu:
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def edit_club(self, choice, view_name, id, obj, list_objects, manage_view):
-        '''gestion dédier a l'edition d'un club'''
+        '''gestion dédier a l'edition d'un club
+
+        Args:
+            view_name (_str_) : nom de la vue principale a utiliser
+            id (_int_) : numéro identifiant de l'objet dans ça liste
+            obj (_object_) : objet individuel tirer de ça liste
+            list_objects (_list_) : liste d'ou l'objet et originaire
+            manage_view (_str_) : vue de gestion du club
+        '''
 
         match choice:
             case "1":

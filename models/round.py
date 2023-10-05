@@ -3,7 +3,16 @@ from random import shuffle, random
 from datetime import datetime
 
 
-def sort_by_score(players_to_sort):
+def sort_by_score(players_to_sort: list):
+    '''Trie la liste des joueurs par score
+
+    Args:
+        players_to_sort (_list_): liste des joueurs à trier
+
+    Returns:
+        _list_: liste des joueur trier par score
+    '''
+
     i = 0
     list_players = []
     not_sorted_player = players_to_sort[:]
@@ -21,11 +30,23 @@ def sort_by_score(players_to_sort):
     return list_players
 
 
-def already_played_together(list_players, list_previous_match):
+def already_played_together(list_players: list, list_previous_match: list):
+    '''Trie les joueurs pour s'assurer qu'ils n'ont pas déjà jouer ensemble
+
+    Args:
+        list_players (_list_): liste des joueurs a Trier
+        list_previous_match (_list_): Liste des match du tournois qui ont déjà été jouer
+
+    Returns:
+        _list_: liste trier des joueurs
+    '''
+
     i = 1
+    print(list_players)
     sorted_players = []
     not_sorted_players = list_players[:]
     while len(not_sorted_players) > 1:
+        print(sorted_players, "\n", not_sorted_players)
         for round in list_previous_match:
             last_match_player_1 = round[0][0]
             last_match_player_2 = round[1][0]
@@ -70,11 +91,6 @@ class Round:
         for groupe in groupes:
             self.list_matchs.append(([groupe[0]], [
                                     groupe[1]]))
-
-        # for game in self.list_matchs:
-        #     for last_match in last_matchs:
-        #         if last_match == game:
-        #             self.list_matchs.remove(last_match)
 
     def start_tour(self):
         self.start_date = datetime.now().strftime('%d/%m/%Y %H:%M')
