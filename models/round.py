@@ -47,15 +47,17 @@ def already_played_together(list_players: list, list_previous_match: list):
     not_sorted_players = list_players[:]
     while len(not_sorted_players) > 1:
         print(sorted_players, "\n", not_sorted_players)
-        for round in list_previous_match:
-            last_match_player_1 = round[0][0]
-            last_match_player_2 = round[1][0]
+        for match in list_previous_match:
+            last_match_player_1 = match[0][0]
+            last_match_player_2 = match[1][0]
 
             if (not_sorted_players[0].id in (last_match_player_1["id"], last_match_player_2["id"])
                     and
                     not_sorted_players[i].id in (last_match_player_1["id"], last_match_player_2["id"])):
 
                 i += 1
+            else:
+                break
 
         sorted_players.append(not_sorted_players[0])
         sorted_players.append(not_sorted_players[i])
