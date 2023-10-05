@@ -49,9 +49,9 @@ def add_to_database(self, objects_list, database_name, object_class):
     objects_list.append(self)
     dict_list = []
     for obj in objects_list:
-        if obj.list_players:
+        if hasattr(obj, "list_players"):
             obj.list_players = objects_list_to_dict(obj.list_players)
-        if obj.list_rounds:
+        if hasattr(obj, "list_rounds"):
             obj.list_rounds = objects_list_to_dict(obj.list_rounds)
         print("\33[93m", obj, "\33[00m")
         dict_list.append(obj.__dict__)
@@ -84,9 +84,9 @@ def update_database(self, original, objects_list, database_name, object_class):
         if original.__dict__ == obj.__dict__:
             objects_list[objects_list.index(obj)] = self
 
-        if obj.list_players:
+        if hasattr(obj, "list_players"):
             obj.list_players = objects_list_to_dict(obj.list_players)
-        if obj.list_rounds:
+        if hasattr(obj, "list_rounds"):
             obj.list_rounds = objects_list_to_dict(obj.list_rounds)
     dict_list = []
     for obj in objects_list:
