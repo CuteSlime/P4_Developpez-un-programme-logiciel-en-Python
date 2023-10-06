@@ -41,7 +41,7 @@ class Menu:
             case "0":
                 return exit()
 
-    def active_tournament(self, view_name, list_tournaments):
+    def active_tournament(self, view_name: str, list_tournaments: list):
         '''gestion des tours
 
         Args:
@@ -101,7 +101,7 @@ class Menu:
                     print(
                         text_blue, f"Félicitation à {winner.full_name()} {text_white}")
 
-                if tournament.actual_turn_number < len(tournament.list_rounds):
+                elif tournament.actual_turn_number < len(tournament.list_rounds):
                     tournament.actual_turn_number += 1
 
                 for game in round.list_matchs:
