@@ -38,7 +38,7 @@ class Menu:
                 return self.sub_main_menu('menu_clubs',
                                           'list_clubs', list_clubs, 'creer_club')
 
-            case "5":
+            case "0":
                 return exit()
 
     def active_tournament(self, view_name, list_tournaments):
@@ -121,7 +121,7 @@ class Menu:
                     database_access("tournaments", Tournament, "r"))
                 return self.active_tournament("actual_tournaments", list_tournaments)
 
-            case "4":
+            case "0":
                 pass
 
     def sub_main_menu(self, view_name, menu_name_list, list_objects, menu_name_create):
@@ -142,7 +142,7 @@ class Menu:
             case "2":
                 return self.menu_create(menu_name_create, list_objects)
 
-            case "3":
+            case "0":
                 pass
 
     def menu_list(self, view_name, list_objects, **kwargs):
@@ -168,6 +168,8 @@ class Menu:
                 case "menu_tournaments":
                     return self.sub_main_menu('menu_tournaments',
                                               'list_tournaments', list_objects, 'creer_tournament')
+                case "list_players":
+                    return ["return"]
 
                 case "menu_players":
                     return self.sub_main_menu('menu_players',
@@ -220,7 +222,7 @@ class Menu:
             case "3":
                 return self.menu_list(menu_name_list, list_objects)
 
-            case "4":
+            case "0":
                 pass
 
     def menu_create(self, view_name, list_objects, ):
@@ -327,17 +329,26 @@ class Menu:
                 return self.menu_edit(view_name, id, obj, list_objects)
 
             case "6":
-                player = self.menu_list(
-                    "list_players", list_players, list_only=True)[0]
-                obj.add_player(player)
+                if self.menu_list(
+                        "list_players", list_players, list_only=True)[0] != "return":
+                    player = self.menu_list(
+                        "list_players", list_players, list_only=True)[0]
+                    obj.add_player(player)
+                else:
+                    return self.menu_edit("menu_modification_tournament", id, obj, list_objects)
+
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.edit_tournament(choice, view_name, id, obj,
                                             list_objects, manage_view)
             case "7":
-                player = self.menu_list(
-                    "list_players", obj.list_players, list_only=True)[0]
-                obj.remove_player(player)
+                if self.menu_list(
+                        "list_players", list_players, list_only=True)[0] != "return":
+                    player = self.menu_list(
+                        "list_players", list_players, list_only=True)[0]
+                    obj.remove_player(player)
+                else:
+                    return self.menu_edit("menu_modification_tournament", id, obj, list_objects)
                 update_database(
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
 
@@ -347,7 +358,7 @@ class Menu:
                     obj, list_objects[id], list_objects, "tournaments", Tournament)
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
-            case "9":
+            case "0":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def edit_player(self, choice, view_name, id, obj, list_objects, manage_view):
@@ -388,7 +399,7 @@ class Menu:
                     obj, list_objects[id], list_objects, "players", Player)
                 return self.menu_edit(view_name, id, obj, list_objects)
 
-            case "5":
+            case "0":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
 
     def edit_club(self, choice, view_name, id, obj, list_objects, manage_view):
@@ -416,5 +427,5 @@ class Menu:
                     obj, list_objects[id], list_objects, "clubs", Club)
                 return self.menu_edit(view_name, id, obj, list_objects)
 
-            case "3":
+            case "0":
                 return self.menu_manage(manage_view, id, obj, list_objects, view_name)
