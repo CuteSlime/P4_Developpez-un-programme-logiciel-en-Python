@@ -1,3 +1,6 @@
+from utils.text_color import text_red, text_white
+
+
 class Tournament():
     def __init__(self, name, place, start_date, end_date, **kwargs):
         self.name = name
@@ -28,7 +31,12 @@ class Tournament():
         if len(self.list_players) % 2 == 0:
 
             for id, player in enumerate(self.list_players):
-                player.id = id
+                player[id] = id
+            if self.nb_round > len(self.list_players) - 1:
+                print(f'{text_red}/!\\ pour {len(self.list_players)} joueurs'
+                      f' le nombre de tour maximum est de {len(self.list_players) -1}'
+                      f'\nnombre de tour fixer à {len(self.list_players) -1}{text_white}')
+                self.nb_round = len(self.list_players) - 1
             self.started = True
             self.fill_tour()
         else:
