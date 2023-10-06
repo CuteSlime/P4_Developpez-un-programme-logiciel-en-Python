@@ -77,7 +77,7 @@ class Menu:
         if round.participants == []:
             list_previous_match = []
             if int(tournament.actual_turn_number) > 1:
-                for round in tournament.list_rounds:
+                for round in tournament.list_rounds[0:int(tournament.actual_turn_number)]:
                     list_previous_match += round.list_matchs
             round.participants = tournament.list_players
             round.add_match(round.participants, list_previous_match)
