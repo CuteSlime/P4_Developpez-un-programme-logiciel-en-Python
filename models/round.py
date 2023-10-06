@@ -53,17 +53,16 @@ def already_played_together(list_players: list, list_previous_match: list):
 
             if (not_sorted_players[0].id in (last_match_player_1["id"], last_match_player_2["id"])
                     and
-                    not_sorted_players[i].id in (last_match_player_1["id"], last_match_player_2["id"])):
-
-                i += 1
-            else:
+                    not_sorted_players[i].id not in (last_match_player_1["id"], last_match_player_2["id"])):
+                sorted_players.append(not_sorted_players[0])
+                sorted_players.append(not_sorted_players[i])
+                not_sorted_players.remove(not_sorted_players[i])
+                not_sorted_players.remove(not_sorted_players[0])
+                i = 1
                 break
 
-        sorted_players.append(not_sorted_players[0])
-        sorted_players.append(not_sorted_players[i])
-        not_sorted_players.remove(not_sorted_players[i])
-        not_sorted_players.remove(not_sorted_players[0])
-        i = 1
+            else:
+                i += 1
 
     return sorted_players
 
@@ -91,8 +90,7 @@ class Round:
 
         groupes = (players[i:i+2] for i in range(0, len(players), 2))
         for groupe in groupes:
-            self.list_matchs.append(([groupe[0]], [
-                                    groupe[1]]))
+            self.list_matchs.append(([groupe[0]], [groupe[1]]))
 
     def start_tour(self):
         self.start_date = datetime.now().strftime('%d/%m/%Y %H:%M')
