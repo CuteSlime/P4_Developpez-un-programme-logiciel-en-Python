@@ -63,7 +63,8 @@ def already_played_together(list_players: list, list_previous_match: list):
 
             else:
                 i += 1
-
+                if i >= len(not_sorted_players):
+                    i = 1
     return sorted_players
 
 
