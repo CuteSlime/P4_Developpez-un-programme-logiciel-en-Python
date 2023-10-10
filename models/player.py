@@ -1,3 +1,4 @@
+from utils.text_color import text_white, text_green
 
 
 class Player:
@@ -14,4 +15,6 @@ class Player:
         return f"{self.first_name} {self.name}"
 
     def __str__(self):
-        return f"{self.full_name()} Née le : {self.birthday} {self.score} {self.club}"
+        return (f"{text_green}{self.full_name()}{text_white} "
+                f"Née le : {text_green}{self.birthday}{text_white} "
+                f"club : {text_green}{self.club}{text_white}")
