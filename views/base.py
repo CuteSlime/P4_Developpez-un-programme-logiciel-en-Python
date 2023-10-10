@@ -134,15 +134,17 @@ class Views:
         end_date = date_input("fin")
         nb_round = int(input("Nombre de tour :") or 4)
         while True:
-            nb_round = input("Nouveau nombre de tour : ")
+
             try:
                 nb_round = int(nb_round)
-                if nb_round > 2:
+                if nb_round >= 2:
                     break
                 else:
-                    print("nombre de tour minimum : 2")
+                    print(f"{text_red}nombre de tour minimum : 2{text_white}")
+                    nb_round = input("Nouveau nombre de tour : ")
             except ValueError:
-                print("rentrer un chiffre.")
+                print(f"{text_red}rentrer un chiffre.{text_white}")
+                nb_round = input("Nouveau nombre de tour : ")
         tournament = (cls, name, place, start_date, end_date, nb_round)
 
         return tournament
