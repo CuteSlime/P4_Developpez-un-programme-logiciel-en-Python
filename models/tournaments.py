@@ -1,4 +1,4 @@
-from utils.text_color import text_red, text_white
+from utils.text_color import text_red, text_white, text_green
 
 
 class Tournament():
@@ -58,7 +58,8 @@ class Tournament():
 
     def __str__(self):
         return (f"\n"
-                f"Nom : {self.name}    à : {self.place} \n"
-                f"Début du tournoi : {self.start_date}   Fin : {self.end_date} \n"
-                f"Description : {self.remark}\n"
+                f"Nom : {text_green}{self.name}{text_white}    Lieu : {text_green}{self.place}{text_white}     "
+                f"Début du tournoi : {text_green}{self.start_date}{text_white}   "
+                f"Fin : {text_green}{self.end_date}{text_white} \n"
+                f"Description : {text_green}{self.remark}{text_white}\n"
                 )
