@@ -42,11 +42,11 @@ def already_played_together(list_players: list, list_previous_match: list):
     '''
 
     i = 1
-    print(list_players)
+    # print(list_players)
     sorted_players = []
     not_sorted_players = list_players[:]
     while len(not_sorted_players) > 1:
-        print(sorted_players, "\n", not_sorted_players)
+        # print(sorted_players, "\n", not_sorted_players)
         for match in list_previous_match:
             last_match_player_1 = match[0][0]
             last_match_player_2 = match[1][0]
