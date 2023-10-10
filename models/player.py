@@ -15,18 +15,3 @@ class Player:
 
     def __str__(self):
         return f"{self.full_name()} Née le : {self.birthday} {self.score} {self.club}"
-
-
-# # teste
-# player = Player(**players_database[0])
-
-# player2 = Player("Toucuit", "Phillipe", "14 Mars 2001", club="not an actor")
-# player3 = Player("Toucuit", "Phillip", "14 Mars 2001", club="not an actor")
-
-# player2.add_to()
-
-
-# for i, player in enumerate(players_database):
-#     if self.__dict__ == player:
-#         print("trouvé !")
-#         break
