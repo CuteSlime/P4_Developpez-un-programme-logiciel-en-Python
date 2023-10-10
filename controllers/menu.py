@@ -291,7 +291,8 @@ class Menu:
             '''
 
         list_players = database_access("players", Player, "r")
-        tournament_players = tournament.list_players
+        tournament_players = convert_sub_objects(
+            database_access("tournaments", Tournament, "r"))[id].list_players
         match choice:
             case "1":
                 tournament.name = self.view.update_name_tournament(tournament)
@@ -331,10 +332,9 @@ class Menu:
                 return self.menu_edit(view_name, id, tournament, list_tournaments)
 
             case "6":
-                if self.menu_list(
-                        "list_players", list_players, list_only=True)[0] != "return":
-                    player = self.menu_list(
-                        "list_players", list_players, list_only=True)[0]
+                player = self.menu_list(
+                    "list_players", list_players, list_only=True)[0]
+                if player != "return":
                     tournament.add_player(player)
                 else:
                     return self.menu_edit("menu_modification_tournament", id, tournament, list_tournaments)
@@ -344,11 +344,10 @@ class Menu:
                 return self.edit_tournament(choice, view_name, id, tournament,
                                             list_tournaments, manage_view)
             case "7":
-                if self.menu_list(
-                        "list_players", tournament_players, list_only=True)[0] != "return":
-                    player = self.menu_list(
-                        "list_players", tournament_players, list_only=True)[0]
-                    tournament.remove_player(player)
+                player = self.menu_list(
+                    "list_players", tournament_players, list_only=True)
+                if player[0] != "return":
+                    tournament.remove_player(tournament.list_players[player[1]])
                 else:
                     return self.menu_edit("menu_modification_tournament", id, tournament, list_tournaments)
                 update_database(
