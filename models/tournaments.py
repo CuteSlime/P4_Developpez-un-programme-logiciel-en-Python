@@ -31,7 +31,7 @@ class Tournament():
         if len(self.list_players) % 2 == 0:
 
             for id, player in enumerate(self.list_players):
-                player[id] = id
+                player.id = id
             if self.nb_round > len(self.list_players) - 1:
                 print(f'{text_red}/!\\ pour {len(self.list_players)} joueurs'
                       f' le nombre de tour maximum est de {len(self.list_players) -1}'
