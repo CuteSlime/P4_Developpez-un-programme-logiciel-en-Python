@@ -57,9 +57,12 @@ class Tournament():
         self.list_rounds.remove(tour_name)
 
     def __str__(self):
+        if self.remark != "":
+            remark = f"Description : {text_green}{self.remark}{text_white}\n"
+        else:
+            remark = ""
         return (f"\n"
                 f"Nom : {text_green}{self.name}{text_white}    Lieu : {text_green}{self.place}{text_white}     "
                 f"Début du tournoi : {text_green}{self.start_date}{text_white}   "
-                f"Fin : {text_green}{self.end_date}{text_white} \n"
-                f"Description : {text_green}{self.remark}{text_white}\n"
+                f"Fin : {text_green}{self.end_date}{text_white} \n {remark}"
                 )
