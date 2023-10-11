@@ -4,7 +4,7 @@ from models.player import Player
 from datetime import datetime
 from utils.database import convert_sub_objects, database_access, add_to_database, remove_from_database, update_database
 from utils.text_color import (
-    text_orange,
+    text_red,
     text_blue,
     text_white
 )
@@ -58,7 +58,7 @@ class Menu:
 
         while tournament.started is False:
             while list_tournaments[id].started is False:
-                print(text_orange, "Ce tournoi n'as pas encore commencé.", text_white)
+                print(text_red, "Ce tournoi n'as pas encore commencé.", text_white)
                 tournament = self.menu_list(
                     "list_tournaments", list_tournaments, list_only=True)[1]
                 id = tournament
@@ -66,7 +66,7 @@ class Menu:
 
         while tournament.ended is True:
             while list_tournaments[id].ended is True:
-                print(text_orange, "Ce tournoi est terminé", text_white)
+                print(text_red, "Ce tournoi est terminé", text_white)
                 tournament = self.menu_list(
                     "list_tournaments", list_tournaments, list_only=True)[1]
                 id = tournament

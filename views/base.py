@@ -166,7 +166,7 @@ class Views:
             choice = input("\nChoix N° :")
         if choice == "2":
             print(f"{text_red}/!\\ Voulez vous vraiment supprimer le tournoi {tournaments_data.name} ?{text_white}")
-            print(text_orange, "/!\\ Cette action est irréversible.", text_white)
+            print(f"{text_red}/!\\ Cette action est irréversible.{text_white}")
             while choice != "O" and choice != "n" and choice != "N":
                 choice = input("[O/n] :")
             if choice == "O":
