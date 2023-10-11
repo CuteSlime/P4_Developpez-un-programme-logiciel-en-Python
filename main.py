@@ -12,12 +12,5 @@ def main():
     logiciel.run()
 
 
-def test():
-    view = Views()
-    menu = Menu(view)
-    logiciel = Controller(view, menu)
-    logiciel.test()
-
-
 if __name__ == "__main__":
     main()
