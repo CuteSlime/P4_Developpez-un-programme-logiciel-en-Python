@@ -133,7 +133,11 @@ def remove_from_database(self, objects_list, database_name, object_class):
             objects_list.remove(obj)
     dict_list = []
     for obj in objects_list:
-
+        if hasattr(obj, "list_players"):
+            obj.list_players = objects_list_to_dict(obj.list_players)
+        if hasattr(obj, "list_rounds"):
+            obj.list_rounds = objects_list_to_dict(obj.list_rounds)
+        print(text_orange, obj, text_white)
         obj = obj.__dict__
         dict_list.append(obj)
     database_access(database_name, object_class, "w", *dict_list)
