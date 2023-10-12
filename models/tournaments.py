@@ -61,8 +61,8 @@ class Tournament():
             remark = f"Description : {text_green}{self.remark}{text_white}\n"
         else:
             remark = ""
-        return (f"\n"
-                f"{text_white}Nom : {text_green}{self.name}{text_white}    Lieu : {text_green}{self.place}{text_white}     "
+        return (f"\n{text_white}"
+                f"Nom : {text_green}{self.name}{text_white}    Lieu : {text_green}{self.place}{text_white}     "
                 f"Début du tournoi : {text_green}{self.start_date}{text_white}   "
                 f"Fin : {text_green}{self.end_date}{text_white} \n {remark}"
                 )
