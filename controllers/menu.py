@@ -2,7 +2,18 @@ from models.tournaments import Tournament
 from models.club import Club
 from models.player import Player
 from utils.database import convert_sub_objects, database_access, add_to_database, remove_from_database, update_database
-from utils.controllers_menu import start_round, tournament_statue
+from utils.controllers_menu import (
+    start_round,
+    tournament_statue,
+    tournament_name_edit,
+    tournament_place_edit,
+    tournament_start_date_edit,
+    tournament_end_date_edit,
+    tournament_round_edit,
+    tournament_add_player,
+    tournament_remove_player,
+    tournament_start
+)
 
 
 class Menu:
@@ -238,69 +249,29 @@ class Menu:
             database_access("tournaments", Tournament, "r"))[id].list_players
         match choice:
             case "1":
-                tournament.name = self.view.update_name_tournament(tournament)
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
-                return self.menu_edit(view_name, id, tournament, list_tournaments)
+                tournament_name_edit(self, view_name, id, tournament, list_tournaments)
 
             case "2":
-                tournament.place = self.view.update_place_tournament(tournament)
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
-                return self.menu_edit(view_name, id, tournament, list_tournaments)
+                tournament_place_edit(self, view_name, id, tournament, list_tournaments)
 
             case "3":
-                tournament.start_date = self.view.update_start_date_tournament(tournament)
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
-                return self.menu_edit(view_name, id, tournament, list_tournaments)
+                tournament_start_date_edit(self, view_name, id, tournament, list_tournaments)
 
             case "4":
-                tournament.end_date = self.view.update_end_date_tournament(tournament)
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
-                return self.menu_edit(view_name, id, tournament, list_tournaments)
+                tournament_end_date_edit(self, view_name, id, tournament, list_tournaments)
 
             case "5":
-                tournament.nb_round = int(self.view.update_nb_round_tournament(tournament))
-
-                while tournament.nb_round != len(tournament.list_rounds):
-                    if tournament.nb_round > len(tournament.list_rounds):
-                        tournament.add_tour("Round" + str(len(tournament.list_rounds) + 1))
-                    if tournament.nb_round < len(tournament.list_rounds):
-                        tournament.remove_tour(tournament.list_rounds[len(tournament.list_rounds)])
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
-
-                return self.menu_edit(view_name, id, tournament, list_tournaments)
+                tournament_round_edit(self, view_name, id, tournament, list_tournaments)
 
             case "6":
-                player = self.menu_list(
-                    "list_players", list_players, list_only=True)[0]
-                if player != "return":
-                    tournament.add_player(player)
-                else:
-                    return self.menu_edit("menu_modification_tournament", id, tournament, list_tournaments)
+                tournament_add_player(self, view_name, manage_view, choice, id,
+                                      tournament, list_tournaments, list_players)
 
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
-                return self.edit_tournament(choice, view_name, id, tournament,
-                                            list_tournaments, manage_view)
             case "7":
-                player = self.menu_list(
-                    "list_players", tournament_players, list_only=True)
-                if player[0] != "return":
-                    tournament.remove_player(tournament.list_players[player[1]])
-                else:
-                    return self.menu_edit("menu_modification_tournament", id, tournament, list_tournaments)
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
+                tournament_remove_player(self, tournament_players, id, tournament, list_tournaments)
 
             case "8":
-                tournament.start()
-                update_database(
-                    tournament, list_tournaments[id], list_tournaments, "tournaments", Tournament)
-                return self.menu_manage(manage_view, id, tournament, list_tournaments, view_name)
+                tournament_start(self, view_name, manage_view, id, tournament, list_tournaments)
 
             case "0":
                 return self.menu_manage(manage_view, id, tournament, list_tournaments, view_name)
