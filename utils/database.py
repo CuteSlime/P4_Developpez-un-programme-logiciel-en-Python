@@ -8,55 +8,6 @@ from utils.text_color import (
 )
 
 
-def convert_sub_objects(list_tournaments: list):
-    '''reconversion des liste de joueurs et tours récuperé depuis le JSON, en objets
-
-    Args:
-        objects_list (_list_) : la liste des tournois ou ce trouve les sous list de tours et joueurs
-
-    Return:
-        _list_ : la liste avec les sous objets convertie
-    '''
-
-    for obj in list_tournaments:
-        if hasattr(obj, "list_players"):
-            list_player = []
-            for player in obj.list_players:
-                player = Player(**player)
-                list_player.append(player)
-
-            obj.list_players = list_player
-
-        if hasattr(obj, "list_rounds"):
-            list_round = []
-            for round in obj.list_rounds:
-                if isinstance(round, dict):
-                    round = Round(**round)
-                list_round.append(round)
-            obj.list_rounds = list_round
-    return list_tournaments
-
-
-def objects_list_to_dict(objects_list: list):
-    ''' convertie une liste d'objets en liste de dictionnaires.
-        utilisé quand l'ont veut envoyer nos objet dans la base de donnée JSON
-
-    Args:
-        objects_list (_list_) : la liste d'objet
-
-    Returns:
-        _list_ : la liste transformé en dictionnaire
-    '''
-
-    list_dict = []
-    for obj in objects_list:
-        if isinstance(obj, dict) is False:
-            list_dict.append(obj.__dict__)
-        else:
-            list_dict.append(obj)
-    return list_dict
-
-
 def database_access(database_name: str, object_class, access_type: str, *dict_list: list):
     '''fonction en charge de la lecture et écriture des fichier JSON pour la base de donnée
 
@@ -170,3 +121,52 @@ def update_database(self, original: object, objects_list: list, database_name: s
         obj = obj.__dict__
         dict_list.append(obj)
     database_access(database_name, object_class, "w", *dict_list)
+
+
+def convert_sub_objects(list_tournaments: list):
+    '''reconversion des liste de joueurs et tours récuperé depuis le JSON, en objets
+
+    Args:
+        objects_list (_list_) : la liste des tournois ou ce trouve les sous list de tours et joueurs
+
+    Return:
+        _list_ : la liste avec les sous objets convertie
+    '''
+
+    for obj in list_tournaments:
+        if hasattr(obj, "list_players"):
+            list_player = []
+            for player in obj.list_players:
+                player = Player(**player)
+                list_player.append(player)
+
+            obj.list_players = list_player
+
+        if hasattr(obj, "list_rounds"):
+            list_round = []
+            for round in obj.list_rounds:
+                if isinstance(round, dict):
+                    round = Round(**round)
+                list_round.append(round)
+            obj.list_rounds = list_round
+    return list_tournaments
+
+
+def objects_list_to_dict(objects_list: list):
+    ''' convertie une liste d'objets en liste de dictionnaires.
+        utilisé quand l'ont veut envoyer nos objet dans la base de donnée JSON
+
+    Args:
+        objects_list (_list_) : la liste d'objet
+
+    Returns:
+        _list_ : la liste transformé en dictionnaire
+    '''
+
+    list_dict = []
+    for obj in objects_list:
+        if isinstance(obj, dict) is False:
+            list_dict.append(obj.__dict__)
+        else:
+            list_dict.append(obj)
+    return list_dict

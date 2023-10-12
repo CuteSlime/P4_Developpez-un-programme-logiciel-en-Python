@@ -12,7 +12,11 @@ class Views:
     '''vue principal appellant les autres'''
 
     def menu_principal(self):
-        '''menu principal'''
+        '''menu principal
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         print("\n"
@@ -33,8 +37,16 @@ class Views:
             choice = input("\nChoix N° :")
         return choice
 
-    def actual_tournaments(self, tournament, participants, games):
-        '''gestion des tournois actif'''
+    def actual_tournaments(self, tournament: object, participants, matchs: list):
+        '''gestion des tournois actif
+
+        Args:
+            tournament (_object_): tournois actuel
+            matchs (_list_): list des matchs du tour
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         while choice not in ("1", "0"):
@@ -52,20 +64,20 @@ class Views:
                     print(f"{text_red} Mauvais choix ! {text_white}")
                 choice = input("\nChoix N° :")
             if choice == "2":
-                for game in games:
-                    for player in game:
+                for match in matchs:
+                    for player in match:
                         print(text_blue, player[0].full_name(),
                               player[0].score, text_white)
 
                 choice = input("\nChoix N° :")
             if choice == "3":
-                for game in games:
+                for match in matchs:
                     print(text_blue,
-                          f'{game[0][0].full_name()} : {game[0][0].score}',
+                          f'{match[0][0].full_name()} : {match[0][0].score}',
                           text_white,
                           text_orange, " vs ", text_white,
                           text_blue,
-                          f'{game[1][0].full_name()} : {game[1][0].score}',
+                          f'{match[1][0].full_name()} : {match[1][0].score}',
                           text_white
                           )
                 choice = input("\nChoix N° :")
@@ -73,7 +85,11 @@ class Views:
 
 # gestion des tournaments
     def menu_tournaments(self):
-        '''menu de gestion des tournois'''
+        '''menu de gestion des tournois
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         print(f"\n--- {text_blue}Menu de gestion des tournois {text_white}---")
@@ -86,8 +102,15 @@ class Views:
             choice = input("\nChoix N° :")
         return choice
 
-    def list_tournaments(self, list_tournaments):
-        '''liste des tournois existant'''
+    def list_tournaments(self, list_tournaments: list):
+        '''liste des tournois existant
+
+        Args:
+            list_tournaments (_list_): list des tournois
+
+        Returns:
+            _int_: input de l'utilisateur
+        '''
 
         choice = ""
         print(f"\n--- {text_blue}Liste des tournois actuel{text_white} ---\n")
@@ -125,7 +148,11 @@ class Views:
         return choice - 1
 
     def creer_tournament(self):
-        '''formulaire de creation de tournoi'''
+        '''formulaire de creation de tournoi
+
+        Returns:
+            _list_: tulpe du tournoi
+        '''
 
         cls = "Tournament"
         name = input("Nom du tournois :")
@@ -149,12 +176,19 @@ class Views:
 
         return tournament
 
-    def manage_tournament(self, tournaments_data):
-        '''menu de gestion d'un tournoi'''
+    def manage_tournament(self, tournament: object):
+        '''menu de gestion d'un tournoi
+
+        Args:
+            tournament (_object_): le tournois selectionner depuis la list
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         print(f"\n--- {text_blue}Menu de gestion du tournoi {text_white}---")
-        print(tournaments_data)
+        print(tournament)
         print(f"[{text_orange}1{text_white}] Modifier le tournoi")
         print(f"[{text_orange}2{text_white}] Suprimer le tournoi")
         print(f"[{text_orange}3{text_white}] Retour a la liste des tournois")
@@ -165,7 +199,7 @@ class Views:
                 print(f"{text_red} Mauvais choix ! {text_white}")
             choice = input("\nChoix N° :")
         if choice == "2":
-            print(f"{text_red}/!\\ Voulez vous vraiment supprimer le tournoi {tournaments_data.name} ?{text_white}")
+            print(f"{text_red}/!\\ Voulez vous vraiment supprimer le tournoi {tournament.name} ?{text_white}")
             print(f"{text_red}/!\\ Cette action est irréversible.{text_white}")
             while choice != "O" and choice != "n" and choice != "N":
                 choice = input("[O/n] :")
@@ -174,8 +208,16 @@ class Views:
 
         return choice
 
-    def menu_modification_tournament(self, tournament):
-        '''formulaire d'édition d'un tournois'''
+    def menu_modification_tournament(self, tournament: object):
+        '''formulaire d'édition d'un tournois
+
+        Args:
+            tournament (_object_): le tournois selectionner depuis la list
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         choice = ""
         print(f"{text_blue}\n--- Modification du tournoi {tournament.name} {text_white}---")
         print("Que voulez vous modifier ?")
@@ -207,27 +249,72 @@ class Views:
                 return choice
         return choice
 
-    def update_name_tournament(self, tournament):
+    def update_name_tournament(self, tournament: object):
+        '''mise à jour du nom du tournoi
+
+        Args:
+            tournament (_object_): le tournois selectionner depuis la list
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Nom actuel : {text_green}{tournament.name}{text_white}")
         new_name = input("Nouveau nom: ")
         return new_name
 
-    def update_place_tournament(self, tournament):
+    def update_place_tournament(self, tournament: object):
+        '''mise à jour du lieu du tournoi
+
+        Args:
+            tournament (_object_): le tournois selectionner depuis la list
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Lieu actuel : {text_green}{tournament.place}{text_white}")
         new_place = input("Nouveau lieu: ")
         return new_place
 
-    def update_start_date_tournament(self, tournament):
+    def update_start_date_tournament(self, tournament: object):
+        '''mise à jour de la date de début du tournoi
+
+        Args:
+            tournament (_object_): le tournois selectionner depuis la list
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Date de debut actuel : {text_green}{tournament.start_date}{text_white}")
         new_start_date = date_input("début")
         return new_start_date
 
-    def update_end_date_tournament(self, tournament):
+    def update_end_date_tournament(self, tournament: object):
+        '''mise à jour de fin du tournoi
+
+        Args:
+            tournament (_object_): le tournois selectionner depuis la list
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Date de fin actuel : {text_green}{tournament.end_date}{text_white}")
         new_end_date = date_input("fin")
         return new_end_date
 
-    def update_nb_round_tournament(self, tournament):
+    def update_nb_round_tournament(self, tournament: object):
+        '''mise à jour du nombre de tour du tournoi
+
+        Args:
+            tournament (_object_): le tournois selectionner depuis la list
+
+        Returns:
+            _int_: input de l'utilisateur convertie
+        '''
+
         print(f"Nombre de tour actuel : {text_green}{str(tournament.nb_round)}{text_white}")
 
         while True:
@@ -244,7 +331,11 @@ class Views:
 
 # gestion des players
     def menu_players(self):
-        '''menu de gestion des joueurs'''
+        '''menu de gestion des joueurs
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         print(f"\n--- {text_blue}Menu de gestion des joueurs {text_white}---\n")
@@ -257,8 +348,16 @@ class Views:
             choice = input("\nChoix N° :")
         return choice
 
-    def list_players(self, list_players):
-        '''liste des joueurs existant'''
+    def list_players(self, list_players: list):
+        '''liste des joueurs existant
+
+        Args:
+            list_players (_list_): la list des joueurs
+
+        Returns:
+            _int_: input de l'utilisateur
+        '''
+
         choice = ""
         print(f"---{text_blue} Liste des joueurs actuel {text_white}---\n")
         for id_player, player in enumerate(list_players, start=1):
@@ -277,7 +376,11 @@ class Views:
         return choice - 1
 
     def creer_player(self):
-        '''formulaire de creation de joueur'''
+        '''formulaire de creation de joueur
+
+        Returns:
+            _list_: un tulpe avec les donnée du joueur
+        '''
 
         cls = "Player"
         name = input("Nom du joueur :")
@@ -288,12 +391,19 @@ class Views:
         # vérifier si la date et le club sont valide
         return player
 
-    def manage_player(self, players_data):
-        '''menu de de modification d'un joueur'''
+    def manage_player(self, player: object):
+        '''menu de de modification d'un joueur
+
+        Args:
+            player (_object_): le joueur selectionner depuis la list
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         print(f"\n---{text_red} Menu de gestion des joueurs {text_white}---\n")
-        print(players_data)
+        print(player)
         print(f"[{text_orange}1{text_white}] Modifier le joueur")
         print(f"[{text_orange}2{text_white}] Suprimer le joueur")
         print(f"[{text_orange}3{text_white}] Retour a la liste des joueurs")
@@ -304,7 +414,7 @@ class Views:
             choice = input("\nChoix N° :")
         if choice == "2":
             print(
-                f"{text_red}/!\\ Voulez vous vraiment supprimer le joueur {players_data.name} ?{text_white}")
+                f"{text_red}/!\\ Voulez vous vraiment supprimer le joueur {player.name} ?{text_white}")
             print(text_red, "/!\\ Cette action est irréversible.", text_white)
             while choice != "O" and choice != "n" and choice != "N":
                 choice = input("[O/n] :")
@@ -314,7 +424,15 @@ class Views:
         return choice
 
     def menu_modification_player(self, player):
-        '''formulaire d'édition d'un joueur'''
+        '''formulaire d'édition d'un joueur
+
+        Args:
+            player (_object_): le joueur selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         choice = ""
         print(f"\n---{text_blue} Modification du joueur {player.name} {text_white}---")
         print("Que voulez vous modifier ?\n")
@@ -331,29 +449,68 @@ class Views:
         return choice
 
     def update_name_player(self, player):
+        '''mise à jour du nom d'un joueur
+
+        Args:
+            player (_object_): le joueur selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Nom actuel : {text_green}{player.name}{text_white}")
         new_name = input("Nouveau nom: ")
         return new_name
 
     def update_prenom_player(self, player):
+        '''mise à jour du prénom d'un joueur
+
+        Args:
+            player (_object_): le joueur selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Prénom actuel : {text_green}{player.first_name}{text_white}")
         new_place = input("Nouveau prénom : ")
         return new_place
 
     def update_birthday_player(self, player):
+        '''mise à jour de la date de naissance d'un joueur
+
+        Args:
+            player (_object_): le joueur selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Date de naissance actuel : {text_green}{player.birthday}{text_white}")
         new_birthday = input("Nouvelle date de naissance : ")
         return new_birthday
 
     def update_club_player(self, player):
+        '''mise à jour du club d'un joueur
+
+        Args:
+            player (_object_): le joueur selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Club actuel : {text_green}{player.club}{text_white}")
         new_club = input("Nouveau club : ")
         return new_club
 
 # gestion des club
-
     def menu_clubs(self):
-        '''menu de gestion des club'''
+        '''menu de gestion des club
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         print(f"\n---{text_blue} Menu de gestion des clubs {text_white}---\n")
@@ -367,7 +524,14 @@ class Views:
         return choice
 
     def list_clubs(self, list_clubs):
-        '''liste des clubs existant'''
+        '''liste des clubs existant
+
+        Args:
+            list_clubs (_list_): la list des clubs
+
+        Returns:
+            _int_: input de l'utilisateur
+        '''
 
         choice = ""
         print(f"\n---{text_blue} Liste des clubs actuel {text_white}---\n")
@@ -388,7 +552,11 @@ class Views:
         return choice - 1
 
     def creer_club(self):
-        '''formulaire de creation de club'''
+        '''formulaire de creation de club
+
+        Returns:
+            _list_: un tulpe avec les donnée du club
+        '''
 
         cls = "Club"
         name = input("Nom du club :")
@@ -400,12 +568,19 @@ class Views:
         club = (cls, name, national_id)
         return club
 
-    def manage_club(self, clubs_data):
-        '''menu de de modification d'un club'''
+    def manage_club(self, club):
+        '''menu de de modification d'un club
+
+        Args:
+            club (_club_): le club selectionner dans la liste
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
 
         choice = ""
         print("\n--- Menu de gestion des clubs ---\n")
-        print(clubs_data)
+        print(club)
         print(f"[{text_orange}1{text_white}] Modifier le club")
         print(f"[{text_orange}2{text_white}] Suprimer le club")
         print(f"[{text_orange}3{text_white}] Retour a la liste des clubs")
@@ -417,7 +592,7 @@ class Views:
             choice = input("\nChoix N° :")
         if choice == "2":
             print(
-                f"{text_red}/!\\ Voulez vous vraiment supprimer le club {clubs_data.name} ?{text_white}")
+                f"{text_red}/!\\ Voulez vous vraiment supprimer le club {club.name} ?{text_white}")
             print(text_orange, "/!\\ Cette action est irréversible.", text_white)
             while choice != "O" and choice != "n" and choice != "N":
                 choice = input("[O/n] :")
@@ -426,7 +601,15 @@ class Views:
         return choice
 
     def menu_modification_club(self, club):
-        '''formulaire d'édition d'un club'''
+        '''formulaire d'édition d'un club
+
+        Args:
+            club (_club_): le club selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         choice = ""
         print(f"\n--- Modification du club {text_green}{club.name}{text_white}---")
         print("Que voulez vous modifier ?\n")
@@ -440,11 +623,29 @@ class Views:
         return choice
 
     def update_name_club(self, club):
+        '''mise à jour du nom du club
+
+        Args:
+            player (_object_): le joueur selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Nom actuel : {text_green}{club.name}{text_white}")
         new_name = input("Nouveau nom: ")
         return new_name
 
     def update_national_id_club(self, club):
+        '''mise à jour de l'idendifiant national du club
+
+        Args:
+            player (_object_): le joueur selectionner
+
+        Returns:
+            _str_: input de l'utilisateur
+        '''
+
         print(f"Identification national actuel : {text_green}{club.national_id}{text_white}")
         new_id = input("Nouvelle identification national : ")
         return new_id
