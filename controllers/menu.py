@@ -10,6 +10,54 @@ from utils.text_color import (
 )
 
 
+def start_round(self, id, round, tournament, list_tournaments):
+    '''exécuter le tour actuel et mettre à jour le tournoi
+
+    Args:
+        id (_int_): id correspondant au tournoi d'origine
+        round (_object_): le tour actuel
+        tournament (_object_): le tournoi actuel
+        list_tournaments (_list_): la list des tournois en base de donnée
+
+    Returns:
+        retourne à la liste des tournois actif
+    '''
+
+    round.play_match()
+    if tournament.actual_turn_number == len(tournament.list_rounds):
+        tournament.ended = True
+        best_score = 0
+        winner = round.participants[0]
+        for participant in round.participants:
+            if participant.score > best_score:
+                best_score = participant.score
+                winner = participant
+        tournament.end_date = datetime.now().strftime('%d/%m/%Y %H:%M')
+        print(text_blue, f"Tournament {tournament.name} terminé !{text_white}")
+        print(
+            text_blue, f"Félicitation à {winner.full_name()} {text_white}")
+
+    elif tournament.actual_turn_number < len(tournament.list_rounds):
+        tournament.actual_turn_number += 1
+
+    for game in round.list_matchs:
+        for player in game:
+            player[0] = player[0].__dict__
+    list_participants = []
+
+    for participant in round.participants:
+        participant = participant.__dict__
+        list_participants.append(participant)
+
+    round.participants = list_participants
+
+    update_database(tournament, list_tournaments[id],
+                    list_tournaments, "tournaments", Tournament)
+    list_tournaments = convert_sub_objects(
+        database_access("tournaments", Tournament, "r"))
+    return self.active_tournament("actual_tournaments", list_tournaments)
+
+
 class Menu:
     def __init__(self, view):
         self.view = view
@@ -87,42 +135,9 @@ class Menu:
 
         match choice:
             case "1":
-                round.play_match()
-                if tournament.actual_turn_number == len(tournament.list_rounds):
-                    tournament.ended = True
-                    best_score = 0
-                    winner = round.participants[0]
-                    for participant in round.participants:
-                        if participant.score > best_score:
-                            best_score = participant.score
-                            winner = participant
-                    tournament.end_date = datetime.now().strftime('%d/%m/%Y %H:%M')
-                    print(text_blue, f"Tournament {tournament.name} terminé !{text_white}")
-                    print(
-                        text_blue, f"Félicitation à {winner.full_name()} {text_white}")
-
-                elif tournament.actual_turn_number < len(tournament.list_rounds):
-                    tournament.actual_turn_number += 1
-
-                for game in round.list_matchs:
-                    for player in game:
-                        player[0] = player[0].__dict__
-                list_participants = []
-
-                for participant in round.participants:
-                    participant = participant.__dict__
-                    list_participants.append(participant)
-
-                round.participants = list_participants
-
-                update_database(tournament, list_tournaments[id],
-                                list_tournaments, "tournaments", Tournament)
-                list_tournaments = convert_sub_objects(
-                    database_access("tournaments", Tournament, "r"))
-                return self.active_tournament("actual_tournaments", list_tournaments)
-
+                start_round(self, id, round, tournament, list_tournaments)
             case "0":
-                pass
+                return self.main_menu()
 
     def sub_main_menu(self, view_name, menu_name_list, list_objects, menu_name_create):
         '''gestion des sous menu (gestion des tournois, joueurs, clubs)
@@ -143,7 +158,7 @@ class Menu:
                 return self.menu_create(menu_name_create, list_objects)
 
             case "0":
-                pass
+                return self.main_menu()
 
     def menu_list(self, view_name, list_objects, **kwargs):
         '''menu de selection des tournois, joueur ou clubs
@@ -223,7 +238,7 @@ class Menu:
                 return self.menu_list(menu_name_list, list_objects)
 
             case "0":
-                pass
+                return self.main_menu()
 
     def menu_create(self, view_name, list_objects, ):
         '''menu de création d'un tournoi, joueur, club
