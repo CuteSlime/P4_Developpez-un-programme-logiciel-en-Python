@@ -1,4 +1,4 @@
-from utils.function import validate_national_id, date_input
+from utils.view_base import validate_national_id, date_input
 from utils.text_color import (
     text_red,
     text_green,

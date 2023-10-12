@@ -1,7 +1,7 @@
 
 from random import shuffle, random
 from datetime import datetime
-from utils.function import sort_by_score, already_played_together
+from utils.models_round import sort_by_score, already_played_together
 
 
 class Round:
