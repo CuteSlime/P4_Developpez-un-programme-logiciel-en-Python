@@ -159,7 +159,7 @@ class Views:
         place = input("Lieu du déroulement :")
         start_date = date_input("début")
         end_date = date_input("fin")
-        nb_round = int(input("Nombre de tour :") or 4)
+        nb_round = input("Nombre de tour :") or 4
         while True:
 
             try:
