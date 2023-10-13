@@ -34,7 +34,7 @@ def tournament_statue(self, list_tournaments):
 
     while tournament.ended is True:
         while list_tournaments[id].ended is True:
-            print(text_red, "Ce tournoi est terminé", text_white)
+            self.view.tournament_report(tournament, tournament.list_players)
             tournament = self.menu_list(
                 "list_tournaments", list_tournaments, list_only=True)[1]
             id = tournament
@@ -59,16 +59,12 @@ def start_round(self, id, round, tournament, list_tournaments):
     round.play_match()
     if tournament.actual_turn_number == len(tournament.list_rounds):
         tournament.ended = True
-        best_score = 0
-        winner = round.participants[0]
-        for participant in round.participants:
-            if participant.score > best_score:
-                best_score = participant.score
-                winner = participant
         tournament.end_date = datetime.now().strftime('%d/%m/%Y %H:%M')
-        print(text_blue, f"Tournament {tournament.name} terminé !{text_white}")
-        print(
-            text_blue, f"Félicitation à {winner.full_name()} {text_white}")
+        participants = []
+        for participant in round.participants:
+            participants.append(participant)
+
+        self.view.tournament_report(tournament, participants)
 
     elif tournament.actual_turn_number < len(tournament.list_rounds):
         tournament.actual_turn_number += 1
@@ -214,6 +210,9 @@ def tournament_add_player(self, view_name, manage_view, choice, id, tournament, 
     if player != "return":
         tournament.add_player(player)
     else:
+        list_tournaments = convert_sub_objects(
+            database_access("tournaments", Tournament, "r"))
+        tournament = list_tournaments[id]
         return self.menu_edit("menu_modification_tournament", id, tournament, list_tournaments)
 
     update_database(

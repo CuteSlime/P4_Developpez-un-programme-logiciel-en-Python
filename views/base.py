@@ -1,4 +1,5 @@
 from utils.view_base import validate_national_id, date_input
+from utils.models_round import sort_by_score
 from utils.text_color import (
     text_red,
     text_green,
@@ -36,6 +37,17 @@ class Views:
                 print(f"{text_red} Mauvais choix ! {text_white}")
             choice = input("\nChoix N° :")
         return choice
+
+    def tournament_report(self, tournament: object, participants: list):
+        print(f"{text_blue}\n Tournoi {tournament.name} terminé !{text_white}\n")
+        participants = sort_by_score(participants)
+        winner = participants[0]
+        print(f"--------- rapport ---------\n"
+              f"{text_blue}Félicitation à {winner.full_name()} {text_white}\n")
+
+        for participant in participants:
+            print(f"{text_blue}{participant.full_name()} |"
+                  f" {participant.score} points {text_white}")
 
     def actual_tournaments(self, tournament: object, matchs: list):
         '''gestion des tournois actif
