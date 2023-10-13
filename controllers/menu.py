@@ -164,14 +164,15 @@ class Menu:
                 if isinstance(obj, Tournament):
                     remove_from_database(
                         obj, list_objects, "tournaments", Tournament)
+                    return self.menu_list('list_tournaments', list_objects)
 
                 elif isinstance(obj, Player):
                     remove_from_database(obj, list_objects, "players", Player)
+                    return self.menu_list('list_players', list_objects)
 
                 elif isinstance(obj, Club):
                     remove_from_database(obj, list_objects, "clubs", Club)
-
-                return self.menu_list(menu_name_list, list_objects)
+                    return self.menu_list('list_clubs', list_objects)
 
             case "3":
                 return self.menu_list(menu_name_list, list_objects)
