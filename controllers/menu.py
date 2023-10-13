@@ -73,7 +73,7 @@ class Menu:
             round.add_match(round.participants, list_previous_match)
 
         choice = getattr(self.view, view_name)(
-            tournament, round.participants, round.list_matchs)
+            tournament, round.list_matchs)
 
         match choice:
             case "1":

@@ -37,7 +37,7 @@ class Views:
             choice = input("\nChoix N° :")
         return choice
 
-    def actual_tournaments(self, tournament: object, participants, matchs: list):
+    def actual_tournaments(self, tournament: object, matchs: list):
         '''gestion des tournois actif
 
         Args:
