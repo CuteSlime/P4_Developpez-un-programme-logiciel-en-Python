@@ -3,7 +3,6 @@ from datetime import datetime
 from utils.database import convert_sub_objects, database_access, update_database
 from utils.text_color import (
     text_red,
-    text_blue,
     text_white
 )
 
